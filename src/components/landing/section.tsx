@@ -22,7 +22,10 @@ export function Section({
   children: React.ReactNode
 }) {
   return (
-    <section id={id} className={cn("py-8 sm:py-10 lg:py-12", className)}>
+    <section
+      id={id}
+      className={cn("scroll-mt-16 py-8 sm:scroll-mt-20 sm:py-10 lg:py-12", className)}
+    >
       <Shell className={innerClassName}>{children}</Shell>
     </section>
   )
@@ -50,7 +53,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-xs font-bold tracking-[0.16em] text-brand-500 uppercase">
+        <p className="mb-3 text-xs font-bold tracking-[0.16em] text-brand-700 uppercase">
           {eyebrow}
         </p>
       ) : null}

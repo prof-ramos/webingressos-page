@@ -6,11 +6,11 @@ import { PILOT_BENEFITS } from "@/lib/constants"
 
 export function PilotBand() {
   return (
-    <section id="programa-piloto" className="py-6 sm:py-8">
+    <section id="programa-piloto" className="scroll-mt-16 py-6 sm:scroll-mt-20 sm:py-8">
       <Shell>
         <div className="relative grid gap-8 overflow-hidden rounded-panel bg-brand-50 p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
           <div className="relative">
-            <p className="text-xs font-bold tracking-[0.16em] text-brand-500 uppercase">
+            <p className="text-xs font-bold tracking-[0.16em] text-brand-700 uppercase">
               Programa piloto
             </p>
             <h2 className="mt-3 max-w-md text-2xl font-extrabold tracking-tight text-balance text-ink-800 sm:text-3xl">

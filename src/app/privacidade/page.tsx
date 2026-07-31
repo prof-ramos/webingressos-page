@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react"
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="px-5 py-16 sm:py-20">
+    <main id="main-content" className="px-5 py-16 sm:py-20">
       <div className="mx-auto max-w-3xl">
         <Link
           href="/"
