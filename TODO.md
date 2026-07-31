@@ -4,9 +4,8 @@
 
 - [ ] Executar `pnpm install` e versionar `pnpm-lock.yaml`.
 - [ ] Após versionar o lockfile, tornar `--frozen-lockfile` obrigatório na CI e avaliar cache do store somente entre jobs confiáveis.
-- [ ] Configurar `LEADS_WEBHOOK_URL` e `LEADS_WEBHOOK_BEARER_TOKEN`.
-- [ ] Testar sucesso, recusa, timeout, duplicidade e payload inválido do webhook.
-- [ ] Definir e validar `NEXT_PUBLIC_CONTACT_EMAIL`.
+- [ ] Substituir a persistência de candidaturas em `/tmp` (`api/subscribe`) por um banco, KV ou webhook — hoje os dados não sobrevivem entre invocações na Vercel.
+- [ ] Testar sucesso, recusa e payload inválido do endpoint de candidatura após a migração de armazenamento.
 - [ ] Submeter a Política de Privacidade à revisão jurídica.
 - [ ] Definir a base legal e revisar Vercel Analytics/Speed Insights.
 - [ ] Validar o domínio no projeto Vercel.
@@ -31,11 +30,10 @@
 - [ ] Definir retenção e exclusão de candidaturas.
 - [ ] Restringir acesso ao destino dos leads.
 - [ ] Testar backup e restauração do sistema que receberá os dados.
-- [ ] Definir política de rotação do token do webhook.
 
 ## P2 — evolução
 
-- [ ] Produzir identidade visual definitiva após validar o posicionamento.
+- [ ] Substituir o mockup de dashboard do hero por uma captura real do produto quando existir.
 - [ ] Criar testes automatizados do schema e do endpoint.
 - [ ] Criar variações de headline somente com hipótese e evento de conversão definidos.
 - [ ] Adicionar casos reais apenas mediante autorização e evidência verificável.

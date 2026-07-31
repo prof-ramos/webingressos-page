@@ -1,21 +1,14 @@
-import type { MetadataRoute } from "next"
+import { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "WebIngressos",
     short_name: "WebIngressos",
-    description: "Programa piloto de gestão e venda de ingressos para eventos universitários.",
+    description:
+      "Gestão de vendas, promoters, check-in e prestação de contas para eventos universitários.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f8f8fb",
-    theme_color: "#6d3df5",
-    lang: "pt-BR",
-    icons: [
-      {
-        src: "/icon.svg",
-        sizes: "any",
-        type: "image/svg+xml",
-      },
-    ],
+    background_color: "#f9fafc",
+    theme_color: "#0e6340",
   }
 }

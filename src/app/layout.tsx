@@ -1,62 +1,35 @@
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import { Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
-import { siteConfig } from "@/lib/site-config"
+import { Toaster } from "@/components/ui/sonner"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  display: "swap",
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-jakarta",
   display: "swap",
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: siteConfig.title,
-    description: siteConfig.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-  },
-  category: "technology",
+  title: "WebIngressos | Gestão de Ingressos para Eventos Universitários",
+  description:
+    "Centralize vendas, promoters, check-in e prestação de contas para atléticas, repúblicas e produtores universitários.",
 }
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f8fb" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1020" },
-  ],
+  themeColor: "#0e6340",
+  colorScheme: "light",
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
+    <html lang="pt-BR" className={`${jakarta.variable} scroll-smooth`}>
+      <body className="bg-background text-foreground antialiased">
         {children}
-        <Analytics />
-        <SpeedInsights />
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   )

@@ -1,42 +1,40 @@
-import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, CheckCircle2 } from "lucide-react"
+import { CircleCheck } from "lucide-react"
 
-import { SiteFooter } from "@/components/landing/site-footer"
-import { SiteHeader } from "@/components/landing/site-header"
-import { Button } from "@/components/ui/button"
-
-export const metadata: Metadata = {
-  title: "Candidatura recebida",
-  description: "Confirmação de envio da candidatura ao programa piloto da WebIngressos.",
-  robots: { index: false, follow: false },
-}
+import { Logo } from "@/components/brand/logo"
 
 export default function ThankYouPage() {
   return (
-    <>
-      <SiteHeader />
-      <main className="container-shell grid min-h-[70svh] place-items-center py-20">
-        <section className="mx-auto max-w-2xl text-center">
-          <span className="mx-auto grid size-16 place-items-center rounded-3xl bg-emerald-500/10 text-emerald-600">
-            <CheckCircle2 className="size-8" aria-hidden="true" />
+    <main className="flex min-h-screen flex-col items-center justify-center px-5 py-16">
+      <div className="w-full max-w-lg rounded-card border border-border bg-white p-8 text-center shadow-card sm:p-10">
+        <div className="flex justify-center">
+          <Logo markClassName="size-7" wordmarkClassName="text-lg" />
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <span className="inline-flex size-14 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+            <CircleCheck className="size-7" strokeWidth={1.8} aria-hidden="true" />
           </span>
-          <h1 className="mt-7 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-            Candidatura recebida.
-          </h1>
-          <p className="mt-5 text-pretty text-lg leading-8 text-muted-foreground">
-            Os dados foram encaminhados para análise. O contato será feito pelos canais informados
-            caso o evento esteja aderente ao escopo atual do programa piloto.
-          </p>
-          <Button asChild variant="outline" size="lg" className="mt-8">
-            <Link href="/">
-              <ArrowLeft aria-hidden="true" />
-              Voltar para a página inicial
-            </Link>
-          </Button>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+        </div>
+
+        <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-balance text-ink-800 sm:text-3xl">
+          Candidatura recebida!
+        </h1>
+
+        <p className="mt-4 text-base leading-relaxed text-ink-500">
+          Obrigado por se candidatar ao programa piloto da WebIngressos. Nossa equipe entrará em
+          contato pelo e-mail ou WhatsApp informado em até{" "}
+          <strong className="font-semibold text-ink-800">48 horas úteis</strong> para dar início ao
+          seu processo.
+        </p>
+
+        <Link
+          href="/"
+          className="mt-8 inline-flex h-13 items-center justify-center rounded-xl bg-brand-700 px-7 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800"
+        >
+          Voltar para a página inicial
+        </Link>
+      </div>
+    </main>
   )
 }

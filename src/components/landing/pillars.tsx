@@ -1,67 +1,25 @@
-import { BarChart3, QrCode, TicketCheck, WalletCards } from "lucide-react"
-
-import { SectionHeading } from "@/components/landing/section-heading"
-
-const pillars = [
-  {
-    icon: TicketCheck,
-    number: "01",
-    title: "Vendas centralizadas",
-    description:
-      "Estruture lotes, cupons e ingressos com uma visão única da operação comercial do evento.",
-  },
-  {
-    icon: BarChart3,
-    number: "02",
-    title: "Promoters acompanhados",
-    description:
-      "Associe vendas, metas e comissões a cada promoter sem depender de apuração manual no fim.",
-  },
-  {
-    icon: QrCode,
-    number: "03",
-    title: "Entrada organizada",
-    description:
-      "Prepare validação por QR Code e rastreabilidade do check-in para reduzir improviso na portaria.",
-  },
-  {
-    icon: WalletCards,
-    number: "04",
-    title: "Financeiro rastreável",
-    description:
-      "Consolide receitas, despesas, taxas e divisões para produzir uma prestação de contas verificável.",
-  },
-]
+import { Section, SectionHeading } from "@/components/landing/section"
+import { PILLARS } from "@/lib/constants"
 
 export function Pillars() {
   return (
-    <section
-      id="solucao"
-      className="section-space scroll-mt-24 border-y border-border/70 bg-muted/45"
-    >
-      <div className="container-shell">
-        <SectionHeading
-          eyebrow="A proposta"
-          title="Uma única operação, do primeiro lote ao fechamento."
-          description="O programa piloto prioriza as partes que mais consomem tempo e geram divergência para quem organiza eventos universitários."
-          align="center"
-        />
+    <Section id="pilares">
+      <SectionHeading title="Uma plataforma feita para a realidade universitária." />
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border lg:grid-cols-2">
-          {pillars.map(({ icon: Icon, number, title, description }) => (
-            <article key={title} className="bg-background p-7 sm:p-9">
-              <div className="flex items-center justify-between gap-4">
-                <span className="grid size-12 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
-                  <Icon className="size-6" aria-hidden="true" />
-                </span>
-                <span className="font-mono text-sm text-muted-foreground">{number}</span>
-              </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-tight">{title}</h3>
-              <p className="mt-3 max-w-xl leading-7 text-muted-foreground">{description}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        {PILLARS.map((pillar) => (
+          <li
+            key={pillar.title}
+            className="rounded-card border border-border bg-white p-6 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card"
+          >
+            <span className="inline-flex size-12 items-center justify-center rounded-full bg-brand-700 text-white">
+              <pillar.icon className="size-6" strokeWidth={1.8} aria-hidden="true" />
+            </span>
+            <h3 className="mt-5 text-lg font-bold text-ink-900">{pillar.title}</h3>
+            <p className="mt-2.5 text-sm leading-relaxed text-ink-500">{pillar.description}</p>
+          </li>
+        ))}
+      </ul>
+    </Section>
   )
 }

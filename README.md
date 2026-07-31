@@ -17,9 +17,9 @@ Não devem ser adicionados aqui checkout, autenticação, pagamentos, emissão d
 - React 19;
 - TypeScript estrito;
 - Tailwind CSS 4;
-- componentes no padrão shadcn/ui, mantidos no código;
-- Zod para validação server-side;
-- Route Handler para encaminhamento de leads;
+- componentes no padrão shadcn/ui (`base-nova`, sobre `@base-ui/react`), mantidos no código;
+- React Hook Form + Zod para o formulário e validação server-side;
+- Route Handler para persistência inicial das candidaturas;
 - Vercel Analytics e Speed Insights;
 - Vercel como destino de deploy;
 - pnpm 11, com scripts de dependências bloqueados por padrão e permissões explícitas em `pnpm-workspace.yaml`.
@@ -43,51 +43,9 @@ Acesse `http://localhost:3000`. Após a primeira instalação, versione o `pnpm-
 
 ## Variáveis de ambiente
 
-| Variável                     | Obrigatória em produção | Finalidade                                         |
-| ---------------------------- | ----------------------: | -------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`       |                     Sim | URL canônica, sem barra final                      |
-| `NEXT_PUBLIC_CONTACT_EMAIL`  |                     Sim | Canal exibido no site e na política de privacidade |
-| `LEADS_WEBHOOK_URL`          |                     Sim | Endpoint HTTPS que receberá as candidaturas        |
-| `LEADS_WEBHOOK_BEARER_TOKEN` |             Recomendada | Token enviado como `Authorization: Bearer ...`     |
-
-Em desenvolvimento, quando `LEADS_WEBHOOK_URL` não está configurada, o endpoint valida o formulário e retorna sucesso sem persistir dados. Em produção, a ausência ou invalidade do webhook gera erro `503`.
-
-## Contrato do webhook
-
-O endpoint `POST /api/leads` aceita JSON, limita o corpo a 20 KB, valida os campos, verifica o honeypot e encaminha um payload semelhante a:
-
-```json
-{
-  "submissionId": "c45a36fa-f197-4c3e-9374-7c1ee5d01ed1",
-  "name": "Nome do responsável",
-  "email": "responsavel@example.com",
-  "whatsapp": "(61) 99999-9999",
-  "organization": "Nome da organização",
-  "university": "Universidade",
-  "city": "Brasília/DF",
-  "eventType": "Calourada",
-  "eventDate": "2026-09-12",
-  "expectedAudience": "701 a 1.200 pessoas",
-  "currentPlatform": "Plataforma atual",
-  "mainChallenge": "Descrição da dificuldade operacional",
-  "consent": {
-    "granted": true,
-    "recordedAt": "2026-07-30T00:00:00.000Z"
-  },
-  "metadata": {
-    "source": "webingressos-landing-page",
-    "submittedAt": "2026-07-30T00:00:00.000Z"
-  }
-}
-```
-
-O webhook recebe também:
-
-- `Authorization: Bearer <token>`, quando configurado;
-- `Idempotency-Key: <submissionId>`;
-- `X-Webhook-Source: webingressos-landing-page`.
-
-Antes de tráfego pago ou divulgação ampla, adicione rate limiting distribuído e proteção antispam adequada ao risco.
+| Variável               | Obrigatória em produção | Finalidade                    |
+| ---------------------- | ----------------------: | ----------------------------- |
+| `NEXT_PUBLIC_SITE_URL` |                     Sim | URL canônica, sem barra final |
 
 ## Comandos
 
@@ -111,24 +69,27 @@ pnpm skills:update   # atualiza as skills de marketing versionadas
   workflows/ci.yml       validação de pull requests e da branch main
 src/
   app/
-    api/leads/route.ts   validação e entrega ao webhook
-    obrigado/            confirmação de candidatura
-    privacidade/         política inicial
+    api/subscribe/route.ts   validação e persistência da candidatura
+    obrigado/                 confirmação de candidatura
+    privacidade/               política inicial
   components/
-    landing/             seções da landing
-    ui/                  componentes no padrão shadcn/ui
+    landing/               seções da landing
+    ui/                    componentes no padrão shadcn/ui (base-nova)
+    brand/                 marca (logo)
+    illustrations/         ilustrações line-art
   lib/
-    lead-schema.ts       contrato de entrada
-    site-config.ts       metadados e configuração pública
+    schemas.ts            contrato de entrada (Zod)
+    form-options.ts       opções do formulário (tipo de evento, UF etc.)
+    constants.ts          conteúdo das seções e config do site
 ```
 
 ## Deploy na Vercel
 
 1. importe `prof-ramos/webingressos-page` na Vercel;
 2. mantenha o preset Next.js detectado automaticamente;
-3. configure as quatro variáveis de ambiente;
+3. configure `NEXT_PUBLIC_SITE_URL`;
 4. valide o Preview Deployment e o fluxo completo do formulário;
-5. vincule `webingressos.com.br` somente após confirmar a persistência dos leads;
+5. vincule `webingressos.com.br` somente após confirmar a persistência dos leads (ver aviso abaixo);
 6. revise a Política de Privacidade antes da publicação definitiva.
 
 Não é necessário `vercel.json` para este boilerplate.
@@ -146,14 +107,13 @@ As regras completas estão em `AGENTS.md`.
 
 ## Segurança e produção
 
-O boilerplate inclui headers de segurança, validação server-side, limite de payload, verificação de origem, honeypot, timeout e autenticação opcional do webhook. Ainda são necessários antes de lançamento público:
+O boilerplate inclui headers de segurança (`next.config.ts`) e validação server-side com Zod. Ainda são necessários antes de lançamento público:
 
-- rate limiting distribuído;
-- proteção antispam adequada ao volume;
+- **persistência durável dos leads** — o endpoint `POST /api/subscribe` grava candidaturas em `/tmp`, que é efêmero na Vercel; os dados são perdidos entre invocações e precisam migrar para um banco, KV ou webhook antes de tráfego real;
+- rate limiting e proteção antispam (não há honeypot nem limite de taxa hoje);
 - monitoramento de erros;
 - política de retenção de leads;
 - revisão jurídica da política de privacidade;
-- backup e controle de acesso do destino dos leads;
 - teste completo em Preview e Production.
 
 ## Licença

@@ -1,20 +1,25 @@
-import type { MetadataRoute } from "next"
-
-import { siteConfig } from "@/lib/site-config"
+import { MetadataRoute } from "next"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: siteConfig.url,
+      url: SITE_CONFIG.url,
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: `${siteConfig.url}/privacidade`,
+      url: `${SITE_CONFIG.url}/obrigado`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "never",
       priority: 0.3,
+    },
+    {
+      url: `${SITE_CONFIG.url}/privacidade`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
     },
   ]
 }

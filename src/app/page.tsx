@@ -1,33 +1,34 @@
-import type { Metadata } from "next"
-
-import { Faq } from "@/components/landing/faq"
+import { Header } from "@/components/landing/header"
 import { Hero } from "@/components/landing/hero"
-import { HowItWorks } from "@/components/landing/how-it-works"
-import { Pains } from "@/components/landing/pains"
+import { Problems } from "@/components/landing/problems"
 import { Pillars } from "@/components/landing/pillars"
+import { TargetAudience } from "@/components/landing/target-audience"
+import { PilotBand } from "@/components/landing/pilot-band"
 import { PilotForm } from "@/components/landing/pilot-form"
-import { PilotProgram } from "@/components/landing/pilot-program"
-import { SiteFooter } from "@/components/landing/site-footer"
-import { SiteHeader } from "@/components/landing/site-header"
+import { Faq } from "@/components/landing/faq"
+import { FinalCta } from "@/components/landing/final-cta"
+import { Footer } from "@/components/landing/footer"
+import { Section } from "@/components/landing/section"
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-}
-
-export default function HomePage() {
+export default function Home() {
   return (
     <>
-      <SiteHeader />
+      <Header />
       <main>
         <Hero />
-        <Pains />
+        <Problems />
         <Pillars />
-        <HowItWorks />
-        <PilotProgram />
+        <TargetAudience />
+        <PilotBand />
+
+        <Section id="piloto" className="py-8 sm:py-10">
+          <PilotForm />
+        </Section>
+
         <Faq />
-        <PilotForm />
+        <FinalCta />
       </main>
-      <SiteFooter />
+      <Footer />
     </>
   )
 }
