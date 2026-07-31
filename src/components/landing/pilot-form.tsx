@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
 import { pilotFormSchema, type PilotFormData } from "@/lib/schemas"
@@ -298,6 +298,7 @@ export function PilotForm() {
             disabled={isSubmitting}
             className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-brand-700 px-6 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
           >
+            {isSubmitting ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : null}
             {isSubmitting ? "Enviando…" : "Enviar candidatura"}
             {isSubmitting ? null : <ArrowRight className="size-5" />}
           </button>
