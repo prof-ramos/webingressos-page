@@ -1,5 +1,7 @@
 .next
 node_modules
 coverage
+.remember/**
+docs/uiux-assets/**
 pnpm-lock.yaml
 .agents/skills/**/SKILL.md

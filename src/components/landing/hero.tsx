@@ -10,6 +10,9 @@ export function Hero() {
       <Shell>
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.12fr] lg:gap-12">
           <div>
+            <p className="mb-4 text-xs font-bold tracking-[0.16em] text-brand-700 uppercase">
+              Programa piloto para eventos universitários
+            </p>
             {/* Explicit breaks from lg up so the three lines land exactly as in
                 the reference design; below lg the copy wraps naturally. */}
             <h1 className="text-[2.1rem] leading-[1.08] font-extrabold tracking-[-0.028em] text-ink-800 sm:text-[2.75rem] lg:text-[2.9rem] xl:text-[3.1rem]">
@@ -38,9 +41,16 @@ export function Hero() {
                 Conhecer a proposta
               </a>
             </div>
+
+            <p className="mt-5 max-w-sm text-xs leading-relaxed text-ink-500 sm:text-sm">
+              Candidatura sem compromisso. Retornamos em até 48 horas úteis para entender o seu
+              evento.
+            </p>
           </div>
 
-          <DashboardPreview className="lg:justify-self-end" />
+          <div className="lg:justify-self-end">
+            <DashboardPreview className="pt-4 sm:pt-6" />
+          </div>
         </div>
       </Shell>
     </section>

@@ -53,7 +53,9 @@
   --destructive-foreground: #ffffff;
   --border: var(--ink-200);
   --input: var(--ink-200);
-  --ring: var(--brand-500);
+  --ring: var(--brand-600);
+  /* Single source for focus color: the 3px outline and component rings share it. */
+  --focus-ring: var(--ring);
   --radius: 0.625rem;
 }
 
@@ -74,6 +76,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-focus-ring: var(--focus-ring);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -144,15 +147,44 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-padding-top: 5rem;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
   }
 
   ::selection {
     background-color: var(--brand-100);
     color: var(--brand-800);
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
+  }
+}
+
+/* Respect prefers-reduced-motion for every transition/animation (accordion
+   height, header mobile menu slide, card hover-lift) instead of hand-rolling
+   a reduced variant per component. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

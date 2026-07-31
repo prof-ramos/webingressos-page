@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
+import { useForm, type FieldErrors } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowRight, Loader2 } from "lucide-react"
 import { toast } from "sonner"
@@ -57,6 +57,7 @@ const UF_OPTIONS = toOptions(UFS, UF_LABELS)
 export function PilotForm() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [submitError, setSubmitError] = React.useState<string | null>(null)
 
   const form = useForm<PilotFormData>({
     resolver: zodResolver(pilotFormSchema),
@@ -74,6 +75,7 @@ export function PilotForm() {
 
   async function onSubmit(data: PilotFormData) {
     setIsSubmitting(true)
+    setSubmitError(null)
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
@@ -89,6 +91,7 @@ export function PilotForm() {
       form.reset()
       router.push("/obrigado")
     } catch {
+      setSubmitError("Não foi possível enviar agora. Tente novamente em alguns minutos.")
       toast.error("Erro ao enviar candidatura", {
         description: "Tente novamente em alguns minutos ou entre em contato diretamente.",
       })
@@ -97,153 +100,190 @@ export function PilotForm() {
     }
   }
 
+  function onInvalid(errors: FieldErrors<PilotFormData>) {
+    const firstError = Object.keys(errors)[0] as keyof PilotFormData | undefined
+    if (firstError) {
+      window.requestAnimationFrame(() => form.setFocus(firstError))
+    }
+  }
+
   return (
     <div className="rounded-card border border-border bg-white p-6 shadow-card sm:p-8 lg:p-10">
       <h2 className="text-xl font-extrabold tracking-tight text-ink-900 sm:text-2xl">
         Candidate seu evento
       </h2>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-500 sm:text-base">
+        Conte um pouco sobre a sua operação. A candidatura não garante vaga; retornamos em até 48
+        horas úteis para conversar sobre data, público e formato.
+      </p>
+
+      {/* Polite status for the submitting state only. The error is announced
+          once by the role="alert" banner below — keeping it here too would
+          double-announce it to screen readers. */}
+      <p id="pilot-form-status" className="sr-only" aria-live="polite">
+        {isSubmitting ? "Enviando candidatura…" : ""}
+      </p>
+      {submitError ? (
+        <div
+          role="alert"
+          className="mt-5 rounded-xl border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive"
+        >
+          {submitError}
+        </div>
+      ) : null}
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-7 space-y-5">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={labelClass}>Nome do responsável</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Seu nome completo"
-                      autoComplete="name"
-                      className={fieldClass}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-destructive" />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={labelClass}>WhatsApp</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="tel"
-                      inputMode="tel"
-                      placeholder="(61) 99999-9999"
-                      autoComplete="tel"
-                      maxLength={20}
-                      className={fieldClass}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-destructive" />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={labelClass}>E-mail</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="seu@email.com"
-                      autoComplete="email"
-                      className={fieldClass}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-destructive" />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <FormField
-              control={form.control}
-              name="organizationType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={labelClass}>Tipo de evento</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+          aria-describedby="pilot-form-status"
+          className="mt-7 space-y-5"
+          noValidate
+        >
+          <fieldset>
+            <legend className="sr-only">Dados de contato</legend>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={labelClass}>Nome do responsável</FormLabel>
                     <FormControl>
-                      <SelectTrigger className={selectTriggerClass}>
-                        <SelectValue placeholder="Selecione" />
-                      </SelectTrigger>
+                      <Input
+                        placeholder="Seu nome completo…"
+                        autoComplete="name"
+                        className={fieldClass}
+                        {...field}
+                      />
                     </FormControl>
-                    <SelectContent>
-                      {ORGANIZATION_TYPE_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage className="text-destructive" />
-                </FormItem>
-              )}
-            />
+                    <FormMessage className="text-destructive" />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="expectedAttendance"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={labelClass}>Estimativa de público</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={labelClass}>WhatsApp</FormLabel>
                     <FormControl>
-                      <SelectTrigger className={selectTriggerClass}>
-                        <SelectValue placeholder="Selecione" />
-                      </SelectTrigger>
+                      <Input
+                        type="tel"
+                        inputMode="tel"
+                        placeholder="(61) 99999-9999…"
+                        autoComplete="tel"
+                        maxLength={20}
+                        className={fieldClass}
+                        {...field}
+                      />
                     </FormControl>
-                    <SelectContent>
-                      {ATTENDANCE_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage className="text-destructive" />
-                </FormItem>
-              )}
-            />
+                    <FormMessage className="text-destructive" />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="cityState"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={labelClass}>Estado (UF)</FormLabel>
-                  <Select value={field.value} onValueChange={field.onChange}>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={labelClass}>E-mail</FormLabel>
                     <FormControl>
-                      <SelectTrigger className={selectTriggerClass}>
-                        <SelectValue placeholder="Selecione" />
-                      </SelectTrigger>
+                      <Input
+                        type="email"
+                        placeholder="seu@email.com…"
+                        autoComplete="email"
+                        className={fieldClass}
+                        {...field}
+                      />
                     </FormControl>
-                    <SelectContent>
-                      {UF_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.value} — {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage className="text-destructive" />
-                </FormItem>
-              )}
-            />
-          </div>
+                    <FormMessage className="text-destructive" />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend className="sr-only">Dados do evento</legend>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <FormField
+                control={form.control}
+                name="organizationType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={labelClass}>Tipo de evento</FormLabel>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger className={selectTriggerClass}>
+                          <SelectValue placeholder="Selecione" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {ORGANIZATION_TYPE_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className="text-destructive" />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="expectedAttendance"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={labelClass}>Estimativa de público</FormLabel>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger className={selectTriggerClass}>
+                          <SelectValue placeholder="Selecione" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {ATTENDANCE_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className="text-destructive" />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="cityState"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={labelClass}>Estado (UF)</FormLabel>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger className={selectTriggerClass}>
+                          <SelectValue placeholder="Selecione" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {UF_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.value} — {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className="text-destructive" />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </fieldset>
 
           <FormField
             control={form.control}
@@ -254,6 +294,7 @@ export function PilotForm() {
                 <FormControl>
                   <Input
                     placeholder="Ex.: Atlética do Cerrado, Festa Junina da República…"
+                    autoComplete="organization"
                     className={fieldClass}
                     {...field}
                   />
@@ -296,6 +337,7 @@ export function PilotForm() {
           <button
             type="submit"
             disabled={isSubmitting}
+            aria-busy={isSubmitting}
             className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-brand-700 px-6 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : null}

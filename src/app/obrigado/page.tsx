@@ -5,7 +5,10 @@ import { Logo } from "@/components/brand/logo"
 
 export default function ThankYouPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-5 py-16">
+    <main
+      id="main-content"
+      className="flex min-h-screen flex-col items-center justify-center px-5 py-16"
+    >
       <div className="w-full max-w-lg rounded-card border border-border bg-white p-8 text-center shadow-card sm:p-10">
         <div className="flex justify-center">
           <Logo markClassName="size-7" wordmarkClassName="text-lg" />
