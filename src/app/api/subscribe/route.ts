@@ -1,12 +1,12 @@
+import { randomUUID } from "node:crypto"
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { pilotFormSchema } from "@/lib/schemas"
 
 export const runtime = "nodejs"
 
-// TODO: file-based storage for MVP. `/tmp` is ephemeral on Vercel, so the
-// console line below is currently the only durable trace of a lead.
-// Swap for Vercel KV / a database before launch.
+// TODO: file-based storage for MVP. `/tmp` is ephemeral on Vercel, so this
+// is not durable persistence — swap for Vercel KV / a database before launch.
 const DATA_DIR = "/tmp/webingressos-leads"
 
 async function ensureDir() {
@@ -30,7 +30,9 @@ export async function POST(req: Request) {
       )
     }
 
+    const submissionId = randomUUID()
     const lead = {
+      submissionId,
       ...parsed.data,
       // Keep the LGPD consent on the record instead of discarding it.
       consentAt: new Date().toISOString(),
@@ -38,12 +40,14 @@ export async function POST(req: Request) {
       source: "landing-page",
     }
 
-    console.info("[lead]", JSON.stringify(lead))
+    // Log only a non-sensitive identifier — the lead itself carries PII
+    // (name, e-mail, phone) and must not end up in server logs.
+    console.info("[lead] received", submissionId)
 
     await ensureDir()
-    const { appendFile } = await import("fs/promises")
-    const filename = `${DATA_DIR}/${Date.now()}-${lead.email.replace(/[^a-z0-9]/gi, "_")}.json`
-    await appendFile(filename, JSON.stringify(lead, null, 2))
+    const { writeFile } = await import("fs/promises")
+    const filename = `${DATA_DIR}/${submissionId}.json`
+    await writeFile(filename, JSON.stringify(lead, null, 2), { flag: "wx" })
 
     return NextResponse.json({ ok: true })
   } catch (err) {

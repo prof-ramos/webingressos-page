@@ -2,10 +2,16 @@ import { z } from "zod"
 
 import { ATTENDANCE_RANGES, ORGANIZATION_TYPES, UFS } from "./form-options"
 
+const PHONE_REGEX = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/
+
 export const pilotFormSchema = z.object({
   name: z.string().trim().min(2, "Informe o nome do responsável"),
-  email: z.email("Informe um e-mail válido"),
-  phone: z.string().trim().min(10, "Informe um telefone/WhatsApp válido com DDD"),
+  email: z.string().trim().pipe(z.email("Informe um e-mail válido")),
+  phone: z
+    .string()
+    .trim()
+    .max(20, "Telefone muito longo")
+    .regex(PHONE_REGEX, "Informe um telefone/WhatsApp válido com DDD"),
   organizationType: z.enum(ORGANIZATION_TYPES, {
     error: "Selecione o tipo de evento",
   }),

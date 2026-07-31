@@ -41,10 +41,7 @@ export function DashboardPreview({ className }: { className?: string }) {
   return (
     <div
       aria-hidden="true"
-      className={cn(
-        "rounded-card border border-border bg-[#fdfdfe] p-3 shadow-panel sm:p-4",
-        className,
-      )}
+      className={cn("rounded-card border border-border bg-card p-3 shadow-panel sm:p-4", className)}
     >
       <div className="mb-3 flex items-center justify-between gap-3">
         <span className="inline-flex items-center gap-1.5">

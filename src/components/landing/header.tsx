@@ -46,7 +46,7 @@ export function Header() {
               aria-expanded={isMenuOpen}
               aria-controls="menu-principal"
               onClick={() => setIsMenuOpen((open) => !open)}
-              className="inline-flex size-10 items-center justify-center rounded-xl text-ink-800 transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+              className="inline-flex size-10 items-center justify-center rounded-xl text-ink-800 transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none lg:hidden"
             >
               {isMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
             </button>
@@ -57,7 +57,7 @@ export function Header() {
       {isMenuOpen ? (
         <div
           id="menu-principal"
-          className="border-t border-border bg-white transition-[opacity,translate] duration-200 starting:-translate-y-2 starting:opacity-0"
+          className="border-t border-border bg-white transition-[opacity,translate] duration-200 starting:-translate-y-2 starting:opacity-0 lg:hidden"
         >
           <Shell>
             <nav className="flex flex-col gap-1 py-4">

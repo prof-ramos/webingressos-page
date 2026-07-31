@@ -137,6 +137,7 @@ export function PilotForm() {
                       inputMode="tel"
                       placeholder="(61) 99999-9999"
                       autoComplete="tel"
+                      maxLength={20}
                       className={fieldClass}
                       {...field}
                     />
@@ -295,7 +296,7 @@ export function PilotForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex h-13 w-full items-center justify-center gap-2.5 rounded-xl bg-brand-700 px-6 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
+            className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-brand-700 px-6 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
           >
             {isSubmitting ? "Enviando…" : "Enviar candidatura"}
             {isSubmitting ? null : <ArrowRight className="size-5" />}
