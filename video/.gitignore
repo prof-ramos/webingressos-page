@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+.DS_Store
+.env
+
+# Source MOVs are local stock assets and are intentionally kept out of Git.
+public/assets
+
+# Ignore rendered outputs.
+out

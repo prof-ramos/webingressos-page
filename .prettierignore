@@ -2,6 +2,7 @@
 node_modules
 coverage
 .remember/**
+video/build/**
 docs/uiux-assets/**
 pnpm-lock.yaml
 .agents/skills/**/SKILL.md

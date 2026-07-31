@@ -3,10 +3,6 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 
-/**
- * Placeholder that mirrors the form's card container and reserves height, so the
- * swap to the real form doesn't shift the page. Kept intentionally quiet.
- */
 function FormSkeleton() {
   return (
     <div
@@ -28,8 +24,8 @@ function FormSkeleton() {
   )
 }
 
-// ssr:false keeps the validation stack (zod + react-hook-form + radix) out of
-// the home's first-load JS entirely; it loads as an async chunk on approach.
+// Keep the validation stack out of the initial landing-page bundle; load it as
+// the visitor approaches the pilot form below the fold.
 const PilotForm = dynamic(
   () => import("@/components/landing/pilot-form").then((m) => m.PilotForm),
   { ssr: false, loading: () => <FormSkeleton /> },

@@ -5,5 +5,14 @@ import nextTypeScript from "eslint-config-next/typescript"
 export default defineConfig([
   ...nextVitals,
   ...nextTypeScript,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "docs/uiux-assets/**"]),
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "video/build/**",
+    "video/out/**",
+    "video/node_modules/**",
+    "next-env.d.ts",
+    "docs/uiux-assets/**",
+  ]),
 ])
