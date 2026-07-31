@@ -1,70 +1,194 @@
+import type { LucideIcon } from "lucide-react"
+import {
+  Calculator,
+  ChartPie,
+  Clock,
+  DollarSign,
+  FileText,
+  GraduationCap,
+  House,
+  IdCard,
+  ScanLine,
+  Share2,
+  ShieldCheck,
+  ShoppingCart,
+  Ticket,
+  Users,
+} from "lucide-react"
+
 export const SITE_CONFIG = {
   name: "WebIngressos",
-  description: "Plataforma de gestão de vendas, promoters, check-in e prestação de contas para atléticas e produtores universitários.",
+  description:
+    "Plataforma de gestão de vendas, promoters, check-in e prestação de contas para atléticas e produtores universitários.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://webingressos.com.br",
   pilotFormUrl: "#piloto",
+  ctaLabel: "Quero participar do piloto",
+} as const
+
+export type FeatureItem = {
+  title: string
+  description: string
+  icon: LucideIcon
 }
 
-export const TARGET_AUDIENCE = [
-  "Atléticas Universitárias",
-  "Repúblicas & Centros Acadêmicos",
-  "Produtores de Festas & Festivais",
-  "Casas Noturnas & Espaços de Eventos",
-]
-
-export const PROBLEMS = [
+/** Section "Organizar o evento não deveria depender de planilhas e mensagens soltas." */
+export const PROBLEMS: readonly FeatureItem[] = [
   {
-    title: "Vendas espalhadas sem controle",
-    description: "Promoters vendendo por chave PIX pessoal, planilhas desatualizadas e falta de visão clara da receita em tempo real.",
+    icon: Calculator,
+    title: "Comissões calculadas manualmente",
+    description: "Erros, retrabalho e conflitos na hora de fechar contas.",
   },
   {
-    title: "Fila e confusão na portaria",
-    description: "Check-in lento com listas impressas, ingressos duplicados e falta de validação rápida no celular.",
+    icon: ChartPie,
+    title: "Divisão de receitas confusa",
+    description: "Falta de clareza na divisão entre equipe e núcleo.",
   },
   {
-    title: "Prestação de contas caótica",
-    description: "Dificuldade para calcular comissões de promoters, dividir lucros entre sócios e justificar custos no final da festa.",
-  },
-]
-
-export const PILARS = [
-  {
-    title: "Vendas em Tempo Real",
-    description: "Acompanhe a evolução dos lotes, cupons de desconto e faturamento direto pelo celular.",
-    icon: "TrendingUp",
+    icon: Clock,
+    title: "Fechamento financeiro demorado",
+    description: "Horas reunindo dados para fechar contas.",
   },
   {
-    title: "Gestão de Promoters",
-    description: "Links e códigos exclusivos por promoter. Saiba exatamente quem vendeu quanto e automatize o cálculo de comissões.",
-    icon: "Users",
+    icon: FileText,
+    title: "Históricos se perdem a cada gestão",
+    description: "Informações dispersas e difíceis de recuperar.",
   },
   {
-    title: "Check-in Ágil",
-    description: "Validação de ingressos via QR Code na portaria, sem depender de internet instável ou listas de papel.",
-    icon: "QrCode",
+    icon: ScanLine,
+    title: "Check-in com fila",
+    description: "Entradas lentas e sem validação clara de público.",
   },
   {
-    title: "Governança & Financeiro",
-    description: "Relatórios claros de receita, despesas e prestação de contas simplificada para a diretoria ou sócios.",
-    icon: "ShieldCheck",
+    icon: Share2,
+    title: "Vendas espalhadas em vários lugares",
+    description: "Discord, Excel e links avulsos não se conversam.",
   },
 ]
 
-export const FAQS = [
+/** Section "Uma plataforma feita para a realidade universitária." */
+export const PILLARS: readonly FeatureItem[] = [
   {
-    question: "Como funciona o Programa Piloto?",
-    answer: "Selecionamos eventos universitários parceiros para utilizar a plataforma durante a fase inicial, com acompanhamento direto da nossa equipe na operação e condições exclusivas de taxa.",
+    icon: ShoppingCart,
+    title: "Vendas",
+    description:
+      "Centralize canais, itens, combos e acompanhe tudo em tempo real.",
   },
   {
-    question: "A WebIngressos serve para qualquer tamanho de evento?",
-    answer: "Nosso foco inicial é em eventos de 100 a 5.000 pessoas organizados por atléticas, repúblicas e produtores independentes.",
+    icon: Users,
+    title: "Promoters",
+    description: "Cadastre, ative e acompanhe vendas, comissões e metas.",
   },
   {
-    question: "Como os promoters vendem e recebem comissão?",
-    answer: "Cada promoter recebe um link próprio ou código. As vendas são atribuídas automaticamente no painel e o relatório de comissões é gerado ao fim das vendas.",
+    icon: IdCard,
+    title: "Operação",
+    description: "Check-in rápido, controle de acesso e listas seguras.",
   },
   {
-    question: "O check-in funciona se o sinal de internet cair no local?",
-    answer: "Sim. O sistema de validação possui modo com sincronização local para garantir leitura contínua de QR Codes na entrada do evento.",
+    icon: DollarSign,
+    title: "Financeiro",
+    description:
+      "Relatórios automáticos, divisões de comissões e conciliações simples.",
   },
 ]
+
+/** Section "Feito para quem faz o evento acontecer." */
+export const AUDIENCE: readonly { label: string; icon: LucideIcon }[] = [
+  { icon: ShieldCheck, label: "Atléticas" },
+  { icon: House, label: "Repúblicas" },
+  { icon: GraduationCap, label: "Centros acadêmicos" },
+  { icon: Ticket, label: "Produtores universitários" },
+]
+
+/** Checklist inside the "Programa Piloto" band. */
+export const PILOT_BENEFITS: readonly string[] = [
+  "Acompanhamento próximo",
+  "Configuração assistida",
+  "Convite para coproduzir melhorias novas",
+  "Vagas limitadas",
+]
+
+export const FAQS: readonly { question: string; answer: string }[] = [
+  {
+    question: "A WebIngressos já está operando?",
+    answer:
+      "Sim, em fase de piloto. A plataforma já roda vendas, promoters, check-in por QR Code e relatórios financeiros, e estamos operando com um grupo reduzido de eventos parceiros antes da abertura geral.",
+  },
+  {
+    question: "Quem pode participar do piloto?",
+    answer:
+      "Atléticas, repúblicas, centros acadêmicos e produtores universitários com evento previsto para os próximos meses. Damos prioridade a quem já vende ingressos hoje e quer organizar a operação e a prestação de contas.",
+  },
+  {
+    question: "O formulário já garante vaga?",
+    answer:
+      "Não. O formulário é uma candidatura. Analisamos cada evento e retornamos em até 48 horas úteis para conversar sobre data, público e formato antes de confirmar a vaga.",
+  },
+  {
+    question: "Vocês atendem fora de Brasília?",
+    answer:
+      "Sim. O piloto começou em Brasília, mas a plataforma é 100% online e atendemos eventos de qualquer cidade. O acompanhamento é remoto, com suporte dedicado durante a operação.",
+  },
+]
+
+/** Fictional figures rendered in the hero product preview. Decorative only. */
+export const DASHBOARD_DATA = {
+  period: "Este ano",
+  revenue: {
+    label: "Faturamento",
+    value: "R$ 45.870,00",
+    delta: "+21,4%",
+    deltaSuffix: "vs mês anterior",
+    series: [18, 22, 20, 27, 24, 33, 31, 44, 52],
+  },
+  events: {
+    label: "Eventos",
+    value: "68",
+    caption: "8 ativos",
+  },
+  checkins: {
+    label: "Check-ins",
+    value: "1.248",
+    caption: "Entradas",
+    highlight: "98%",
+    highlightSuffix: "válidos",
+    progress: 98,
+  },
+  settlement: {
+    label: "Liquidação",
+    value: "R$ 32.650,00",
+    caption: "A receber",
+    highlight: "2",
+    highlightSuffix: "pendências",
+  },
+  salesPerDay: {
+    label: "Vendas por dia",
+    max: 1000,
+    ticks: [0, 500, 1000],
+    tickLabels: ["0", "500", "1k"],
+    days: [
+      { short: "Seg", initial: "S", value: 430 },
+      { short: "Ter", initial: "T", value: 470 },
+      { short: "Qua", initial: "Q", value: 660 },
+      { short: "Qui", initial: "Q", value: 720 },
+      { short: "Sex", initial: "S", value: 860 },
+      { short: "Sáb", initial: "S", value: 500 },
+      { short: "Dom", initial: "D", value: 300 },
+    ],
+  },
+  channels: {
+    label: "Canais de venda",
+    items: [
+      { name: "Site/Link", percent: 58 },
+      { name: "Instagram", percent: 26 },
+      { name: "WhatsApp", percent: 10 },
+      { name: "Outros", percent: 6 },
+    ],
+  },
+} as const
+
+export const NAV_LINKS = [
+  { label: "O problema", href: "#problemas" },
+  { label: "A proposta", href: "#pilares" },
+  { label: "Programa piloto", href: "#programa-piloto" },
+  { label: "Dúvidas", href: "#faq" },
+] as const

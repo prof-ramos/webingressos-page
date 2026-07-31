@@ -1,45 +1,31 @@
-"use client"
-
-import * as React from "react"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Section, SectionHeading } from "@/components/landing/section"
 import { PROBLEMS } from "@/lib/constants"
-import { AlertTriangle } from "lucide-react"
 
 export function Problems() {
   return (
-    <section id="problemas" className="py-24 bg-slate-950 text-slate-100">
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-            A realidade de quem organiza eventos
-          </h2>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            Se você já ficou no prejuízo porque um promoter não prestou contas, ou passou a noite inteira na portaria resolvendo lista, você sabe como é.
-          </p>
-        </div>
+    <Section id="problemas">
+      <SectionHeading title="Organizar o evento não deveria depender de planilhas e mensagens soltas." />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PROBLEMS.map((problem, index) => (
-            <Card key={index} className="bg-slate-900/40 border-red-500/20 hover:border-red-500/50 transition-colors duration-300">
-              <CardHeader className="flex flex-row items-start gap-4 pb-2">
-                <div className="p-2 bg-red-500/10 rounded-lg text-red-400">
-                  <AlertTriangle className="w-6 h-6" />
-                </div>
-                <div>
-                  <CardTitle className="text-xl font-bold text-white">
-                    {problem.title}
-                  </CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-slate-400 text-base leading-relaxed">
-                  {problem.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
+      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+        {PROBLEMS.map((problem) => (
+          <li
+            key={problem.title}
+            className="flex flex-col items-center rounded-card border border-border bg-white p-4 text-center transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card lg:p-5"
+          >
+            <problem.icon
+              className="size-7 text-brand-600"
+              strokeWidth={1.6}
+              aria-hidden="true"
+            />
+            <h3 className="mt-4 text-sm font-bold text-balance text-ink-900">
+              {problem.title}
+            </h3>
+            <p className="mt-3 text-xs leading-relaxed text-balance text-ink-500">
+              {problem.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </Section>
   )
 }

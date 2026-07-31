@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Gestão de vendas, promoters, check-in e prestação de contas para eventos universitários.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0f172a",
-    theme_color: "#10b981",
+    background_color: "#f9fafc",
+    theme_color: "#0e6340",
   }
 }

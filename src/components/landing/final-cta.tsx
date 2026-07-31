@@ -1,31 +1,35 @@
-"use client"
+import { ArrowRight } from "lucide-react"
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { Rocket } from "lucide-react"
+import { TicketLine } from "@/components/illustrations/ticket-line"
+import { Shell } from "@/components/landing/section"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export function FinalCta() {
   return (
-    <section className="py-32 bg-gradient-to-br from-emerald-900/40 via-slate-900 to-slate-950 text-center">
-      <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
-        <div className="inline-flex p-3 bg-emerald-500/10 rounded-full mb-8 border border-emerald-500/20">
-          <Rocket className="w-8 h-8 text-emerald-400" />
-        </div>
-        
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-8 leading-tight">
-          Pronto para profissionalizar a sua produção?
-        </h2>
-        
-        <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-          Garanta uma vaga no programa piloto da WebIngressos e tenha acesso a uma plataforma feita sob medida para o seu evento, com suporte dedicado e sem custos iniciais para os primeiros parceiros.
-        </p>
+    <section className="pt-6 pb-14 sm:pt-8 sm:pb-20">
+      <Shell>
+        <div className="relative flex flex-col items-center gap-6 overflow-hidden rounded-panel bg-brand-700 px-7 py-9 text-center sm:px-10 sm:py-11 lg:flex-row lg:justify-between lg:px-14 lg:text-left">
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 hidden w-64 items-center lg:flex"
+            aria-hidden="true"
+          >
+            <div className="absolute inset-y-9 left-10 w-16 dot-grid text-white/20" />
+            <TicketLine className="relative ml-14 w-44 text-white/30" />
+          </div>
 
-        <a href="#piloto">
-          <Button size="lg" className="bg-white text-emerald-900 hover:bg-slate-100 font-bold px-12 py-6 text-xl rounded-2xl shadow-[0_0_50px_-10px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
-            Quero participar do piloto
-          </Button>
-        </a>
-      </div>
+          <h2 className="relative max-w-md text-2xl font-extrabold tracking-tight text-balance text-white sm:text-3xl lg:ml-auto">
+            Quer validar seu próximo evento com a WebIngressos?
+          </h2>
+
+          <a
+            href={SITE_CONFIG.pilotFormUrl}
+            className="relative inline-flex h-14 shrink-0 items-center justify-center gap-2.5 rounded-xl bg-white px-7 text-base font-bold text-brand-700 transition-colors hover:bg-brand-50 focus-visible:ring-3 focus-visible:ring-white/60 focus-visible:outline-none"
+          >
+            {SITE_CONFIG.ctaLabel}
+            <ArrowRight className="size-5" />
+          </a>
+        </div>
+      </Shell>
     </section>
   )
 }

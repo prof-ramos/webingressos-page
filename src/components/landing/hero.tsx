@@ -1,51 +1,49 @@
-"use client"
+import { ArrowRight } from "lucide-react"
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { Target } from "lucide-react"
-import Link from "next/link"
+import { DashboardPreview } from "@/components/landing/dashboard-preview"
+import { Shell } from "@/components/landing/section"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center bg-gradient-to-br from-slate-900 via-emerald-900/30 to-slate-900 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] bg-[url('/grid.svg')] bg-center" />
+    <section className="pt-9 pb-11 sm:pt-12 sm:pb-12 lg:pt-14 lg:pb-14">
+      <Shell>
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.12fr] lg:gap-12">
+          <div>
+            {/* Explicit breaks from lg up so the three lines land exactly as in
+                the reference design; below lg the copy wraps naturally. */}
+            <h1 className="text-[2.1rem] leading-[1.08] font-extrabold tracking-[-0.028em] text-ink-800 sm:text-[2.75rem] lg:text-[2.9rem] xl:text-[3.1rem]">
+              Venda ingressos
+              <br className="hidden lg:inline" /> sem perder o controle
+              <br className="hidden lg:inline" /> do evento.
+            </h1>
 
-      <div className="container mx-auto px-6 lg:px-12 z-10 text-center pt-32 pb-20">
-        <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full text-sm font-semibold mb-8 border border-emerald-500/20">
-          <Target className="w-4 h-4" />
-          <span>Foco exclusivo em organizadores de eventos</span>
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-ink-500 sm:text-lg">
+              Centralize vendas, promoters, comissões, check-in e prestação de
+              contas em uma plataforma desenvolvida para atléticas, repúblicas e
+              produtores universitários.
+            </p>
+
+            <div className="mt-8 flex max-w-sm flex-col gap-3">
+              <a
+                href={SITE_CONFIG.pilotFormUrl}
+                className="inline-flex h-14 items-center justify-center gap-2.5 rounded-xl bg-brand-700 px-6 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+              >
+                {SITE_CONFIG.ctaLabel}
+                <ArrowRight className="size-5" />
+              </a>
+              <a
+                href="#pilares"
+                className="inline-flex h-14 items-center justify-center rounded-xl border border-brand-300 bg-white px-6 text-base font-bold text-brand-700 transition-colors hover:border-brand-500 hover:bg-brand-50 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+              >
+                Conhecer a proposta
+              </a>
+            </div>
+          </div>
+
+          <DashboardPreview className="lg:justify-self-end" />
         </div>
-
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-8 max-w-4xl mx-auto">
-          Venda ingressos sem{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
-            perder o controle
-          </span>{" "}
-          do evento.
-        </h1>
-
-        <p className="text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-          Centralize vendas, promoters, comissões, check-in e prestação de contas em uma plataforma desenvolvida para{" "}
-          <strong className="text-white font-semibold">atléticas, repúblicas e produtores universitários</strong>.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="#piloto">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-4 text-lg rounded-xl shadow-[0_0_40px_-10px_rgba(16,185,129,0.5)] transition-all hover:scale-105">
-              Quero participar do piloto
-            </Button>
-          </Link>
-          <Link href="#problemas">
-            <Button variant="ghost" size="lg" className="text-slate-300 hover:text-white hover:bg-white/5 px-8 py-4 text-lg rounded-xl transition-all">
-              Ver como funciona
-            </Button>
-          </Link>
-        </div>
-      </div>
-      
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent z-10" />
+      </Shell>
     </section>
   )
 }

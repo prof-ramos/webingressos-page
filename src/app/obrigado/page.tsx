@@ -1,22 +1,38 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { CheckCircle2 } from "lucide-react"
+import { CircleCheck } from "lucide-react"
+
+import { Logo } from "@/components/brand/logo"
 
 export default function ThankYouPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-center p-6 text-center">
-      <div className="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-10 shadow-xl">
-        <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-8" />
-        <h1 className="text-4xl font-extrabold mb-6 tracking-tight">
+    <main className="flex min-h-screen flex-col items-center justify-center px-5 py-16">
+      <div className="w-full max-w-lg rounded-card border border-border bg-white p-8 text-center shadow-card sm:p-10">
+        <div className="flex justify-center">
+          <Logo markClassName="size-7" wordmarkClassName="text-lg" />
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <span className="inline-flex size-14 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+            <CircleCheck className="size-7" strokeWidth={1.8} aria-hidden="true" />
+          </span>
+        </div>
+
+        <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-balance text-ink-800 sm:text-3xl">
           Candidatura recebida!
         </h1>
-        <p className="text-lg text-slate-400 mb-10 leading-relaxed">
-          Obrigado por se candidatar ao programa piloto da WebIngressos. Nossa equipe entrará em contato pelo e-mail ou WhatsApp informado em até <strong className="text-white font-semibold">48 horas úteis</strong> para dar início ao seu processo.
+
+        <p className="mt-4 text-base leading-relaxed text-ink-500">
+          Obrigado por se candidatar ao programa piloto da WebIngressos. Nossa
+          equipe entrará em contato pelo e-mail ou WhatsApp informado em até{" "}
+          <strong className="font-semibold text-ink-800">48 horas úteis</strong>{" "}
+          para dar início ao seu processo.
         </p>
-        <Link href="/">
-          <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-3 rounded-xl text-lg">
-            Voltar para a página inicial
-          </Button>
+
+        <Link
+          href="/"
+          className="mt-8 inline-flex h-13 items-center justify-center rounded-xl bg-brand-700 px-7 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800"
+        >
+          Voltar para a página inicial
         </Link>
       </div>
     </main>

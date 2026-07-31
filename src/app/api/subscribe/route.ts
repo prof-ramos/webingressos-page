@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server"
+import { z } from "zod"
 import { pilotFormSchema } from "@/lib/schemas"
 
-// ponytail: file-based storage for MVP; swap for Vercel KV / DB when leads grow
+export const runtime = "nodejs"
+
+// TODO: file-based storage for MVP. `/tmp` is ephemeral on Vercel, so the
+// console line below is currently the only durable trace of a lead.
+// Swap for Vercel KV / a database before launch.
 const DATA_DIR = "/tmp/webingressos-leads"
 
 async function ensureDir() {
@@ -15,20 +20,25 @@ export async function POST(req: Request) {
     const parsed = pilotFormSchema.safeParse(body)
 
     if (!parsed.success) {
-      return NextResponse.json({ ok: false, errors: parsed.error.flatten().fieldErrors }, { status: 400 })
+      return NextResponse.json(
+        { ok: false, errors: z.flattenError(parsed.error).fieldErrors },
+        { status: 400 }
+      )
     }
 
-    const { acceptsTerms, ...data } = parsed.data
-    void acceptsTerms // already validated by Zod
     const lead = {
-      ...data,
+      ...parsed.data,
+      // Keep the LGPD consent on the record instead of discarding it.
+      consentAt: new Date().toISOString(),
       submittedAt: new Date().toISOString(),
       source: "landing-page",
     }
 
+    console.info("[lead]", JSON.stringify(lead))
+
     await ensureDir()
     const { appendFile } = await import("fs/promises")
-    const filename = `${DATA_DIR}/${Date.now()}-${data.email.replace(/[^a-z0-9]/gi, "_")}.json`
+    const filename = `${DATA_DIR}/${Date.now()}-${lead.email.replace(/[^a-z0-9]/gi, "_")}.json`
     await appendFile(filename, JSON.stringify(lead, null, 2))
 
     return NextResponse.json({ ok: true })

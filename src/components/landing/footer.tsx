@@ -1,30 +1,36 @@
-"use client"
-
-import * as React from "react"
 import Link from "next/link"
-import { Heart } from "lucide-react"
+
+import { Logo } from "@/components/brand/logo"
+import { Shell } from "@/components/landing/section"
 
 export function Footer() {
-  return (
-    <footer className="py-12 bg-slate-950 border-t border-slate-800 text-slate-400 text-sm">
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <span className="text-xl font-bold text-white tracking-tight">
-            Web<span className="text-emerald-400">Ingressos</span>
-          </span>
-          <p>&copy; {new Date().getFullYear()} WebIngressos. Todos os direitos reservados.</p>
-        </div>
+  const year = new Date().getFullYear()
 
-        <div className="flex items-center gap-6">
-          <Link href="/privacidade" className="hover:text-white transition-colors">
-            Política de Privacidade
-          </Link>
+  return (
+    <footer className="border-t border-border bg-white py-10">
+      <Shell>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <Logo markClassName="size-7" wordmarkClassName="text-lg" />
+            <p className="mt-2.5 max-w-xs text-sm leading-relaxed text-ink-500">
+              Gestão de vendas, promoters, check-in e prestação de contas para a
+              cena universitária.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-2 text-sm sm:items-end">
+            <Link
+              href="/privacidade"
+              className="font-medium text-ink-700 transition-colors hover:text-brand-700"
+            >
+              Política de privacidade
+            </Link>
+            <p className="text-ink-400">
+              © {year} WebIngressos. Todos os direitos reservados.
+            </p>
+          </div>
         </div>
-        
-        <p className="flex items-center gap-1.5">
-          Feito com <Heart className="w-4 h-4 text-red-500 fill-current" /> para a cena universitária.
-        </p>
-      </div>
+      </Shell>
     </footer>
   )
 }

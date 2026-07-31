@@ -1,72 +1,103 @@
-"use client"
-
-import * as React from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 pt-32 pb-24 px-6">
-      <div className="max-w-3xl mx-auto">
-        <Link href="/" className="inline-flex items-center text-slate-400 hover:text-white mb-12 transition-colors gap-2">
-          <ArrowLeft className="w-4 h-4" />
+    <main className="px-5 py-16 sm:py-20">
+      <div className="mx-auto max-w-3xl">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm font-medium text-ink-500 transition-colors hover:text-brand-700"
+        >
+          <ArrowLeft className="size-4" />
           Voltar para a página inicial
         </Link>
 
-        <article className="prose prose-invert prose-slate max-w-none">
-          <h1 className="text-4xl font-extrabold mb-10">Política de Privacidade</h1>
-          
-          <p className="text-slate-400 text-lg leading-relaxed mb-8">
-            Última atualização: 30 de Julho de 2026
+        <article className="mt-10">
+          <h1 className="text-3xl font-extrabold tracking-tight text-ink-800 sm:text-4xl">
+            Política de Privacidade
+          </h1>
+          <p className="mt-3 text-sm text-ink-400">
+            Última atualização: 30 de julho de 2026
           </p>
 
-          <p className="text-slate-300 text-lg leading-relaxed mb-6">
-            A sua privacidade é importante para nós. Esta Política de Privacidade descreve como a WebIngressos coleta, usa e protege as informações fornecidas por você através do nosso formulário de candidatura ao programa piloto.
+          <p className="mt-8 text-base leading-relaxed text-ink-500">
+            A sua privacidade é importante para nós. Esta Política de
+            Privacidade descreve como a WebIngressos coleta, usa e protege as
+            informações fornecidas por você através do nosso formulário de
+            candidatura ao programa piloto.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-white">1. Informações Coletadas</h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-4">
-            Ao preencher nosso formulário de contato, podemos coletar os seguintes dados pessoais:
+          <h2 className="mt-12 text-xl font-bold text-ink-800">
+            1. Informações coletadas
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-ink-500">
+            Ao preencher nosso formulário de contato, podemos coletar os
+            seguintes dados pessoais:
           </p>
-          <ul className="list-disc pl-6 space-y-2 mb-8">
+          <ul className="mt-3 list-disc space-y-1.5 pl-6 text-base leading-relaxed text-ink-500">
             <li>Nome completo;</li>
             <li>Endereço de e-mail;</li>
             <li>Número de telefone / WhatsApp;</li>
             <li>Tipo de organização e nome da entidade/evento;</li>
-            <li>Público estimado e localização (Cidade/UF) do evento.</li>
+            <li>Público estimado e estado (UF) do evento.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-white">2. Uso das Informações</h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-4">
-            As informações coletadas são utilizadas exclusivamente para os seguintes fins:
+          <h2 className="mt-12 text-xl font-bold text-ink-800">
+            2. Uso das informações
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-ink-500">
+            As informações coletadas são utilizadas exclusivamente para os
+            seguintes fins:
           </p>
-          <ul className="list-disc pl-6 space-y-2 mb-8">
-            <li>Entrar em contato com você sobre sua candidatura ao programa piloto;</li>
+          <ul className="mt-3 list-disc space-y-1.5 pl-6 text-base leading-relaxed text-ink-500">
+            <li>
+              Entrar em contato com você sobre sua candidatura ao programa
+              piloto;
+            </li>
             <li>Avaliar se o seu evento se encaixa nos critérios do piloto;</li>
-            <li>Enviar informações relevantes sobre o uso da plataforma WebIngressos.</li>
+            <li>
+              Enviar informações relevantes sobre o uso da plataforma
+              WebIngressos.
+            </li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-white">3. Compartilhamento de Dados</h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-8">
-            Não compartilhamos suas informações com terceiros, exceto quando exigido por lei, ou quando necessário para a prestação de serviços de infraestrutura de tecnologia que nos auxiliam na operação (por exemplo, hospedagem de dados), sempre sob acordos de confidencialidade rigorosos.
+          <h2 className="mt-12 text-xl font-bold text-ink-800">
+            3. Compartilhamento de dados
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-ink-500">
+            Não compartilhamos suas informações com terceiros, exceto quando
+            exigido por lei, ou quando necessário para a prestação de serviços
+            de infraestrutura de tecnologia que nos auxiliam na operação (por
+            exemplo, hospedagem de dados), sempre sob acordos de
+            confidencialidade rigorosos.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-white">4. Segurança dos Dados</h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-8">
-            Empregamos medidas de segurança técnicas e administrativas para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, nenhum método de transmissão pela internet ou de armazenamento eletrônico é 100% seguro.
+          <h2 className="mt-12 text-xl font-bold text-ink-800">
+            4. Segurança dos dados
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-ink-500">
+            Empregamos medidas de segurança técnicas e administrativas para
+            proteger suas informações contra acesso não autorizado, alteração,
+            divulgação ou destruição. No entanto, nenhum método de transmissão
+            pela internet ou de armazenamento eletrônico é 100% seguro.
           </p>
 
-          <h2 className="text-2xl font-bold mt-12 mb-4 text-white">5. Seus Direitos</h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-8">
-            Você tem o direito de acessar, corrigir ou solicitar a exclusão dos seus dados pessoais a qualquer momento, entrando em contato diretamente conosco pelo e-mail de contato oficial da plataforma.
+          <h2 className="mt-12 text-xl font-bold text-ink-800">
+            5. Seus direitos
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-ink-500">
+            Você tem o direito de acessar, corrigir ou solicitar a exclusão dos
+            seus dados pessoais a qualquer momento, entrando em contato
+            diretamente conosco pelo e-mail de contato oficial da plataforma.
           </p>
 
-          <div className="mt-16 pt-8 border-t border-slate-800 text-center">
-            <Link href="/">
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl">
-                Voltar ao site
-              </Button>
+          <div className="mt-16 border-t border-border pt-8">
+            <Link
+              href="/"
+              className="inline-flex h-12 items-center justify-center rounded-xl bg-brand-700 px-6 text-sm font-bold text-white transition-colors hover:bg-brand-800"
+            >
+              Voltar ao site
             </Link>
           </div>
         </article>
