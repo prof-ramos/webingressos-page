@@ -1,76 +1,56 @@
-"use client"
+import { CalendarCheck, ClipboardList, Rocket } from "lucide-react"
 
-import * as React from "react"
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ClipboardCheck, Handshake, Rocket, BarChart3 } from "lucide-react"
+import { SectionHeading } from "@/components/landing/section-heading"
 
-const STEPS = [
+const steps = [
   {
-    step: "01",
-    icon: ClipboardCheck,
-    title: "Candidatura",
+    icon: ClipboardList,
+    title: "Conte como seu evento funciona",
     description:
-      "Preencha o formulário com os dados do seu evento. Analisamos sua candidatura em até 48h.",
+      "Você informa o formato do evento, o público esperado, a equipe envolvida e o principal gargalo da operação atual.",
   },
   {
-    step: "02",
-    icon: Handshake,
-    title: "Seleção & Onboarding",
+    icon: CalendarCheck,
+    title: "Desenhamos o piloto juntos",
     description:
-      "Se seu evento se encaixar no piloto, faremos uma chamada para alinhar expectativas e configurar sua conta.",
+      "Mapeamos lotes, promoters, check-in, responsabilidades e fechamento antes de comprometer o evento.",
   },
   {
-    step: "03",
     icon: Rocket,
-    title: "Operação do Evento",
+    title: "Executamos e medimos",
     description:
-      "Use a plataforma para vender ingressos, gerenciar promoters e fazer check-in. Nossa acompanha em tempo real.",
-  },
-  {
-    step: "04",
-    icon: BarChart3,
-    title: "Prestação de Contas",
-    description:
-      "Ao fim do evento, gere relatórios de receita, comissões e repasses. Tudo documentado e transparente.",
+      "A primeira operação é acompanhada de perto para identificar falhas, medir resultados e definir as próximas entregas.",
   },
 ]
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" className="py-24 bg-slate-950 text-slate-100">
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-            Como funciona o programa piloto
-          </h2>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            Do cadastro à prestação de contas, acompanhamos cada etapa para garantir que seu evento aconteça sem imprevistos.
-          </p>
-        </div>
+    <section id="como-funciona" className="section-space scroll-mt-24 bg-background">
+      <div className="container-shell">
+        <SectionHeading
+          eyebrow="Como funciona"
+          title="Primeiro o evento real. Depois, a plataforma completa."
+          description="A WebIngressos nasce com validação operacional, sem fingir que todas as funcionalidades já estão prontas."
+          align="center"
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STEPS.map((item, idx) => (
-            <Card
-              key={idx}
-              className="bg-slate-900/40 border-slate-800 hover:border-emerald-500/50 transition-all duration-300 relative overflow-hidden group"
+        <ol className="relative mt-14 grid gap-6 lg:grid-cols-3">
+          {steps.map(({ icon: Icon, title, description }, index) => (
+            <li
+              key={title}
+              className="relative rounded-3xl border border-border bg-card p-7 shadow-sm"
             >
-              <div className="absolute top-4 right-4 text-5xl font-extrabold text-slate-800/50 group-hover:text-emerald-500/10 transition-colors">
-                {item.step}
+              <div className="flex items-center justify-between">
+                <span className="grid size-12 place-items-center rounded-2xl bg-primary/10 text-primary">
+                  <Icon className="size-6" aria-hidden="true" />
+                </span>
+                <span className="text-sm font-semibold text-muted-foreground">0{index + 1}</span>
               </div>
-              <CardHeader className="pb-2">
-                <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <CardTitle className="text-xl font-bold text-white">
-                  {item.title}
-                </CardTitle>
-              </CardHeader>
-              <CardDescription className="text-slate-400 text-base leading-relaxed px-6 pb-6">
-                {item.description}
-              </CardDescription>
-            </Card>
+              <h3 className="mt-7 text-xl font-semibold tracking-tight">{title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )
