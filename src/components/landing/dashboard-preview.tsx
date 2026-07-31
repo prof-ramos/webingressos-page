@@ -36,7 +36,7 @@ function IconChip({ children }: { children: React.ReactNode }) {
  * Marked aria-hidden: the figures are illustrative, not product claims.
  */
 export function DashboardPreview({ className }: { className?: string }) {
-  const { revenue, events, checkins, settlement, salesPerDay, channels } = DASHBOARD_DATA
+  const { period, revenue, events, checkins, settlement, salesPerDay, channels } = DASHBOARD_DATA
 
   return (
     <div
@@ -49,7 +49,7 @@ export function DashboardPreview({ className }: { className?: string }) {
           <span className="text-sm font-bold tracking-tight text-brand-700">WebIngressos</span>
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-white px-2.5 py-1.5 text-[11px] font-medium text-ink-500">
-          {DASHBOARD_DATA.period}
+          {period}
           <ChevronDown className="size-3.5" />
         </span>
       </div>
