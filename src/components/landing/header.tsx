@@ -18,7 +18,7 @@ export function Header() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <a href="#pilares" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+          <a href="#como-funciona" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
             Como funciona
           </a>
           <a href="#problemas" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
@@ -45,7 +45,7 @@ export function Header() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-slate-900 border-b border-slate-800 p-6 flex flex-col gap-6">
-          <a href="#pilares" className="text-base font-medium text-slate-300 hover:text-white" onClick={() => setIsMenuOpen(false)}>
+          <a href="#como-funciona" className="text-base font-medium text-slate-300 hover:text-white" onClick={() => setIsMenuOpen(false)}>
             Como funciona
           </a>
           <a href="#problemas" className="text-base font-medium text-slate-300 hover:text-white" onClick={() => setIsMenuOpen(false)}>

@@ -39,13 +39,34 @@ export function PilotForm() {
     },
   })
 
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
+
   async function onSubmit(data: PilotFormData) {
-    console.log(data)
-    toast.success("Candidatura enviada com sucesso!", {
-      description:
-        "Em até 48h oura equipe entrará em contato pelo e-mail ou WhatsApp informado.",
-    })
-    form.reset()
+    setIsSubmitting(true)
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      const result = await res.json()
+
+      if (!res.ok) {
+        throw new Error(result.error || "Erro ao enviar candidatura")
+      }
+
+      toast.success("Candidatura enviada com sucesso!", {
+        description:
+          "Em até 48h nossa equipe entrará em contato pelo e-mail ou WhatsApp informado.",
+      })
+      form.reset()
+    } catch {
+      toast.error("Erro ao enviar candidatura", {
+        description: "Tente novamente em alguns minutos ou entre em contato diretamente.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -203,9 +224,10 @@ export function PilotForm() {
         <Button
           type="submit"
           size="lg"
+          disabled={isSubmitting}
           className="w-full text-lg font-bold bg-emerald-600 hover:bg-emerald-500"
         >
-          Quero participar do piloto
+          {isSubmitting ? "Enviando..." : "Quero participar do piloto"}
         </Button>
       </form>
     </Form>

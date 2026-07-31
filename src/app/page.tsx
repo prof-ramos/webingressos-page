@@ -6,6 +6,7 @@ import { Hero } from "@/components/landing/hero"
 import { Problems } from "@/components/landing/problems"
 import { TargetAudience } from "@/components/landing/target-audience"
 import { Benefits } from "@/components/landing/benefits"
+import { HowItWorks } from "@/components/landing/how-it-works"
 import { PilotForm } from "@/components/landing/pilot-form"
 import { FinalCta } from "@/components/landing/final-cta"
 import { Footer } from "@/components/landing/footer"
@@ -25,6 +26,7 @@ export default function Home() {
       <Problems />
       <TargetAudience />
       <Benefits />
+      <HowItWorks />
       
       {/* FAQ Section */}
       <section id="faq" className="py-24 bg-slate-950 text-slate-100">
