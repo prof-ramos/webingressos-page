@@ -11,7 +11,11 @@ const DATA_DIR = "/tmp/webingressos-leads"
 
 async function ensureDir() {
   const { mkdir, access } = await import("fs/promises")
-  try { await access(DATA_DIR) } catch { await mkdir(DATA_DIR, { recursive: true }) }
+  try {
+    await access(DATA_DIR)
+  } catch {
+    await mkdir(DATA_DIR, { recursive: true })
+  }
 }
 
 export async function POST(req: Request) {
@@ -22,7 +26,7 @@ export async function POST(req: Request) {
     if (!parsed.success) {
       return NextResponse.json(
         { ok: false, errors: z.flattenError(parsed.error).fieldErrors },
-        { status: 400 }
+        { status: 400 },
       )
     }
 

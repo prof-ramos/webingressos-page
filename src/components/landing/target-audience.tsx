@@ -17,9 +17,7 @@ export function TargetAudience() {
               strokeWidth={1.7}
               aria-hidden="true"
             />
-            <span className="text-sm font-semibold text-ink-800">
-              {item.label}
-            </span>
+            <span className="text-sm font-semibold text-ink-800">{item.label}</span>
           </li>
         ))}
       </ul>

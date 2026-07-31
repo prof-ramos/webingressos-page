@@ -16,10 +16,7 @@ export function Header() {
       <Shell>
         <div className="flex h-16 items-center justify-between gap-4 sm:h-20">
           <Link href="/" aria-label="WebIngressos — página inicial">
-            <Logo
-              markClassName="size-7 sm:size-8"
-              wordmarkClassName="text-lg sm:text-xl"
-            />
+            <Logo markClassName="size-7 sm:size-8" wordmarkClassName="text-lg sm:text-xl" />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">

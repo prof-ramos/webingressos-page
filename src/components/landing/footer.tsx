@@ -13,8 +13,7 @@ export function Footer() {
           <div>
             <Logo markClassName="size-7" wordmarkClassName="text-lg" />
             <p className="mt-2.5 max-w-xs text-sm leading-relaxed text-ink-500">
-              Gestão de vendas, promoters, check-in e prestação de contas para a
-              cena universitária.
+              Gestão de vendas, promoters, check-in e prestação de contas para a cena universitária.
             </p>
           </div>
 
@@ -25,9 +24,7 @@ export function Footer() {
             >
               Política de privacidade
             </Link>
-            <p className="text-ink-400">
-              © {year} WebIngressos. Todos os direitos reservados.
-            </p>
+            <p className="text-ink-400">© {year} WebIngressos. Todos os direitos reservados.</p>
           </div>
         </div>
       </Shell>

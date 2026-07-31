@@ -70,8 +70,7 @@ export const PILLARS: readonly FeatureItem[] = [
   {
     icon: ShoppingCart,
     title: "Vendas",
-    description:
-      "Centralize canais, itens, combos e acompanhe tudo em tempo real.",
+    description: "Centralize canais, itens, combos e acompanhe tudo em tempo real.",
   },
   {
     icon: Users,
@@ -86,8 +85,7 @@ export const PILLARS: readonly FeatureItem[] = [
   {
     icon: DollarSign,
     title: "Financeiro",
-    description:
-      "Relatórios automáticos, divisões de comissões e conciliações simples.",
+    description: "Relatórios automáticos, divisões de comissões e conciliações simples.",
   },
 ]
 

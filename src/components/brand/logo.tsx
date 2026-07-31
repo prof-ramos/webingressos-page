@@ -6,13 +6,7 @@ type Tone = "brand" | "inverse"
  * Geometric mark: a cluster of chevrons/triangles reading as a ticket stub
  * split by a perforation. Two tones on the brand version, flat on inverse.
  */
-export function LogoMark({
-  className,
-  tone = "brand",
-}: {
-  className?: string
-  tone?: Tone
-}) {
+export function LogoMark({ className, tone = "brand" }: { className?: string; tone?: Tone }) {
   const light = tone === "brand" ? "var(--brand-500)" : "rgb(255 255 255 / 0.7)"
   const dark = tone === "brand" ? "var(--brand-700)" : "#ffffff"
 
@@ -56,7 +50,7 @@ export function Logo({
         className={cn(
           "text-xl font-extrabold tracking-tight",
           tone === "brand" ? "text-brand-700" : "text-white",
-          wordmarkClassName
+          wordmarkClassName,
         )}
       >
         WebIngressos

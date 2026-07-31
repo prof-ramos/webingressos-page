@@ -22,10 +22,10 @@ export default function ThankYouPage() {
         </h1>
 
         <p className="mt-4 text-base leading-relaxed text-ink-500">
-          Obrigado por se candidatar ao programa piloto da WebIngressos. Nossa
-          equipe entrará em contato pelo e-mail ou WhatsApp informado em até{" "}
-          <strong className="font-semibold text-ink-800">48 horas úteis</strong>{" "}
-          para dar início ao seu processo.
+          Obrigado por se candidatar ao programa piloto da WebIngressos. Nossa equipe entrará em
+          contato pelo e-mail ou WhatsApp informado em até{" "}
+          <strong className="font-semibold text-ink-800">48 horas úteis</strong> para dar início ao
+          seu processo.
         </p>
 
         <Link

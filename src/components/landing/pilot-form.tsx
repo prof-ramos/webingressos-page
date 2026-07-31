@@ -50,14 +50,8 @@ const selectTriggerClass =
 
 const labelClass = "text-[13px] font-semibold text-ink-700"
 
-const ORGANIZATION_TYPE_OPTIONS = toOptions(
-  ORGANIZATION_TYPES,
-  ORGANIZATION_TYPE_LABELS
-)
-const ATTENDANCE_OPTIONS = toOptions(
-  ATTENDANCE_RANGES,
-  ATTENDANCE_RANGE_LABELS
-)
+const ORGANIZATION_TYPE_OPTIONS = toOptions(ORGANIZATION_TYPES, ORGANIZATION_TYPE_LABELS)
+const ATTENDANCE_OPTIONS = toOptions(ATTENDANCE_RANGES, ATTENDANCE_RANGE_LABELS)
 const UF_OPTIONS = toOptions(UFS, UF_LABELS)
 
 export function PilotForm() {
@@ -96,8 +90,7 @@ export function PilotForm() {
       router.push("/obrigado")
     } catch {
       toast.error("Erro ao enviar candidatura", {
-        description:
-          "Tente novamente em alguns minutos ou entre em contato diretamente.",
+        description: "Tente novamente em alguns minutos ou entre em contato diretamente.",
       })
     } finally {
       setIsSubmitting(false)
@@ -118,9 +111,7 @@ export function PilotForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={labelClass}>
-                    Nome do responsável
-                  </FormLabel>
+                  <FormLabel className={labelClass}>Nome do responsável</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Seu nome completo"
@@ -207,9 +198,7 @@ export function PilotForm() {
               name="expectedAttendance"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={labelClass}>
-                    Estimativa de público
-                  </FormLabel>
+                  <FormLabel className={labelClass}>Estimativa de público</FormLabel>
                   <Select value={field.value} onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger className={selectTriggerClass}>
@@ -260,9 +249,7 @@ export function PilotForm() {
             name="organizationName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className={labelClass}>
-                  Nome da organização ou do evento
-                </FormLabel>
+                <FormLabel className={labelClass}>Nome da organização ou do evento</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Ex.: Atlética do Cerrado, Festa Junina da República…"
@@ -289,9 +276,8 @@ export function PilotForm() {
                 </FormControl>
                 <div className="space-y-1">
                   <FormLabel className="text-[13px] leading-relaxed font-normal text-ink-500">
-                    Autorizo o uso dos meus dados para contato e envio de
-                    informações sobre o Programa Piloto da WebIngressos,
-                    conforme a{" "}
+                    Autorizo o uso dos meus dados para contato e envio de informações sobre o
+                    Programa Piloto da WebIngressos, conforme a{" "}
                     <Link
                       href="/privacidade"
                       className="font-semibold text-brand-700 underline underline-offset-2"

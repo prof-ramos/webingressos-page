@@ -28,10 +28,8 @@ export function Sparkline({
   const span = max - min || 1
 
   const points = values.map((value, index) => {
-    const x =
-      SPARK_PAD + (index * (SPARK_W - 2 * SPARK_PAD)) / (values.length - 1)
-    const y =
-      SPARK_H - SPARK_PAD - ((value - min) / span) * (SPARK_H - 2 * SPARK_PAD)
+    const x = SPARK_PAD + (index * (SPARK_W - 2 * SPARK_PAD)) / (values.length - 1)
+    const y = SPARK_H - SPARK_PAD - ((value - min) / span) * (SPARK_H - 2 * SPARK_PAD)
     return `${x.toFixed(2)},${y.toFixed(2)}`
   })
 
@@ -65,22 +63,10 @@ export function Sparkline({
   )
 }
 
-export function ProgressBar({
-  percent,
-  className,
-}: {
-  percent: number
-  className?: string
-}) {
+export function ProgressBar({ percent, className }: { percent: number; className?: string }) {
   return (
-    <div
-      className={cn("h-1.5 w-full rounded-full bg-brand-100", className)}
-      aria-hidden="true"
-    >
-      <div
-        className="h-full rounded-full bg-brand-600"
-        style={{ width: `${percent}%` }}
-      />
+    <div className={cn("h-1.5 w-full rounded-full bg-brand-100", className)} aria-hidden="true">
+      <div className="h-full rounded-full bg-brand-600" style={{ width: `${percent}%` }} />
     </div>
   )
 }
@@ -132,10 +118,7 @@ export function DayBars({
 
         <div className="mt-2 flex gap-1.5">
           {days.map((day) => (
-            <span
-              key={day.short}
-              className="flex-1 text-center text-[9px] text-ink-400"
-            >
+            <span key={day.short} className="flex-1 text-center text-[9px] text-ink-400">
               <span className="sm:hidden">{day.initial}</span>
               <span className="hidden sm:inline">{day.short}</span>
             </span>
@@ -146,18 +129,12 @@ export function DayBars({
   )
 }
 
-export function ChannelBars({
-  items,
-}: {
-  items: readonly { name: string; percent: number }[]
-}) {
+export function ChannelBars({ items }: { items: readonly { name: string; percent: number }[] }) {
   return (
     <ul className="space-y-2.5" aria-hidden="true">
       {items.map((item) => (
         <li key={item.name} className="flex items-center gap-2.5">
-          <span className="w-16 shrink-0 truncate text-[10px] text-ink-500">
-            {item.name}
-          </span>
+          <span className="w-16 shrink-0 truncate text-[10px] text-ink-500">{item.name}</span>
           <span className="h-1.5 min-w-0 flex-1 rounded-full bg-brand-100">
             <span
               className="block h-full rounded-full bg-brand-500"

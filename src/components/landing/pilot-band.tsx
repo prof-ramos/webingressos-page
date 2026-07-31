@@ -25,9 +25,7 @@ export function PilotBand() {
                     strokeWidth={2}
                     aria-hidden="true"
                   />
-                  <span className="text-sm font-medium text-ink-700 sm:text-base">
-                    {benefit}
-                  </span>
+                  <span className="text-sm font-medium text-ink-700 sm:text-base">{benefit}</span>
                 </li>
               ))}
             </ul>

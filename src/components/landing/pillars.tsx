@@ -16,9 +16,7 @@ export function Pillars() {
               <pillar.icon className="size-6" strokeWidth={1.8} aria-hidden="true" />
             </span>
             <h3 className="mt-5 text-lg font-bold text-ink-900">{pillar.title}</h3>
-            <p className="mt-2.5 text-sm leading-relaxed text-ink-500">
-              {pillar.description}
-            </p>
+            <p className="mt-2.5 text-sm leading-relaxed text-ink-500">{pillar.description}</p>
           </li>
         ))}
       </ul>

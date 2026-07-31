@@ -19,9 +19,8 @@ export function Hero() {
             </h1>
 
             <p className="mt-5 max-w-lg text-base leading-relaxed text-ink-500 sm:text-lg">
-              Centralize vendas, promoters, comissões, check-in e prestação de
-              contas em uma plataforma desenvolvida para atléticas, repúblicas e
-              produtores universitários.
+              Centralize vendas, promoters, comissões, check-in e prestação de contas em uma
+              plataforma desenvolvida para atléticas, repúblicas e produtores universitários.
             </p>
 
             <div className="mt-8 flex max-w-sm flex-col gap-3">

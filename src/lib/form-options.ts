@@ -13,10 +13,7 @@ export const ORGANIZATION_TYPES = [
   "outro",
 ] as const
 
-export const ORGANIZATION_TYPE_LABELS: Record<
-  (typeof ORGANIZATION_TYPES)[number],
-  string
-> = {
+export const ORGANIZATION_TYPE_LABELS: Record<(typeof ORGANIZATION_TYPES)[number], string> = {
   atletica: "Atlética universitária",
   republica: "República estudantil",
   centro_academico: "Centro acadêmico",
@@ -24,17 +21,9 @@ export const ORGANIZATION_TYPE_LABELS: Record<
   outro: "Outro",
 }
 
-export const ATTENDANCE_RANGES = [
-  "ate_300",
-  "300_1000",
-  "1000_3000",
-  "acima_3000",
-] as const
+export const ATTENDANCE_RANGES = ["ate_300", "300_1000", "1000_3000", "acima_3000"] as const
 
-export const ATTENDANCE_RANGE_LABELS: Record<
-  (typeof ATTENDANCE_RANGES)[number],
-  string
-> = {
+export const ATTENDANCE_RANGE_LABELS: Record<(typeof ATTENDANCE_RANGES)[number], string> = {
   ate_300: "Até 300 pessoas",
   "300_1000": "300 a 1.000 pessoas",
   "1000_3000": "1.000 a 3.000 pessoas",
@@ -42,9 +31,33 @@ export const ATTENDANCE_RANGE_LABELS: Record<
 }
 
 export const UFS = [
-  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO",
-  "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI",
-  "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO",
+  "AC",
+  "AL",
+  "AP",
+  "AM",
+  "BA",
+  "CE",
+  "DF",
+  "ES",
+  "GO",
+  "MA",
+  "MT",
+  "MS",
+  "MG",
+  "PA",
+  "PB",
+  "PR",
+  "PE",
+  "PI",
+  "RJ",
+  "RN",
+  "RS",
+  "RO",
+  "RR",
+  "SC",
+  "SP",
+  "SE",
+  "TO",
 ] as const
 
 export const UF_LABELS: Record<(typeof UFS)[number], string> = {
@@ -79,7 +92,7 @@ export const UF_LABELS: Record<(typeof UFS)[number], string> = {
 
 export function toOptions<T extends readonly string[]>(
   values: T,
-  labels: Record<T[number], string>
+  labels: Record<T[number], string>,
 ): { value: T[number]; label: string }[] {
   return values.map((value) => ({
     value: value as T[number],

@@ -12,12 +12,7 @@ export function TicketBadge({ className }: { className?: string }) {
       aria-hidden="true"
       className={cn("h-auto w-full", className)}
     >
-      <g
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
+      <g stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
         {/* faint construction lines */}
         <g opacity={0.32} strokeWidth={1.25} strokeDasharray="4 6">
           <path d="M46 26h250" />
