@@ -93,12 +93,13 @@ O endpoint `POST /api/subscribe`:
 
 - valida o corpo com o schema de `src/lib/schemas.ts` (Zod);
 - na falha de validação, responde `400` com os erros por campo;
-- no sucesso, grava o lead em `/tmp/webingressos-leads` (armazenamento de MVP)
-  e loga a candidatura — `/tmp` é efêmero na Vercel, então isso **não** é
-  persistência durável em produção; falta ligar a um banco/KV/webhook antes
-  do lançamento.
-- não possui honeypot, rate limiting ou proteção antispam — não deve ser
-  tratado como suficiente para tráfego elevado.
+- no sucesso, persiste o lead de forma privada no Vercel Blob usando um pathname
+  determinístico por `submissionId`, preservando consentimento, data e origem;
+- reenvios do mesmo `submissionId` são idempotentes e não criam outro registro;
+- não registra PII em logs; o armazenamento durável depende de
+  `BLOB_READ_WRITE_TOKEN` configurado no ambiente de produção;
+- limites de payload e proteção contra abuso devem acompanhar o tráfego do piloto;
+  para volume elevado, adicionar rate limiting distribuído antes da abertura geral.
 
 ## Compatibilidade
 

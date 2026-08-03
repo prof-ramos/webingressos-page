@@ -58,6 +58,7 @@ export function PilotForm() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [submitError, setSubmitError] = React.useState<string | null>(null)
+  const submissionRef = React.useRef<{ id: string; data: string } | null>(null)
 
   const form = useForm<PilotFormData>({
     resolver: zodResolver(pilotFormSchema),
@@ -70,16 +71,23 @@ export function PilotForm() {
       expectedAttendance: undefined,
       cityState: undefined,
       acceptsTerms: false,
+      website: "",
     },
   })
 
   async function onSubmit(data: PilotFormData) {
     setIsSubmitting(true)
     setSubmitError(null)
+    const serializedData = JSON.stringify(data)
+    const submissionId =
+      submissionRef.current?.data === serializedData
+        ? submissionRef.current.id
+        : crypto.randomUUID()
+    submissionRef.current = { id: submissionId, data: serializedData }
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Idempotency-Key": submissionId },
         body: JSON.stringify(data),
       })
 
@@ -89,6 +97,7 @@ export function PilotForm() {
       }
 
       form.reset()
+      submissionRef.current = null
       router.push("/obrigado")
     } catch {
       setSubmitError("Não foi possível enviar agora. Tente novamente em alguns minutos.")
@@ -107,10 +116,14 @@ export function PilotForm() {
     }
   }
 
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    void form.handleSubmit(onSubmit, onInvalid)(event)
+  }
+
   return (
     <div className="rounded-card border border-border bg-white p-6 shadow-card sm:p-8 lg:p-10">
       <h2 className="text-xl font-extrabold tracking-tight text-ink-900 sm:text-2xl">
-        Candidate seu evento
+        Candidatar seu evento ao piloto
       </h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-500 sm:text-base">
         Conte um pouco sobre a sua operação. A candidatura não garante vaga; retornamos em até 48
@@ -134,7 +147,7 @@ export function PilotForm() {
 
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+          onSubmit={handleFormSubmit}
           aria-describedby="pilot-form-status"
           className="mt-7 space-y-5"
           noValidate
@@ -332,6 +345,14 @@ export function PilotForm() {
                 </div>
               </FormItem>
             )}
+          />
+
+          <input
+            tabIndex={-1}
+            aria-hidden="true"
+            autoComplete="off"
+            className="sr-only"
+            {...form.register("website")}
           />
 
           <button

@@ -2,14 +2,14 @@
 
 ## P0 — antes de publicar
 
-- [ ] Executar `pnpm install` e versionar `pnpm-lock.yaml`.
-- [ ] Após versionar o lockfile, tornar `--frozen-lockfile` obrigatório na CI e avaliar cache do store somente entre jobs confiáveis.
-- [ ] Substituir a persistência de candidaturas em `/tmp` (`api/subscribe`) por um banco, KV ou webhook — hoje os dados não sobrevivem entre invocações na Vercel.
-- [ ] Testar sucesso, recusa e payload inválido do endpoint de candidatura após a migração de armazenamento.
+- [x] Executar `pnpm install --lockfile-only` e versionar `pnpm-lock.yaml`.
+- [x] Após versionar o lockfile, tornar `--frozen-lockfile` obrigatório na CI e avaliar cache do store somente entre jobs confiáveis.
+- [x] Persistir candidaturas em Blob privado via `api/subscribe`, com pathname determinístico por `submissionId`.
+- [ ] Testar sucesso, recusa, payload inválido, corpo excessivo e reenvio idempotente do endpoint de candidatura em Preview/Production.
 - [ ] Submeter a Política de Privacidade à revisão jurídica.
 - [ ] Definir a base legal e revisar Vercel Analytics/Speed Insights.
-- [ ] Validar o domínio no projeto Vercel.
-- [ ] Executar `pnpm check`.
+- [x] Validar o domínio no projeto Vercel.
+- [x] Executar `pnpm format:check`, `pnpm lint`, `pnpm typecheck` e `pnpm build`.
 - [ ] Testar responsividade em iPhone e desktop.
 - [ ] Testar navegação por teclado e leitor de tela.
 
@@ -25,10 +25,10 @@
 ## P1 — segurança e operação
 
 - [ ] Adicionar rate limiting distribuído ao endpoint.
-- [ ] Adicionar proteção antispam compatível com a política de privacidade.
+- [x] Adicionar proteção antispam compatível com a política de privacidade.
 - [ ] Configurar monitoramento de erros e alertas.
 - [ ] Definir retenção e exclusão de candidaturas.
-- [ ] Restringir acesso ao destino dos leads.
+- [x] Restringir o Blob de candidaturas ao modo privado.
 - [ ] Testar backup e restauração do sistema que receberá os dados.
 
 ## P2 — evolução

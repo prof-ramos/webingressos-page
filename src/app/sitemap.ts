@@ -10,12 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${SITE_CONFIG.url}/obrigado`,
-      lastModified: new Date(),
-      changeFrequency: "never",
-      priority: 0.3,
-    },
-    {
       url: `${SITE_CONFIG.url}/privacidade`,
       lastModified: new Date(),
       changeFrequency: "yearly",

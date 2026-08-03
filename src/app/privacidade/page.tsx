@@ -66,8 +66,14 @@ export default function PrivacyPolicyPage() {
           <h2 className="mt-12 text-xl font-bold text-ink-800">5. Seus direitos</h2>
           <p className="mt-3 text-base leading-relaxed text-ink-500">
             Você tem o direito de acessar, corrigir ou solicitar a exclusão dos seus dados pessoais
-            a qualquer momento, entrando em contato diretamente conosco pelo e-mail de contato
-            oficial da plataforma.
+            a qualquer momento, entrando em contato pelo e-mail{" "}
+            <a
+              href="mailto:contato@webingressos.com.br"
+              className="font-semibold text-brand-700 underline underline-offset-2"
+            >
+              contato@webingressos.com.br
+            </a>
+            .
           </p>
 
           <div className="mt-16 border-t border-border pt-8">

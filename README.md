@@ -19,7 +19,7 @@ Não devem ser adicionados aqui checkout, autenticação, pagamentos, emissão d
 - Tailwind CSS 4;
 - componentes no padrão shadcn/ui (`base-nova`, sobre `@base-ui/react`), mantidos no código;
 - React Hook Form + Zod para o formulário e validação server-side;
-- Route Handler para persistência inicial das candidaturas;
+- Route Handler + Vercel Blob privado para persistência das candidaturas;
 - Vercel Analytics e Speed Insights;
 - Vercel como destino de deploy;
 - pnpm 11, com scripts de dependências bloqueados por padrão e permissões explícitas em `pnpm-workspace.yaml`.
@@ -39,13 +39,14 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-Acesse `http://localhost:3000`. Após a primeira instalação, versione o `pnpm-lock.yaml` gerado. A CI usa `--frozen-lockfile` automaticamente quando o arquivo existe; antes da publicação, remova o fallback sem lockfile.
+Acesse `http://localhost:3000`. O `pnpm-lock.yaml` é versionado e a CI usa `--frozen-lockfile`.
 
 ## Variáveis de ambiente
 
-| Variável               | Obrigatória em produção | Finalidade                    |
-| ---------------------- | ----------------------: | ----------------------------- |
-| `NEXT_PUBLIC_SITE_URL` |                     Sim | URL canônica, sem barra final |
+| Variável                | Obrigatória em produção | Finalidade                       |
+| ----------------------- | ----------------------: | -------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`  |                     Sim | URL canônica, sem barra final    |
+| `BLOB_READ_WRITE_TOKEN` |                     Sim | Token server-only do Vercel Blob |
 
 ## Comandos
 
@@ -87,7 +88,7 @@ src/
 
 1. importe `prof-ramos/webingressos-page` na Vercel;
 2. mantenha o preset Next.js detectado automaticamente;
-3. configure `NEXT_PUBLIC_SITE_URL`;
+3. configure `NEXT_PUBLIC_SITE_URL` e `BLOB_READ_WRITE_TOKEN`;
 4. valide o Preview Deployment e o fluxo completo do formulário;
 5. vincule `webingressos.com.br` somente após confirmar a persistência dos leads (ver aviso abaixo);
 6. revise a Política de Privacidade antes da publicação definitiva.
@@ -107,14 +108,14 @@ As regras completas estão em `AGENTS.md`.
 
 ## Segurança e produção
 
-O boilerplate inclui headers de segurança (`next.config.ts`) e validação server-side com Zod. Ainda são necessários antes de lançamento público:
+O boilerplate inclui headers de segurança (`next.config.ts`) e validação server-side com Zod. O endpoint `POST /api/subscribe` grava cada candidatura como JSON em um Blob **privado**, usando `leads/<submissionId>.json` sem sufixo aleatório e sem sobrescrita. O cliente reutiliza a mesma chave de idempotência em uma tentativa repetida, evitando duplicação; `BLOB_READ_WRITE_TOKEN` permanece somente no servidor.
 
-- **persistência durável dos leads** — o endpoint `POST /api/subscribe` grava candidaturas em `/tmp`, que é efêmero na Vercel; os dados são perdidos entre invocações e precisam migrar para um banco, KV ou webhook antes de tráfego real;
-- rate limiting e proteção antispam (não há honeypot nem limite de taxa hoje);
-- monitoramento de erros;
+Ainda são necessários antes de lançamento público:
+
+- rate limiting distribuído e monitoramento de erros para tráfego acima do piloto;
 - política de retenção de leads;
 - revisão jurídica da política de privacidade;
-- teste completo em Preview e Production.
+- teste completo em Preview e Production, incluindo sucesso, payload inválido, corpo excessivo, origem inválida, honeypot e reenvio idempotente.
 
 ## Licença
 

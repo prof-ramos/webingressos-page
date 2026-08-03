@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css"
 import { Toaster } from "@/components/ui/sonner"
+import { SITE_CONFIG } from "@/lib/constants"
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -12,9 +13,21 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url),
   title: "WebIngressos | Gestão de Ingressos para Eventos Universitários",
   description:
     "Centralize vendas, promoters, check-in e prestação de contas para atléticas, repúblicas e produtores universitários.",
+  alternates: { canonical: SITE_CONFIG.url },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    title: "WebIngressos | Gestão de Ingressos para Eventos Universitários",
+    description:
+      "Centralize vendas, promoters, check-in e prestação de contas para atléticas, repúblicas e produtores universitários.",
+  },
+  twitter: { card: "summary_large_image" },
 }
 
 export const viewport: Viewport = {

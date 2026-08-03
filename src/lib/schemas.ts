@@ -23,6 +23,7 @@ export const pilotFormSchema = z.object({
   acceptsTerms: z
     .boolean()
     .refine((val) => val === true, "Você precisa aceitar os termos de contato"),
+  website: z.string().trim().max(200).optional(),
 })
 
 export type PilotFormData = z.infer<typeof pilotFormSchema>

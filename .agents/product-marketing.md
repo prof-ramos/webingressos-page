@@ -232,7 +232,7 @@ Não inventar nem sugerir essas provas. Interfaces demonstrativas devem ser marc
 
 ### CTA
 
-> Candidatar meu evento ao piloto
+> Quero participar do piloto
 
 ### Conversion definition
 

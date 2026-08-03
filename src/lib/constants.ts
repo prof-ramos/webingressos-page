@@ -107,9 +107,9 @@ export const PILOT_BENEFITS: readonly string[] = [
 
 export const FAQS: readonly { question: string; answer: string }[] = [
   {
-    question: "A WebIngressos já está operando?",
+    question: "Em que fase está a WebIngressos?",
     answer:
-      "Sim, em fase de piloto. A plataforma já roda vendas, promoters, check-in por QR Code e relatórios financeiros, e estamos operando com um grupo reduzido de eventos parceiros antes da abertura geral.",
+      "Estamos selecionando os primeiros eventos para o programa piloto. A candidatura ajuda a validar a operação com um grupo reduzido antes da abertura geral.",
   },
   {
     question: "Quem pode participar do piloto?",
