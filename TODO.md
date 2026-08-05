@@ -8,7 +8,8 @@ Checklist de lançamento do site público `webingressos.com.br`.
 - [ ] Testar sucesso, recusa, payload inválido, corpo excessivo e reenvio idempotente do endpoint de candidatura em Preview/Production.
 - [ ] Submeter a Política de Privacidade à revisão jurídica.
 - [ ] Definir a base legal e revisar Vercel Analytics/Speed Insights.
-- [x] Validar o domínio no projeto Vercel.
+- [x] Adicionar o domínio customizado ao projeto Vercel (DNS/HTTPS/env de
+      produção ainda pendentes — ver P0).
 - [x] Executar `pnpm format:check`, `pnpm lint`, `pnpm typecheck` e `pnpm build`.
 - [ ] Testar responsividade em iPhone e desktop.
 - [ ] Testar navegação por teclado e leitor de tela.
@@ -30,8 +31,8 @@ repositório.
 - [ ] Revisar juridicamente a Política de Privacidade, a base legal, o texto de
       consentimento, o prazo de retenção, a exclusão e os fornecedores que
       recebem dados.
-- [ ] Configurar e validar na Vercel `NEXT_PUBLIC_SITE_URL`, o projeto de
-      produção, o domínio customizado, DNS, HTTPS e redirecionamentos canônicos.
+- [ ] Configurar `NEXT_PUBLIC_SITE_URL`, DNS, HTTPS e redirecionamentos
+      canônicos para o domínio já adicionado ao projeto de produção.
 - [ ] Executar `pnpm check` no commit de release e guardar o resultado da CI.
 - [ ] Fazer smoke test no Preview e em Production, incluindo formulário,
       página de confirmação, política de privacidade, links, sitemap e robots.
