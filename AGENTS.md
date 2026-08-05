@@ -38,6 +38,29 @@ CTA principal:
 
 > Quero participar do piloto
 
+## Riscos estratégicos conhecidos
+
+Contexto para decisões de posicionamento e copy. Levantado em revisão externa
+(2026-08-05) e considerado válido:
+
+- **O concorrente real é caseiro, não o Sympla.** O substituto imediato do
+  organizador é Google Forms + Pix + planilha: custo zero e já dominado. A copy
+  precisa ganhar dessa combinação, não de um concorrente enterprise.
+- **Risco de comoditização por incumbente.** Sympla/Eventbrite podem adicionar
+  controle de promoter e comissão como feature. Não ancorar a copy em features
+  que um incumbente replica rápido; ancorar na operação específica da atlética.
+- **Nicho pequeno exige venda direta.** O mercado universitário não sustenta
+  aquisição paga em escala; a landing serve a venda consultiva e contato
+  próximo, não a self-service de volume.
+- **Preço indefinido.** Não há decisão entre mensalidade e percentual do bruto.
+  Enquanto isso não estiver resolvido, não prometer previsibilidade de custo
+  nem citar valores.
+
+Não confundir com crítica inválida: revisões externas costumam penalizar a
+sobriedade da copy e a ausência de números fortes. Isso é consequência
+deliberada das regras abaixo (não inventar resultados, não apresentar o produto
+como pronto) e não deve ser "corrigido" com claims não comprovadas.
+
 ## Regras de copy
 
 - Escreva em português-BR.

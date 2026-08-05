@@ -69,23 +69,24 @@ export const PROBLEMS: readonly FeatureItem[] = [
 export const PILLARS: readonly FeatureItem[] = [
   {
     icon: ShoppingCart,
-    title: "Vendas",
-    description: "Centralize canais, itens, combos e acompanhe tudo em tempo real.",
+    title: "Venda ligada à operação",
+    description: "Lotes, cupons e cortesias acompanhados sem abrir uma planilha paralela.",
   },
   {
     icon: Users,
-    title: "Promoters",
-    description: "Cadastre, ative e acompanhe vendas, comissões e metas.",
+    title: "Comissão por responsável",
+    description: "Cada venda ligada a quem vendeu, com a comissão saindo do próprio registro.",
   },
   {
     icon: IdCard,
-    title: "Operação",
-    description: "Check-in rápido, controle de acesso e listas seguras.",
+    title: "Check-in com registro",
+    description: "Validação do ingresso no portão, com registro de uso e caminho para imprevistos.",
   },
   {
     icon: DollarSign,
-    title: "Financeiro",
-    description: "Relatórios automáticos, divisões de comissões e conciliações simples.",
+    title: "Fechamento auditável",
+    description:
+      "Receitas, despesas, estornos e divisões consolidados e disponíveis na próxima gestão.",
   },
 ]
 
@@ -102,7 +103,7 @@ export const PILOT_BENEFITS: readonly string[] = [
   "Acompanhamento próximo",
   "Configuração assistida",
   "Convite para coproduzir melhorias novas",
-  "Vagas limitadas",
+  "Grupo reduzido de eventos por rodada",
 ]
 
 export const FAQS: readonly { question: string; answer: string }[] = [

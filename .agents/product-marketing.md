@@ -1,7 +1,7 @@
 # WebIngressos — Product Marketing Context
 
-**Document version:** 1.0.0
-**Last updated:** 2026-07-30
+**Document version:** 1.1.0
+**Last updated:** 2026-08-05
 **Status:** hipótese em validação; produto ainda não lançado
 
 ## 1. Product overview
@@ -169,21 +169,33 @@ Para organizações universitárias que precisam coordenar vendas, pessoas, aces
 
 ## 8. Messaging pillars
 
+Os quatro nomes abaixo são a taxonomia interna. Na landing, cada pilar aparece
+com um rótulo de superfície que expressa a governança (seção 6), e não o módulo
+de ERP — nomear o módulo faz a proposta soar como requisito mínimo de mercado.
+
 ### Vendas
 
 Acompanhar lotes, cupons, cortesias e ingressos sem criar uma nova fonte de verdade.
+
+Rótulo na landing: **Venda ligada à operação**.
 
 ### Promoters
 
 Relacionar vendas e comissões a cada responsável.
 
+Rótulo na landing: **Comissão por responsável**.
+
 ### Operação
 
 Controlar check-in, uso do ingresso e contingências de entrada.
 
+Rótulo na landing: **Check-in com registro**.
+
 ### Financeiro
 
 Consolidar receitas, despesas, estornos, comissões, divisões e repasses.
+
+Rótulo na landing: **Fechamento auditável**.
 
 ## 9. Objections
 
@@ -246,6 +258,15 @@ Lead qualificado de um organizador disposto a conversar, compartilhar o fluxo re
 - inscrição em newsletter genérica.
 
 ## 13. Changelog
+
+### 1.1.0 — 2026-08-05
+
+- Rótulos de superfície dos quatro pilares registrados na seção 8: os cartões da
+  landing deixam de usar os nomes de módulo (Vendas, Promoters, Operação,
+  Financeiro) e passam a expressar a governança da seção 6.
+- Removida a urgência artificial "Vagas limitadas" do checklist do piloto, por
+  contrariar a seção 11 e contradizer o FAQ, que afirma que a candidatura não
+  garante vaga.
 
 ### 1.0.0 — 2026-07-30
 
