@@ -36,9 +36,28 @@ repositório.
 - [ ] Executar `pnpm check` no commit de release e guardar o resultado da CI.
 - [ ] Fazer smoke test no Preview e em Production, incluindo formulário,
       página de confirmação, política de privacidade, links, sitemap e robots.
-- [ ] Revisar todas as claims da landing: mockups e métricas fictícias devem
-      estar identificados como prévia/conceito ou ser substituídos por conteúdo
-      genérico; remover promessas não comprovadas.
+- [ ] Revisar todas as claims da landing: remover promessas não comprovadas.
+- [ ] Decidir o mockup de dashboard do hero. `DASHBOARD_DATA` em
+      `src/lib/constants.ts` mostra faturamento e liquidação inventados
+      (`R$ 45.870,00`, `R$ 32.650,00`) e `dashboard-preview.tsx` os renderiza
+      visíveis, ainda que `aria-hidden`. Escolher uma saída: rótulo de exemplo
+      visível no próprio bloco, valores genéricos, ou trocar moeda por
+      estrutura (percentuais, como no `/prototipo`). Contraria hoje a regra de
+      copy do `AGENTS.md` e a seção 10 de `.agents/product-marketing.md`.
+
+## Decisões de design em aberto
+
+O `AGENTS.md` registra decisões vigentes e aponta para cá o que ainda não foi
+decidido.
+
+- [ ] Tema escuro: promover a rota `/prototipo` (direção dark neon, isolada por
+      `[data-theme="neon"]` e fora do índice) ou descartá-la. Promover significa
+      reescrever a camada `:root` do `globals.css` e revisar a decisão de tema
+      na Parte 2 do `AGENTS.md`; descartar significa apagar
+      `src/app/prototipo/`, o bloco `[data-theme="neon"]` e a entrada no
+      `robots.ts`. Falta validação visual em viewport móvel e desktop.
+- [ ] Definir o modelo de preço (mensalidade ou percentual do bruto). Enquanto
+      estiver aberto, nenhuma copy pode falar de custo ou previsibilidade.
 
 ## P1 — operação do piloto
 
