@@ -29,6 +29,16 @@ pnpm skills:update
 
 # Parte 1 — Mecanismo
 
+## Onde o design está documentado
+
+`DESIGN.md` na raiz é a especificação do design system vigente: papéis
+tipográficos, escala de raio, anatomia de cada componente e as regras de uso.
+Esta seção cobre os tokens e o encanamento; `DESIGN.md` cobre os papéis. Os dois
+são obrigatórios antes de alterar UI.
+
+Uma regra de lá que se perde com facilidade: caps com tracking largo pertencem
+só ao papel _eyebrow_ e não devem vazar para outros papéis de texto.
+
 ## Camada de tokens
 
 - `globals.css` define a paleta em `:root` e a expõe via `@theme inline`: escala
@@ -140,6 +150,13 @@ O critério é esse, não a técnica: a perfuração de um ingresso codifica alg
 verdadeiro (o canhoto fica com quem organiza); um `rotateY` com brilho varrendo
 não codifica nada e sai.
 
+Exceção declarada, para não ficar implícita: o briefing de 2026-08-05 pede
+explicitamente **glow neon sutil no hover do botão primário**. É sombra, o
+critério acima não a salva (hover já é codificado pela cor) e ela existe por
+pedido do cliente, não por mérito da regra. Fica registrada aqui como exceção
+nomeada — se o briefing mudar, ela cai junto. Nenhuma outra sombra é aceita
+sem passar pelo critério.
+
 ## Copy
 
 - Escreva em português-BR.
@@ -169,7 +186,13 @@ dinheiro de quem compra o ingresso.
 
 ## Acessibilidade (pisos)
 
-- Contraste WCAG AA: texto ≥ 4,5:1; componentes, bordas e ícones ≥ 3:1.
+- Contraste de texto: ≥ 4,5:1 (WCAG AA).
+- Contraste de não-texto (WCAG 1.4.11): ≥ 3:1 para o que **delimita ou
+  identifica um controle** — borda de botão, de input, estado de foco, ícone
+  que carrega significado. Divisor puramente decorativo não entra nessa conta.
+  A distinção importa: onde as camadas de superfície diferem pouco, a borda
+  passa a ser a única pista da existência do controle, e aí ela é obrigada aos
+  3:1 mesmo parecendo "só uma linha".
 - Foco sempre visível: `outline` de 3px com `--focus-ring` e offset de 3px.
 - `prefers-reduced-motion` respeitado — o guard global em `globals.css` colapsa
   animação e transição; não reintroduza movimento fora dele.

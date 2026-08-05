@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google"
 
+import "./prototipo.css"
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
@@ -24,28 +26,34 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-/* Local to the route so the whole prototype is one deletable directory.
-   Promote to src/lib/constants.ts only if the direction ships. */
-const SPLIT = [
+/* Local to the route so the whole prototype is one deletable directory — the
+   route's CSS lives beside it for the same reason. Promote to
+   src/lib/constants.ts only if the direction ships. */
+const RATEIO = [
   { party: "Atlética de Medicina", role: "Organizadora", share: 52, fill: "var(--p-neon)" },
   { party: "Atlética de Direito", role: "Coorganizadora", share: 28, fill: "var(--p-gold)" },
   { party: "Promoters", role: "12 pessoas", share: 12, fill: "color-mix(in oklab, var(--p-ice) 72%, transparent)" }, // prettier-ignore
   { party: "Custos do evento", role: "Estrutura e som", share: 8, fill: "color-mix(in oklab, var(--p-ice) 45%, transparent)" }, // prettier-ignore
 ] as const
 
-/* Perfil de evento documentado em .agents/product-marketing.md §2: critérios de
-   seleção do piloto, não tração — a plataforma ainda não tem eventos rodando. */
+/* Cada linha abaixo é textual em .agents/product-marketing.md §2 "Initial event
+   profile". Nada de prazo de resposta aqui: §10 proíbe anunciar SLA. */
 const PILOT_PROFILE = [
   { value: "300–2.000", label: "Participantes" },
   { value: "2+", label: "Entidades organizadoras" },
   { value: "5+", label: "Promoters" },
-  { value: "48h", label: "Resposta" },
 ] as const
 
-/* Halo's label-sm: 12px / 500 / 0.08em uppercase. Nothing on the page goes
-   below 13px except this, which the system allows for labels only. */
+/* Halo's label-sm: 12px / 500 / 0.08em uppercase. Reserved for eyebrows and
+   tile labels; data uses mono-sm, never this. */
 const LABEL = "text-xs font-medium tracking-[0.08em] uppercase"
+const MUTED_LABEL = `text-[var(--p-ice-dim)] ${LABEL}`
 const MONO = "font-[family-name:var(--font-mono-data)]"
+/* Halo's secondary button: surface fill, strong border, 10px radius in the
+   system — the brief pins 6px, and the brief wins on radius. */
+const BUTTON_SECONDARY =
+  "inline-flex h-12 items-center justify-center rounded-[6px] border border-[var(--p-line-control)] bg-[var(--p-surface)] px-[18px] text-[0.8125rem] font-semibold transition-colors duration-150 ease-[var(--p-ease)] hover:bg-[var(--p-elevated)]"
+const PANEL = "min-w-0 overflow-hidden rounded-[16px] border border-[var(--p-line)] bg-[var(--p-surface)]" // prettier-ignore
 
 export default function PrototipoPage() {
   return (
@@ -62,14 +70,11 @@ export default function PrototipoPage() {
       </p>
 
       <header className="border-b border-[var(--p-line)]">
-        <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-[clamp(20px,4vw,48px)]">
+        <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-[clamp(20px,4vw,48px)]">
           <span className="text-[0.9375rem] font-semibold tracking-[-0.01em]">
             Web<span className="text-[var(--p-neon)]">Ingressos</span>
           </span>
-          <Link
-            href="/#piloto"
-            className="inline-flex h-10 items-center rounded-[6px] border border-[var(--p-line-strong)] bg-[var(--p-surface)] px-[18px] text-[0.8125rem] font-medium transition-colors duration-150 ease-[var(--p-ease)] hover:bg-[var(--p-elevated)]"
-          >
+          <Link href="/#piloto" className={BUTTON_SECONDARY}>
             Quero participar do piloto
           </Link>
         </div>
@@ -78,7 +83,7 @@ export default function PrototipoPage() {
       <main className="mx-auto max-w-[1200px] px-[clamp(20px,4vw,48px)]">
         <section className="grid items-center gap-10 pt-16 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-20 lg:pb-20">
           <div className="min-w-0">
-            <p className={`flex items-center gap-2 text-[var(--p-ice-dim)] ${LABEL}`}>
+            <p className={`flex items-center gap-2 ${MUTED_LABEL}`}>
               <span aria-hidden="true" className="size-1.5 rounded-full bg-[var(--p-neon)]" />
               Programa piloto · 2026
             </p>
@@ -90,30 +95,23 @@ export default function PrototipoPage() {
 
             <p className="mt-6 max-w-xl text-[0.9375rem] leading-[1.55] tracking-[-0.005em] text-[var(--p-ice-dim)]">
               O fechamento do evento com nome, papel e assinatura em cada linha — em vez de seis
-              planilhas e um grupo de WhatsApp. Estamos selecionando os primeiros eventos.
+              planilhas e um grupo de WhatsApp.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/#piloto"
-                className="inline-flex h-12 items-center justify-center rounded-[6px] bg-[var(--p-neon)] px-[18px] text-[0.8125rem] font-semibold text-[var(--p-canvas)] transition-shadow duration-150 ease-[var(--p-ease)] hover:shadow-[0_0_20px_-4px_var(--p-neon)]"
+                className="inline-flex h-12 items-center justify-center rounded-[6px] bg-[var(--p-neon)] px-[18px] text-[0.8125rem] font-semibold text-[var(--p-canvas)] transition-[background-color,box-shadow] duration-150 ease-[var(--p-ease)] hover:bg-[var(--p-neon-hover)] hover:shadow-[0_0_20px_-4px_var(--p-neon)] active:bg-[var(--p-neon-pressed)]"
               >
                 Quero participar do piloto
               </Link>
-              <a
-                href="#rateio"
-                className="inline-flex h-12 items-center justify-center rounded-[6px] border border-[var(--p-line-strong)] bg-[var(--p-surface)] px-[18px] text-[0.8125rem] font-semibold transition-colors duration-150 ease-[var(--p-ease)] hover:bg-[var(--p-elevated)]"
-              >
+              <a href="#rateio" className={BUTTON_SECONDARY}>
                 Ver o fechamento
               </a>
             </div>
           </div>
 
-          <section
-            id="rateio"
-            aria-labelledby="rateio-titulo"
-            className="min-w-0 overflow-hidden rounded-[16px] border border-[var(--p-line)] bg-[var(--p-surface)]"
-          >
+          <section id="rateio" aria-labelledby="rateio-titulo" className={PANEL}>
             <header className="flex items-center justify-between gap-3 border-b border-[var(--p-line)] px-6 py-4">
               <h2
                 id="rateio-titulo"
@@ -122,18 +120,18 @@ export default function PrototipoPage() {
                 Rateio do evento
               </h2>
               <span
-                className={`inline-flex h-6 items-center rounded-full bg-[color-mix(in_oklab,var(--p-gold)_14%,transparent)] px-2.5 text-[var(--p-gold)] ${LABEL}`}
+                className={`inline-flex h-6 items-center rounded-full bg-[color-mix(in_oklab,var(--p-gold)_14%,transparent)] px-2.5 text-[0.8125rem] font-medium text-[var(--p-gold)] ${MONO}`}
               >
-                Exemplo
+                exemplo
               </span>
             </header>
 
             <div className="px-6 py-6">
               <div
                 aria-hidden="true"
-                className="flex h-2 origin-left overflow-hidden rounded-full motion-safe:animate-[split-fill_800ms_var(--p-ease)_both]"
+                className="flex h-2 origin-left overflow-hidden rounded-full motion-safe:animate-[split-fill_240ms_var(--p-ease)_both]"
               >
-                {SPLIT.map((row) => (
+                {RATEIO.map((row) => (
                   <span
                     key={row.party}
                     style={{ width: `${row.share}%`, background: row.fill }}
@@ -148,14 +146,14 @@ export default function PrototipoPage() {
                   percentual. Valores ilustrativos.
                 </caption>
                 <tbody>
-                  {SPLIT.map((row) => (
+                  {RATEIO.map((row) => (
                     <tr key={row.party} className="border-t border-[var(--p-line)] first:border-0">
                       <th scope="row" className="py-3 text-left font-normal">
                         <span className="flex items-center gap-3">
                           <span
                             aria-hidden="true"
                             style={{ background: row.fill }}
-                            className="size-2.5 shrink-0 rounded-[3px]"
+                            className="size-2.5 shrink-0 rounded-full"
                           />
                           <span>
                             <span className="block text-[0.9375rem] leading-tight">
@@ -168,7 +166,7 @@ export default function PrototipoPage() {
                         </span>
                       </th>
                       <td
-                        className={`py-3 text-right align-middle text-[0.9375rem] font-medium tabular-nums ${MONO}`}
+                        className={`py-3 text-right align-middle text-[0.8125rem] font-medium tabular-nums ${MONO}`}
                       >
                         {row.share}%
                       </td>
@@ -193,36 +191,33 @@ export default function PrototipoPage() {
                 </p>
               </div>
               <p className="shrink-0 text-right">
+                <span className={`block ${MUTED_LABEL}`}>Assinaturas</span>
                 <span
-                  className={`block text-[2.5rem] leading-none font-semibold tracking-[-0.02em] text-[var(--p-gold)] ${MONO}`}
+                  className={`mt-1.5 block text-[2.5rem] leading-none font-semibold tracking-[-0.02em] text-[var(--p-gold)] ${MONO}`}
                 >
                   3
                 </span>
-                <span className={`mt-1.5 block text-[var(--p-ice-dim)] ${LABEL}`}>Assinaturas</span>
               </p>
             </footer>
           </section>
         </section>
 
         <section aria-labelledby="perfil-titulo" className="pb-16 lg:pb-20">
-          <h2 id="perfil-titulo" className={`text-[var(--p-ice-dim)] ${LABEL}`}>
+          <h2 id="perfil-titulo" className={MUTED_LABEL}>
             Perfil de evento buscado no piloto
           </h2>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {PILOT_PROFILE.map((item) => (
-              <div
-                key={item.label}
-                className="min-w-0 overflow-hidden rounded-[16px] border border-[var(--p-line)] bg-[var(--p-surface)]"
-              >
-                <div aria-hidden="true" className="h-0.5 bg-[var(--p-gold)]" />
+              <div key={item.label} className={PANEL}>
+                <div aria-hidden="true" className="h-0.5 bg-[var(--p-line-strong)]" />
                 <div className="px-5 py-5">
+                  <p className={MUTED_LABEL}>{item.label}</p>
                   <p
-                    className={`text-[1.75rem] leading-none font-semibold tracking-[-0.02em] tabular-nums ${MONO}`}
+                    className={`mt-3 text-[2.5rem] leading-none font-semibold tracking-[-0.02em] tabular-nums ${MONO}`}
                   >
                     {item.value}
                   </p>
-                  <p className={`mt-3 text-[var(--p-ice-dim)] ${LABEL}`}>{item.label}</p>
                 </div>
               </div>
             ))}
@@ -232,8 +227,8 @@ export default function PrototipoPage() {
         <div className="border-t border-[var(--p-line)] py-8">
           <p className="max-w-2xl text-[0.8125rem] leading-[1.5] text-[var(--p-ice-faint)]">
             O rateio mostra a estrutura da divisão, não faturamento — a WebIngressos ainda não tem
-            eventos rodando, então não há valores reais a exibir. O perfil acima são critérios de
-            seleção do piloto.
+            eventos rodando, então não há valores reais a exibir. Os itens acima são critérios de
+            seleção do piloto, documentados no contexto de produto.
           </p>
         </div>
       </main>
