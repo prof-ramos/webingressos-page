@@ -1,6 +1,6 @@
 # TODO — WebIngressos Page
 
-## P0 — antes de publicar
+Checklist de lançamento do site público `webingressos.com.br`.
 
 - [x] Executar `pnpm install --lockfile-only` e versionar `pnpm-lock.yaml`.
 - [x] Após versionar o lockfile, tornar `--frozen-lockfile` obrigatório na CI e avaliar cache do store somente entre jobs confiáveis.
@@ -13,27 +13,85 @@
 - [ ] Testar responsividade em iPhone e desktop.
 - [ ] Testar navegação por teclado e leitor de tela.
 
-## P1 — validação comercial
+Este repositório continua restrito à landing e à candidatura ao piloto. A
+plataforma operacional de `app.webingressos.com.br` deve permanecer em outro
+repositório.
 
-- [ ] Definir responsável pelo acompanhamento dos leads.
-- [ ] Criar pipeline com status: novo, qualificado, entrevista, piloto e descartado.
-- [ ] Registrar origem da campanha sem incluir dados sensíveis na URL.
-- [ ] Definir roteiro de entrevista e critérios objetivos de seleção.
-- [ ] Medir visita, clique no CTA, início e conclusão do formulário.
-- [ ] Revisar a copy após as primeiras dez entrevistas.
+## P0 — bloqueadores antes da produção
 
-## P1 — segurança e operação
+- [ ] Substituir o armazenamento em `/tmp/webingressos-leads` por banco, KV ou
+      webhook com persistência durável.
+- [ ] Definir o contrato de recuperação, duplicidade, falha e reprocessamento
+      dos leads; não registrar PII nos logs.
+- [ ] Testar o `POST /api/subscribe` em produção: sucesso, payload inválido
+      (`400`), JSON malformado, falha do armazenamento e repetição do envio.
+- [ ] Adicionar rate limiting, honeypot ou outra proteção antispam antes de
+      expor o formulário a tráfego público.
+- [ ] Revisar juridicamente a Política de Privacidade, a base legal, o texto de
+      consentimento, o prazo de retenção, a exclusão e os fornecedores que
+      recebem dados.
+- [ ] Configurar e validar na Vercel `NEXT_PUBLIC_SITE_URL`, o projeto de
+      produção, o domínio customizado, DNS, HTTPS e redirecionamentos canônicos.
+- [ ] Executar `pnpm check` no commit de release e guardar o resultado da CI.
+- [ ] Fazer smoke test no Preview e em Production, incluindo formulário,
+      página de confirmação, política de privacidade, links, sitemap e robots.
+- [ ] Revisar todas as claims da landing: mockups e métricas fictícias devem
+      estar identificados como prévia/conceito ou ser substituídos por conteúdo
+      genérico; remover promessas não comprovadas.
+
+## P1 — operação do piloto
 
 - [ ] Adicionar rate limiting distribuído ao endpoint.
-- [x] Adicionar proteção antispam compatível com a política de privacidade.
-- [ ] Configurar monitoramento de erros e alertas.
-- [ ] Definir retenção e exclusão de candidaturas.
+- [ ] Adicionar proteção antispam (honeypot/rate limit) compatível com a
+      política de privacidade — ainda não implementada no `route.ts`/schema do
+      formulário.
 - [x] Restringir o Blob de candidaturas ao modo privado.
-- [ ] Testar backup e restauração do sistema que receberá os dados.
+- [ ] Definir quem recebe, acompanha e responde cada candidatura.
+- [ ] Criar o pipeline de leads com os estados: novo, qualificado, entrevista,
+      piloto e descartado.
+- [ ] Restringir o acesso ao destino dos leads e registrar responsáveis.
+- [ ] Definir retenção, exportação, exclusão e atendimento de solicitações dos
+      titulares.
+- [ ] Configurar monitoramento de erros, alertas e um procedimento de resposta
+      a incidentes.
+- [ ] Definir backup e executar um teste documentado de restauração da solução
+      escolhida para armazenar os leads.
+- [ ] Confirmar a base legal e a configuração dos eventos do Vercel Analytics
+      e Speed Insights, sem coletar PII.
+- [ ] Definir roteiro de entrevista e critérios objetivos para selecionar os
+      primeiros eventos do piloto.
+- [ ] Medir o funil: visita, clique no CTA, início, erro e conclusão do
+      formulário.
 
-## P2 — evolução
+## P1 — qualidade e acessibilidade
 
-- [ ] Substituir o mockup de dashboard do hero por uma captura real do produto quando existir.
-- [ ] Criar testes automatizados do schema e do endpoint.
-- [ ] Criar variações de headline somente com hipótese e evento de conversão definidos.
-- [ ] Adicionar casos reais apenas mediante autorização e evidência verificável.
+- [ ] Validar viewport móvel e desktop em navegadores suportados.
+- [ ] Testar teclado, foco visível, leitor de tela, contraste e mensagens de
+      erro do formulário.
+- [ ] Testar estados de envio, sucesso, repetição, timeout e falha do endpoint.
+- [ ] Medir Lighthouse/Core Web Vitals em Preview equivalente à produção e
+      corrigir regressões do bundle inicial.
+- [ ] Confirmar que as seções permanecem Server Components e que o formulário
+      continua carregado de forma preguiçosa abaixo da dobra.
+- [ ] Verificar que não há cores fora dos tokens do design system nem controles
+      de formulário com dimensão inadequada para marketing.
+
+## P2 — depois do primeiro lançamento
+
+- [ ] Criar testes automatizados para o schema e o endpoint de candidatura.
+- [ ] Revisar a copy após as primeiras entrevistas, preservando o status de
+      produto em validação e sem inventar resultados.
+- [ ] Registrar casos reais, depoimentos ou métricas somente com autorização e
+      evidência verificável.
+- [ ] Substituir o mockup do hero por uma captura real apenas quando o produto
+      operacional existir e puder ser apresentado publicamente.
+- [ ] Manter a operação de eventos, autenticação, checkout, pagamentos,
+      emissão, check-in e backoffice no repositório separado do app.
+
+## Já atendido no repositório
+
+- [x] `pnpm-lock.yaml` versionado e instalação com lockfile verificável.
+- [x] Script `pnpm check` disponível para format, lint, typecheck e build.
+- [x] Endpoint `POST /api/subscribe` com validação server-side e resposta `400`
+      para dados inválidos.
+- [x] Fluxo principal `/#piloto` e carregamento preguiçoso do formulário.
