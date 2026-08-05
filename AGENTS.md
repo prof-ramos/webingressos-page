@@ -148,5 +148,5 @@ Preserve compatibilidade retroativa com:
 - Controles são dimensionados para dashboard (`h-8`). Em formulários de marketing
   use `h-12`, e no `SelectTrigger` o override precisa do mesmo prefixo:
   `data-[size=default]:h-12`.
-- Seções da landing são Server Components. Só `header`, `pilot-form` e `faq`
-  são `"use client"`.
+- Seções da landing são Server Components. Só `header`, `faq`, `pilot-form` e
+  `pilot-form-lazy` são `"use client"`.
