@@ -194,73 +194,42 @@
   background-size: 18px 18px;
 }
 
-/* Dark-neon palette under evaluation (route /prototipo only). Scoped to the
-   attribute on purpose: the live site is light-only, so nothing here applies
-   unless a wrapper opts in with data-theme="neon". Promote into `:root` only
-   if the direction is approved. */
+/* Dark direction under evaluation (route /prototipo only), adapted from the
+   Halo design system by Uiverse Design — design.uiverse.io, commercial licence
+   that permits modification and production use. What is borrowed is Halo's
+   method: quiet surface tiers with 1px hairlines drawing every edge. The
+   palette is the WebIngressos brief, not Halo's indigo.
+
+   Scoped to the attribute on purpose: the live site is light-only, so none of
+   this applies unless a wrapper opts in with data-theme="neon". Promote into
+   `:root` only if the direction is approved. */
 [data-theme="neon"] {
-  --p-void: #040920;
-  --p-slate: #374151;
-  /* --p-slate at 25% over --p-void, flattened: the ticket notch needs an opaque
-     fill, or the cutout reads as a tint instead of a hole. */
-  --p-card: #11172c;
+  --p-canvas: #040920;
+  --p-surface: #0c1226;
+  --p-elevated: #141c36;
+  /* The brief's #374151 lands here instead of as a card fill: at panel scale it
+     crushed muted text to 3.8:1, but as the hairline drawing every edge it is
+     exactly the Halo grammar. */
+  --p-line: #374151;
   --p-ice: #e7edf4;
   --p-ice-dim: #94a1b5;
   --p-neon: #2bffa3;
   --p-gold: #d9a94a;
 
   /* globals.css draws the :focus-visible outline from --focus-ring; brand-600
-     is unreadable on --p-void, so the neon takes over inside the prototype. */
+     is unreadable on --p-canvas, so the neon takes over inside the prototype. */
   --focus-ring: var(--p-neon);
   color-scheme: dark;
 }
 
-/* Ledger bars grow to the share passed inline as --bar-w. The global
-   prefers-reduced-motion guard above already collapses this to a static bar. */
-@keyframes ledger-bar {
+/* The split bar fills once, as a whole, from the left. Nothing is parked behind
+   a delay: an earlier pass held the stub at opacity 0 for 1.2s and it read as a
+   rendering bug. The global prefers-reduced-motion guard collapses this. */
+@keyframes split-fill {
   from {
-    width: 0;
+    transform: scaleX(0);
   }
   to {
-    width: var(--bar-w);
+    transform: scaleX(1);
   }
-}
-
-@keyframes ledger-settle {
-  from {
-    opacity: 0;
-    transform: translateY(0.35rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Ticket anatomy for the rateio: the seam carves a semicircle out of both
-   halves, so the counterfoil reads as something torn off rather than a card.
-   A continuous 1px border can't follow that curve — the fill is what separates
-   the block from the page, which also keeps it free of external shadow. */
-[data-theme="neon"] .ticket-counterfoil,
-[data-theme="neon"] .ticket-stub {
-  background-repeat: no-repeat;
-  background-size: 51% 100%;
-}
-
-[data-theme="neon"] .ticket-counterfoil {
-  background-image:
-    radial-gradient(circle at bottom left, transparent 0.7rem, var(--p-card) 0.75rem),
-    radial-gradient(circle at bottom right, transparent 0.7rem, var(--p-card) 0.75rem);
-  background-position:
-    bottom left,
-    bottom right;
-}
-
-[data-theme="neon"] .ticket-stub {
-  background-image:
-    radial-gradient(circle at top left, transparent 0.7rem, var(--p-card) 0.75rem),
-    radial-gradient(circle at top right, transparent 0.7rem, var(--p-card) 0.75rem);
-  background-position:
-    top left,
-    top right;
 }

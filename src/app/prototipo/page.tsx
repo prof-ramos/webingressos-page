@@ -1,7 +1,6 @@
-import type { CSSProperties } from "react"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -10,34 +9,55 @@ const playfair = Playfair_Display({
   weight: ["500", "600"],
 })
 
-const inter = Inter({
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" })
+
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-mono-data",
   display: "swap",
+  weight: ["400", "500"],
 })
 
 export const metadata: Metadata = {
-  title: "Protótipo dark neon · WebIngressos",
+  title: "Protótipo dark · WebIngressos",
   description: "Direção visual em avaliação. Não é a página pública.",
   robots: { index: false, follow: false },
 }
 
-/* Kept local instead of src/lib/constants.ts so the whole prototype is one
-   deletable directory. Promote to constants.ts only if the direction ships. */
+/* Local to the route so the whole prototype is one deletable directory.
+   Promote to src/lib/constants.ts only if the direction ships. */
 const SPLIT = [
-  { party: "Atlética de Medicina", role: "organizadora", share: "52%" },
-  { party: "Atlética de Direito", role: "coorganizadora", share: "28%" },
-  { party: "Promoters", role: "12 pessoas", share: "12%" },
-  { party: "Custos do evento", role: "estrutura e som", share: "8%" },
+  { party: "Atlética de Medicina", role: "Organizadora", share: 52, fill: "var(--p-neon)" },
+  { party: "Atlética de Direito", role: "Coorganizadora", share: 28, fill: "var(--p-gold)" },
+  { party: "Promoters", role: "12 pessoas", share: 12, fill: "color-mix(in oklab, var(--p-ice) 72%, transparent)" }, // prettier-ignore
+  { party: "Custos do evento", role: "Estrutura e som", share: 8, fill: "color-mix(in oklab, var(--p-ice) 45%, transparent)" }, // prettier-ignore
 ] as const
+
+/* Perfil de evento documentado em .agents/product-marketing.md §2. São critérios
+   de seleção do piloto, não tração: a plataforma ainda não tem eventos rodando. */
+const PILOT_PROFILE = [
+  { value: "300–2.000", label: "Participantes" },
+  { value: "2+", label: "Entidades organizadoras" },
+  { value: "5+", label: "Promoters" },
+  { value: "48h", label: "Resposta à candidatura" },
+] as const
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="flex items-center gap-2 text-[0.6875rem] font-semibold tracking-[0.16em] text-[var(--p-ice-dim)] uppercase">
+      <span aria-hidden="true" className="size-1 rounded-full bg-[var(--p-neon)]" />
+      {children}
+    </p>
+  )
+}
 
 export default function PrototipoPage() {
   return (
     <div
       data-theme="neon"
-      className={`${playfair.variable} ${inter.variable} min-h-screen bg-[var(--p-void)] font-[family-name:var(--font-inter)] text-[var(--p-ice)]`}
+      className={`${playfair.variable} ${inter.variable} ${mono.variable} min-h-screen bg-[var(--p-canvas)] font-[family-name:var(--font-inter)] text-[var(--p-ice)]`}
     >
-      <p className="border-b border-[var(--p-slate)] px-6 py-3 text-center text-xs tracking-wide text-[var(--p-ice-dim)]">
+      <p className="border-b border-[var(--p-line)] px-6 py-2.5 text-center text-xs text-[var(--p-ice-dim)]">
         Protótipo de direção visual. A página pública continua em{" "}
         <Link href="/" className="text-[var(--p-ice)] underline underline-offset-4">
           webingressos.com.br
@@ -45,113 +65,164 @@ export default function PrototipoPage() {
         .
       </p>
 
-      <main className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
-        <p className="text-xs font-semibold tracking-[0.18em] text-[var(--p-neon)] uppercase">
-          Para atléticas que dividem receita entre entidades
-        </p>
-
-        <h1 className="mt-6 max-w-3xl font-[family-name:var(--font-playfair)] text-[clamp(2rem,6vw,4.25rem)] leading-[1.04] font-medium tracking-[-0.02em] text-balance">
-          Quem vendeu, quem recebeu, quem assinou embaixo.
-        </h1>
-
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--p-ice-dim)] sm:text-lg">
-          O fechamento do evento com nome, papel e assinatura em cada linha. Estamos selecionando os
-          primeiros eventos para o piloto.
-        </p>
-
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <header className="border-b border-[var(--p-line)]">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <span className="text-sm font-bold tracking-tight">
+            Web<span className="text-[var(--p-neon)]">Ingressos</span>
+          </span>
           <Link
             href="/#piloto"
-            className="inline-flex items-center justify-center rounded-[6px] bg-[var(--p-neon)] px-6 py-3.5 text-sm font-semibold text-[var(--p-void)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_0_28px_-4px_var(--p-neon)]"
+            className="rounded-[6px] border border-[var(--p-line)] px-4 py-2 text-xs font-semibold transition-colors duration-200 hover:border-[var(--p-neon)] hover:text-[var(--p-neon)]"
           >
             Quero participar do piloto
           </Link>
-          <a
-            href="#rateio"
-            className="inline-flex items-center justify-center rounded-[6px] border border-[var(--p-slate)] px-6 py-3.5 text-sm font-semibold text-[var(--p-ice)] transition-colors duration-200 hover:border-[var(--p-ice-dim)]"
-          >
-            Ver o fechamento de exemplo
-          </a>
         </div>
+      </header>
 
-        <section id="rateio" aria-labelledby="rateio-titulo" className="mt-16 max-w-2xl sm:mt-24">
-          <div className="ticket-counterfoil rounded-t-[6px] pb-5">
-            <header className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--p-ice)]/10 px-5 py-4 sm:px-6">
+      <main className="mx-auto max-w-6xl px-6">
+        <section className="grid items-center gap-12 pt-16 pb-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-24 lg:pb-20">
+          <div className="min-w-0">
+            <Eyebrow>Programa piloto · 2026</Eyebrow>
+
+            <h1 className="mt-5 font-[family-name:var(--font-playfair)] text-[clamp(2rem,4.4vw,3.5rem)] leading-[1.05] font-medium tracking-[-0.02em] text-balance">
+              Quem vendeu, quem recebeu,{" "}
+              <span className="text-[var(--p-neon)]">quem assinou embaixo.</span>
+            </h1>
+
+            <p className="mt-5 max-w-lg leading-relaxed text-[var(--p-ice-dim)]">
+              O fechamento do evento com nome, papel e assinatura em cada linha — em vez de seis
+              planilhas e um grupo de WhatsApp. Estamos selecionando os primeiros eventos.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/#piloto"
+                className="inline-flex items-center justify-center rounded-[6px] bg-[var(--p-neon)] px-5 py-3 text-sm font-semibold text-[var(--p-canvas)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_0_24px_-6px_var(--p-neon)]"
+              >
+                Quero participar do piloto
+              </Link>
+              <a
+                href="#rateio"
+                className="inline-flex items-center justify-center rounded-[6px] border border-[var(--p-line)] px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:border-[var(--p-ice-dim)]"
+              >
+                Ver o fechamento
+              </a>
+            </div>
+          </div>
+
+          <section
+            id="rateio"
+            aria-labelledby="rateio-titulo"
+            className="min-w-0 overflow-hidden rounded-[10px] border border-[var(--p-line)] bg-[var(--p-surface)]"
+          >
+            <header className="flex items-baseline justify-between gap-3 border-b border-[var(--p-line)] px-5 py-4">
               <h2
                 id="rateio-titulo"
-                className="font-[family-name:var(--font-playfair)] text-lg font-medium"
+                className="font-[family-name:var(--font-playfair)] text-base font-medium"
               >
                 Rateio do evento
               </h2>
-              <p className="text-xs tracking-[0.14em] text-[var(--p-gold)] uppercase">
-                Exemplo ilustrativo
-              </p>
+              <span className="rounded-full border border-[var(--p-gold)]/40 px-2.5 py-1 text-[0.625rem] font-semibold tracking-[0.12em] text-[var(--p-gold)] uppercase">
+                Exemplo
+              </span>
             </header>
 
-            <table className="w-full border-collapse text-sm">
-              <caption className="sr-only">
-                Divisão de receita do evento entre entidades organizadoras, promoters e custos, em
-                percentual. Valores ilustrativos.
-              </caption>
-              <thead>
-                <tr className="text-left text-[var(--p-ice-dim)]">
-                  <th scope="col" className="px-5 pt-5 pb-2 text-xs font-medium sm:px-6">
-                    Parte
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-5 pt-5 pb-2 text-right text-xs font-medium tabular-nums sm:px-6"
-                  >
-                    Share
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {SPLIT.map((row, index) => (
-                  <tr key={row.party}>
-                    <th scope="row" className="px-5 py-3 text-left font-normal sm:px-6">
-                      <span className="block">{row.party}</span>
-                      <span className="block text-xs text-[var(--p-ice-dim)]">{row.role}</span>
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 block h-px bg-[var(--p-ice)]/45 motion-safe:animate-[ledger-bar_700ms_cubic-bezier(0.22,1,0.36,1)_both]"
-                        style={
-                          {
-                            "--bar-w": row.share,
-                            animationDelay: `${240 + index * 110}ms`,
-                          } as CSSProperties
-                        }
-                      />
-                    </th>
-                    <td className="px-5 py-3 text-right align-top tabular-nums sm:px-6">
-                      {row.share}
-                    </td>
-                  </tr>
+            <div className="px-5 py-5">
+              <div
+                aria-hidden="true"
+                className="flex h-2 origin-left overflow-hidden rounded-full motion-safe:animate-[split-fill_800ms_cubic-bezier(0.22,1,0.36,1)_both]"
+              >
+                {SPLIT.map((row) => (
+                  <span
+                    key={row.party}
+                    style={{ width: `${row.share}%`, background: row.fill }}
+                    className="block h-full"
+                  />
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </div>
 
-          <div
-            aria-hidden="true"
-            className="mx-5 border-t-2 border-dashed border-[var(--p-ice)]/20 sm:mx-6"
-          />
-
-          <div className="ticket-stub flex flex-wrap items-end justify-between gap-3 rounded-b-[6px] px-5 py-5 motion-safe:animate-[ledger-settle_500ms_ease-out_both] motion-safe:[animation-delay:760ms] sm:px-6">
-            <div>
-              <p className="text-xs text-[var(--p-ice-dim)]">1.248 ingressos validados</p>
-              <p className="mt-1.5 font-mono text-xs tracking-[0.18em] text-[var(--p-ice-dim)]">
-                FECH·2026·0412·MED
-              </p>
+              <table className="mt-5 w-full text-sm">
+                <caption className="sr-only">
+                  Divisão de receita entre entidades organizadoras, promoters e custos, em
+                  percentual. Valores ilustrativos.
+                </caption>
+                <tbody>
+                  {SPLIT.map((row) => (
+                    <tr
+                      key={row.party}
+                      className="border-t border-[var(--p-line)]/60 first:border-0"
+                    >
+                      <th scope="row" className="py-2.5 text-left font-normal">
+                        <span className="flex items-center gap-2.5">
+                          <span
+                            aria-hidden="true"
+                            style={{ background: row.fill }}
+                            className="size-2 shrink-0 rounded-[2px]"
+                          />
+                          <span>
+                            <span className="block leading-tight">{row.party}</span>
+                            <span className="block text-xs text-[var(--p-ice-dim)]">
+                              {row.role}
+                            </span>
+                          </span>
+                        </span>
+                      </th>
+                      <td className="py-2.5 text-right align-middle font-[family-name:var(--font-mono-data)] tabular-nums">
+                        {row.share}%
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <p className="text-sm font-semibold text-[var(--p-gold)]">3 assinaturas · conferido</p>
-          </div>
+
+            <div
+              aria-hidden="true"
+              className="mx-5 border-t border-dashed border-[var(--p-line)]"
+            />
+
+            <footer className="flex items-end justify-between gap-4 bg-[var(--p-elevated)] px-5 py-4">
+              <div>
+                <p className="font-[family-name:var(--font-mono-data)] text-xs tracking-[0.1em] text-[var(--p-ice-dim)]">
+                  FECH·2026·0412·MED
+                </p>
+                <p className="mt-1 text-xs text-[var(--p-ice-dim)]">1.248 ingressos validados</p>
+              </div>
+              <p className="text-right leading-none">
+                <span className="font-[family-name:var(--font-mono-data)] text-3xl font-medium text-[var(--p-gold)]">
+                  3
+                </span>
+                <span className="mt-1 block text-[0.625rem] tracking-[0.12em] text-[var(--p-ice-dim)] uppercase">
+                  Assinaturas
+                </span>
+              </p>
+            </footer>
+          </section>
         </section>
 
-        <p className="mt-6 max-w-2xl text-xs leading-relaxed text-[var(--p-ice-dim)]">
-          O rateio mostra a estrutura da divisão, não faturamento. A WebIngressos ainda não tem
-          eventos rodando, então não há valores reais a exibir.
-        </p>
+        <section
+          aria-label="Perfil de evento buscado no piloto"
+          className="grid grid-cols-2 gap-px border-t border-[var(--p-line)] bg-[var(--p-line)] lg:grid-cols-4"
+        >
+          {PILOT_PROFILE.map((item) => (
+            <div key={item.label} className="min-w-0 bg-[var(--p-canvas)] px-5 py-6">
+              <p className="font-[family-name:var(--font-mono-data)] text-xl font-medium tabular-nums">
+                {item.value}
+              </p>
+              <p className="mt-1.5 text-[0.6875rem] tracking-[0.1em] text-[var(--p-ice-dim)] uppercase">
+                {item.label}
+              </p>
+            </div>
+          ))}
+        </section>
+
+        <div className="border-t border-[var(--p-line)] py-8">
+          <p className="max-w-2xl text-xs leading-relaxed text-[var(--p-ice-dim)]">
+            O rateio mostra a estrutura da divisão, não faturamento — a WebIngressos ainda não tem
+            eventos rodando, então não há valores reais a exibir. O perfil acima são critérios de
+            seleção do piloto.
+          </p>
+        </div>
       </main>
     </div>
   )
