@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono-data",
   display: "swap",
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
 })
 
 export const metadata: Metadata = {
@@ -33,23 +33,19 @@ const SPLIT = [
   { party: "Custos do evento", role: "Estrutura e som", share: 8, fill: "color-mix(in oklab, var(--p-ice) 45%, transparent)" }, // prettier-ignore
 ] as const
 
-/* Perfil de evento documentado em .agents/product-marketing.md §2. São critérios
-   de seleção do piloto, não tração: a plataforma ainda não tem eventos rodando. */
+/* Perfil de evento documentado em .agents/product-marketing.md §2: critérios de
+   seleção do piloto, não tração — a plataforma ainda não tem eventos rodando. */
 const PILOT_PROFILE = [
   { value: "300–2.000", label: "Participantes" },
   { value: "2+", label: "Entidades organizadoras" },
   { value: "5+", label: "Promoters" },
-  { value: "48h", label: "Resposta à candidatura" },
+  { value: "48h", label: "Resposta" },
 ] as const
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="flex items-center gap-2 text-[0.6875rem] font-semibold tracking-[0.16em] text-[var(--p-ice-dim)] uppercase">
-      <span aria-hidden="true" className="size-1 rounded-full bg-[var(--p-neon)]" />
-      {children}
-    </p>
-  )
-}
+/* Halo's label-sm: 12px / 500 / 0.08em uppercase. Nothing on the page goes
+   below 13px except this, which the system allows for labels only. */
+const LABEL = "text-xs font-medium tracking-[0.08em] uppercase"
+const MONO = "font-[family-name:var(--font-mono-data)]"
 
 export default function PrototipoPage() {
   return (
@@ -57,7 +53,7 @@ export default function PrototipoPage() {
       data-theme="neon"
       className={`${playfair.variable} ${inter.variable} ${mono.variable} min-h-screen bg-[var(--p-canvas)] font-[family-name:var(--font-inter)] text-[var(--p-ice)]`}
     >
-      <p className="border-b border-[var(--p-line)] px-6 py-2.5 text-center text-xs text-[var(--p-ice-dim)]">
+      <p className="border-b border-[var(--p-line)] px-[clamp(20px,4vw,48px)] py-2.5 text-center text-[0.8125rem] text-[var(--p-ice-dim)]">
         Protótipo de direção visual. A página pública continua em{" "}
         <Link href="/" className="text-[var(--p-ice)] underline underline-offset-4">
           webingressos.com.br
@@ -66,30 +62,33 @@ export default function PrototipoPage() {
       </p>
 
       <header className="border-b border-[var(--p-line)]">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-sm font-bold tracking-tight">
+        <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-[clamp(20px,4vw,48px)]">
+          <span className="text-[0.9375rem] font-semibold tracking-[-0.01em]">
             Web<span className="text-[var(--p-neon)]">Ingressos</span>
           </span>
           <Link
             href="/#piloto"
-            className="rounded-[6px] border border-[var(--p-line)] px-4 py-2 text-xs font-semibold transition-colors duration-200 hover:border-[var(--p-neon)] hover:text-[var(--p-neon)]"
+            className="inline-flex h-10 items-center rounded-[6px] border border-[var(--p-line-strong)] bg-[var(--p-surface)] px-[18px] text-[0.8125rem] font-medium transition-colors duration-150 ease-[var(--p-ease)] hover:bg-[var(--p-elevated)]"
           >
             Quero participar do piloto
           </Link>
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-6">
-        <section className="grid items-center gap-12 pt-16 pb-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-24 lg:pb-20">
+      <main className="mx-auto max-w-[1200px] px-[clamp(20px,4vw,48px)]">
+        <section className="grid items-center gap-10 pt-16 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-20 lg:pb-20">
           <div className="min-w-0">
-            <Eyebrow>Programa piloto · 2026</Eyebrow>
+            <p className={`flex items-center gap-2 text-[var(--p-ice-dim)] ${LABEL}`}>
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-[var(--p-neon)]" />
+              Programa piloto · 2026
+            </p>
 
-            <h1 className="mt-5 font-[family-name:var(--font-playfair)] text-[clamp(2rem,4.4vw,3.5rem)] leading-[1.05] font-medium tracking-[-0.02em] text-balance">
+            <h1 className="mt-6 font-[family-name:var(--font-playfair)] text-[clamp(2.25rem,4.4vw,3.25rem)] leading-[1.06] font-medium tracking-[-0.022em] text-balance">
               Quem vendeu, quem recebeu,{" "}
               <span className="text-[var(--p-neon)]">quem assinou embaixo.</span>
             </h1>
 
-            <p className="mt-5 max-w-lg leading-relaxed text-[var(--p-ice-dim)]">
+            <p className="mt-6 max-w-xl text-[0.9375rem] leading-[1.55] tracking-[-0.005em] text-[var(--p-ice-dim)]">
               O fechamento do evento com nome, papel e assinatura em cada linha — em vez de seis
               planilhas e um grupo de WhatsApp. Estamos selecionando os primeiros eventos.
             </p>
@@ -97,13 +96,13 @@ export default function PrototipoPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/#piloto"
-                className="inline-flex items-center justify-center rounded-[6px] bg-[var(--p-neon)] px-5 py-3 text-sm font-semibold text-[var(--p-canvas)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_0_24px_-6px_var(--p-neon)]"
+                className="inline-flex h-12 items-center justify-center rounded-[6px] bg-[var(--p-neon)] px-[18px] text-[0.8125rem] font-semibold text-[var(--p-canvas)] transition-shadow duration-150 ease-[var(--p-ease)] hover:shadow-[0_0_20px_-4px_var(--p-neon)]"
               >
                 Quero participar do piloto
               </Link>
               <a
                 href="#rateio"
-                className="inline-flex items-center justify-center rounded-[6px] border border-[var(--p-line)] px-5 py-3 text-sm font-semibold transition-colors duration-200 hover:border-[var(--p-ice-dim)]"
+                className="inline-flex h-12 items-center justify-center rounded-[6px] border border-[var(--p-line-strong)] bg-[var(--p-surface)] px-[18px] text-[0.8125rem] font-semibold transition-colors duration-150 ease-[var(--p-ease)] hover:bg-[var(--p-elevated)]"
               >
                 Ver o fechamento
               </a>
@@ -113,24 +112,26 @@ export default function PrototipoPage() {
           <section
             id="rateio"
             aria-labelledby="rateio-titulo"
-            className="min-w-0 overflow-hidden rounded-[10px] border border-[var(--p-line)] bg-[var(--p-surface)]"
+            className="min-w-0 overflow-hidden rounded-[16px] border border-[var(--p-line)] bg-[var(--p-surface)]"
           >
-            <header className="flex items-baseline justify-between gap-3 border-b border-[var(--p-line)] px-5 py-4">
+            <header className="flex items-center justify-between gap-3 border-b border-[var(--p-line)] px-6 py-4">
               <h2
                 id="rateio-titulo"
-                className="font-[family-name:var(--font-playfair)] text-base font-medium"
+                className="font-[family-name:var(--font-playfair)] text-[1.125rem] font-medium tracking-[-0.01em]"
               >
                 Rateio do evento
               </h2>
-              <span className="rounded-full border border-[var(--p-gold)]/40 px-2.5 py-1 text-[0.625rem] font-semibold tracking-[0.12em] text-[var(--p-gold)] uppercase">
+              <span
+                className={`inline-flex h-6 items-center rounded-full bg-[color-mix(in_oklab,var(--p-gold)_14%,transparent)] px-2.5 text-[var(--p-gold)] ${LABEL}`}
+              >
                 Exemplo
               </span>
             </header>
 
-            <div className="px-5 py-5">
+            <div className="px-6 py-6">
               <div
                 aria-hidden="true"
-                className="flex h-2 origin-left overflow-hidden rounded-full motion-safe:animate-[split-fill_800ms_cubic-bezier(0.22,1,0.36,1)_both]"
+                className="flex h-2 origin-left overflow-hidden rounded-full motion-safe:animate-[split-fill_800ms_var(--p-ease)_both]"
               >
                 {SPLIT.map((row) => (
                   <span
@@ -141,33 +142,34 @@ export default function PrototipoPage() {
                 ))}
               </div>
 
-              <table className="mt-5 w-full text-sm">
+              <table className="mt-6 w-full">
                 <caption className="sr-only">
                   Divisão de receita entre entidades organizadoras, promoters e custos, em
                   percentual. Valores ilustrativos.
                 </caption>
                 <tbody>
                   {SPLIT.map((row) => (
-                    <tr
-                      key={row.party}
-                      className="border-t border-[var(--p-line)]/60 first:border-0"
-                    >
-                      <th scope="row" className="py-2.5 text-left font-normal">
-                        <span className="flex items-center gap-2.5">
+                    <tr key={row.party} className="border-t border-[var(--p-line)] first:border-0">
+                      <th scope="row" className="py-3 text-left font-normal">
+                        <span className="flex items-center gap-3">
                           <span
                             aria-hidden="true"
                             style={{ background: row.fill }}
-                            className="size-2 shrink-0 rounded-[2px]"
+                            className="size-2.5 shrink-0 rounded-[3px]"
                           />
                           <span>
-                            <span className="block leading-tight">{row.party}</span>
-                            <span className="block text-xs text-[var(--p-ice-dim)]">
+                            <span className="block text-[0.9375rem] leading-tight">
+                              {row.party}
+                            </span>
+                            <span className="block text-[0.8125rem] text-[var(--p-ice-faint)]">
                               {row.role}
                             </span>
                           </span>
                         </span>
                       </th>
-                      <td className="py-2.5 text-right align-middle font-[family-name:var(--font-mono-data)] tabular-nums">
+                      <td
+                        className={`py-3 text-right align-middle text-[0.9375rem] font-medium tabular-nums ${MONO}`}
+                      >
                         {row.share}%
                       </td>
                     </tr>
@@ -178,46 +180,57 @@ export default function PrototipoPage() {
 
             <div
               aria-hidden="true"
-              className="mx-5 border-t border-dashed border-[var(--p-line)]"
+              className="mx-6 border-t border-dashed border-[var(--p-line-strong)]"
             />
 
-            <footer className="flex items-end justify-between gap-4 bg-[var(--p-elevated)] px-5 py-4">
-              <div>
-                <p className="font-[family-name:var(--font-mono-data)] text-xs tracking-[0.1em] text-[var(--p-ice-dim)]">
+            <footer className="flex items-end justify-between gap-4 bg-[var(--p-elevated)] px-6 py-5">
+              <div className="min-w-0">
+                <p className={`text-[0.8125rem] font-medium text-[var(--p-ice-dim)] ${MONO}`}>
                   FECH·2026·0412·MED
                 </p>
-                <p className="mt-1 text-xs text-[var(--p-ice-dim)]">1.248 ingressos validados</p>
+                <p className="mt-1 text-[0.8125rem] text-[var(--p-ice-faint)]">
+                  1.248 ingressos validados
+                </p>
               </div>
-              <p className="text-right leading-none">
-                <span className="font-[family-name:var(--font-mono-data)] text-3xl font-medium text-[var(--p-gold)]">
+              <p className="shrink-0 text-right">
+                <span
+                  className={`block text-[2.5rem] leading-none font-semibold tracking-[-0.02em] text-[var(--p-gold)] ${MONO}`}
+                >
                   3
                 </span>
-                <span className="mt-1 block text-[0.625rem] tracking-[0.12em] text-[var(--p-ice-dim)] uppercase">
-                  Assinaturas
-                </span>
+                <span className={`mt-1.5 block text-[var(--p-ice-dim)] ${LABEL}`}>Assinaturas</span>
               </p>
             </footer>
           </section>
         </section>
 
-        <section
-          aria-label="Perfil de evento buscado no piloto"
-          className="grid grid-cols-2 gap-px border-t border-[var(--p-line)] bg-[var(--p-line)] lg:grid-cols-4"
-        >
-          {PILOT_PROFILE.map((item) => (
-            <div key={item.label} className="min-w-0 bg-[var(--p-canvas)] px-5 py-6">
-              <p className="font-[family-name:var(--font-mono-data)] text-xl font-medium tabular-nums">
-                {item.value}
-              </p>
-              <p className="mt-1.5 text-[0.6875rem] tracking-[0.1em] text-[var(--p-ice-dim)] uppercase">
-                {item.label}
-              </p>
-            </div>
-          ))}
+        <section aria-labelledby="perfil-titulo" className="pb-16 lg:pb-20">
+          <h2 id="perfil-titulo" className={`text-[var(--p-ice-dim)] ${LABEL}`}>
+            Perfil de evento buscado no piloto
+          </h2>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {PILOT_PROFILE.map((item) => (
+              <div
+                key={item.label}
+                className="min-w-0 overflow-hidden rounded-[16px] border border-[var(--p-line)] bg-[var(--p-surface)]"
+              >
+                <div aria-hidden="true" className="h-0.5 bg-[var(--p-gold)]" />
+                <div className="px-5 py-5">
+                  <p
+                    className={`text-[1.75rem] leading-none font-semibold tracking-[-0.02em] tabular-nums ${MONO}`}
+                  >
+                    {item.value}
+                  </p>
+                  <p className={`mt-3 text-[var(--p-ice-dim)] ${LABEL}`}>{item.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <div className="border-t border-[var(--p-line)] py-8">
-          <p className="max-w-2xl text-xs leading-relaxed text-[var(--p-ice-dim)]">
+          <p className="max-w-2xl text-[0.8125rem] leading-[1.5] text-[var(--p-ice-faint)]">
             O rateio mostra a estrutura da divisão, não faturamento — a WebIngressos ainda não tem
             eventos rodando, então não há valores reais a exibir. O perfil acima são critérios de
             seleção do piloto.
