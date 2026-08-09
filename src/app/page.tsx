@@ -13,7 +13,7 @@ import { Section } from "@/components/landing/section"
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main id="main-content">
         <Hero />
@@ -23,7 +23,7 @@ export default function Home() {
         <TargetAudience />
         <PilotBand />
 
-        <Section id="piloto" className="py-8 sm:py-10">
+        <Section id="piloto" className="border-y border-border bg-surface-deep">
           <PilotFormLazy />
         </Section>
 
@@ -31,6 +31,6 @@ export default function Home() {
         <FinalCta />
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
