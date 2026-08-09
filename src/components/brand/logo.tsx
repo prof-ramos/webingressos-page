@@ -7,8 +7,8 @@ type Tone = "brand" | "inverse"
  * split by a perforation. Two tones on the brand version, flat on inverse.
  */
 export function LogoMark({ className, tone = "brand" }: { className?: string; tone?: Tone }) {
-  const light = tone === "brand" ? "var(--brand-500)" : "rgb(255 255 255 / 0.7)"
-  const dark = tone === "brand" ? "var(--brand-700)" : "#ffffff"
+  const light = tone === "brand" ? "var(--lime)" : "var(--ink-100)"
+  const dark = tone === "brand" ? "var(--hot)" : "var(--ink-50)"
 
   return (
     <svg
@@ -48,8 +48,8 @@ export function Logo({
       <LogoMark tone={tone} className={markClassName} />
       <span
         className={cn(
-          "text-xl font-extrabold tracking-tight",
-          tone === "brand" ? "text-brand-700" : "text-white",
+          "font-display text-xl tracking-tight uppercase",
+          tone === "brand" ? "text-foreground" : "text-foreground",
           wordmarkClassName,
         )}
       >

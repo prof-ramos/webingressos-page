@@ -1,62 +1,71 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Light-only site. Without this, Tailwind v4 resolves `dark:` against
-   prefers-color-scheme and the base-nova controls (which are full of
-   `dark:bg-input/30`) render dark fills on this light page. */
+/* Dark mode is an explicit product decision, not a visitor preference. The
+   root layout owns the `.dark` class so base-nova's variants stay predictable. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  /* Brand scale — sampled from the reference design. */
-  --brand-50: #f1f6f5;
-  --brand-100: #eaf5ef;
-  --brand-200: #d3eadf;
-  --brand-300: #a9d6c0;
-  --brand-400: #6bbe95;
-  --brand-500: #2f9e68;
-  --brand-600: #1b7f52;
-  --brand-700: #0e6340;
-  --brand-800: #0a4d32;
-  --brand-900: #073624;
+  /* Marketing palette. Values live here so components only consume tokens. */
+  --brand-50: #fff0f6;
+  --brand-100: #ffd6e5;
+  --brand-200: #ffadc9;
+  --brand-300: #ff7daa;
+  --brand-400: #ff528f;
+  --brand-500: #ff2e7e;
+  --brand-600: #e91f6f;
+  --brand-700: #c9145d;
+  --brand-800: #9f104a;
+  --brand-900: #731139;
 
-  /* Neutral scale. */
-  --ink-50: #f9fafc;
-  --ink-100: #f2f4f8;
-  --ink-200: #e9ecf1;
-  --ink-300: #d6dbe4;
-  --ink-400: #8a92a3;
-  --ink-500: #5e6677;
-  --ink-700: #39415a;
-  --ink-800: #1b2740;
-  --ink-900: #101a2e;
+  --ink-50: #f7f4ee;
+  --ink-100: #ded6e8;
+  --ink-200: #c0b3ce;
+  --ink-300: #a394b8;
+  --ink-400: #857693;
+  --ink-500: #6e5d7d;
+  --ink-700: #291d3d;
+  --ink-800: #140d20;
+  --ink-900: #0a0611;
 
-  /* Semantic layer. Bare names on purpose: ui/button.tsx does
-     color-mix(... var(--secondary), var(--foreground) ...) and ui/sonner.tsx
-     reads var(--popover)/var(--border)/var(--radius) directly. */
-  --background: var(--ink-50);
-  --foreground: var(--ink-800);
-  --card: #ffffff;
-  --card-foreground: var(--ink-800);
-  --popover: #ffffff;
-  --popover-foreground: var(--ink-800);
-  --primary: var(--brand-700);
-  --primary-foreground: #ffffff;
-  --secondary: var(--brand-100);
-  --secondary-foreground: var(--brand-700);
-  --muted: var(--ink-100);
-  --muted-foreground: var(--ink-500);
-  --accent: var(--brand-50);
-  --accent-foreground: var(--brand-700);
-  --destructive: #c8394f;
-  --destructive-foreground: #ffffff;
-  --border: var(--ink-200);
-  --input: var(--ink-200);
-  --ring: var(--brand-600);
-  /* Single source for focus color: the 3px outline and component rings share it. */
+  --hot: var(--brand-500);
+  --hot-foreground: var(--ink-900);
+  --lime: #c6ff3d;
+  --lime-foreground: var(--ink-900);
+  --success: #34e5a0;
+  --warning: #ffc857;
+
+  /* Semantic layer shared by marketing and base-nova primitives. */
+  --background: var(--ink-900);
+  --foreground: var(--ink-50);
+  --card: var(--ink-800);
+  --card-foreground: var(--ink-50);
+  --popover: #181024;
+  --popover-foreground: var(--ink-50);
+  --primary: var(--hot);
+  --primary-foreground: var(--hot-foreground);
+  --secondary: #1a1229;
+  --secondary-foreground: var(--ink-50);
+  --muted: #1a1229;
+  --muted-foreground: var(--ink-300);
+  --accent: var(--lime);
+  --accent-foreground: var(--lime-foreground);
+  --destructive: #ff6b7d;
+  --destructive-foreground: var(--ink-900);
+  --border: #3c2c50;
+  /* Inputs need >= 3:1 against their surrounding surface (WCAG 1.4.11). */
+  --input: #806b90;
+  --ring: var(--lime);
   --focus-ring: var(--ring);
-  --radius: 0.625rem;
+
+  --surface: var(--card);
+  --surface-raised: #1a1229;
+  --surface-deep: #070410;
+  --control: #10091a;
+  --control-border: var(--input);
+  --radius: 0.5rem;
 }
 
 @theme inline {
@@ -80,6 +89,17 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-deep: var(--surface-deep);
+  --color-control: var(--control);
+  --color-control-border: var(--control-border);
+  --color-hot: var(--hot);
+  --color-hot-foreground: var(--hot-foreground);
+  --color-lime: var(--lime);
+  --color-lime-foreground: var(--lime-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
 
   --color-brand-50: var(--brand-50);
   --color-brand-100: var(--brand-100);
@@ -91,7 +111,6 @@
   --color-brand-700: var(--brand-700);
   --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900);
-
   --color-ink-50: var(--ink-50);
   --color-ink-100: var(--ink-100);
   --color-ink-200: var(--ink-200);
@@ -102,26 +121,24 @@
   --color-ink-800: var(--ink-800);
   --color-ink-900: var(--ink-900);
 
-  --font-sans:
-    var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-anton), var(--font-archivo), ui-sans-serif, sans-serif;
+  --font-display: var(--font-anton), var(--font-archivo), ui-sans-serif, sans-serif;
 }
 
 @theme {
-  /* lg/xl override the Tailwind defaults so every base-nova control
-     (input, select, popup) picks up the softer marketing radius. */
-  --radius-lg: 0.625rem;
-  --radius-xl: 0.875rem;
-  --radius-card: 1.25rem;
-  --radius-panel: 1.75rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.625rem;
+  --radius-card: 0.75rem;
+  --radius-panel: 1rem;
 
-  --shadow-card: 0 1px 2px 0 rgb(16 24 40 / 0.04), 0 8px 24px -14px rgb(16 24 40 / 0.1);
-  --shadow-panel: 0 2px 4px 0 rgb(16 24 40 / 0.03), 0 32px 64px -32px rgb(11 39 26 / 0.22);
-  --shadow-cta: 0 10px 24px -12px rgb(14 99 64 / 0.45);
+  --shadow-card: 0 14px 32px -28px rgb(0 0 0 / 0.8);
+  --shadow-panel: 12px 12px 0 rgb(255 46 126 / 0.16);
+  --shadow-cta: 0 0 30px -6px rgb(255 46 126 / 0.72);
 
   --animate-accordion-down: accordion-down 220ms ease-out;
   --animate-accordion-up: accordion-up 200ms ease-in;
+  --animate-marquee: marquee 24s linear infinite;
 }
 
 @keyframes accordion-down {
@@ -142,6 +159,15 @@
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -159,13 +185,15 @@
   }
 
   :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-    outline: 3px solid var(--focus-ring);
-    outline-offset: 3px;
+    /* Utilities and base-nova controls may ship `outline-none`; the global
+       accessibility floor must remain the final authority. */
+    outline: 3px solid var(--focus-ring) !important;
+    outline-offset: 3px !important;
   }
 
   ::selection {
-    background-color: var(--brand-100);
-    color: var(--brand-800);
+    background-color: var(--lime);
+    color: var(--lime-foreground);
   }
 
   a,
@@ -174,9 +202,6 @@
   }
 }
 
-/* Respect prefers-reduced-motion for every transition/animation (accordion
-   height, header mobile menu slide, card hover-lift) instead of hand-rolling
-   a reduced variant per component. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -188,8 +213,18 @@
   }
 }
 
-/* Decorative dot grid, tinted with `text-*`. Replaces the /grid.svg that never existed. */
-@utility dot-grid {
-  background-image: radial-gradient(currentColor 1px, transparent 1px);
-  background-size: 18px 18px;
+@utility flyer-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+@utility text-stroke-hot {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--hot);
 }
