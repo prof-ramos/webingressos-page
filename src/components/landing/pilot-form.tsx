@@ -43,12 +43,12 @@ import { Checkbox } from "@/components/ui/checkbox"
  * `data-[size=default]:h-8`.
  */
 const fieldClass =
-  "h-12 w-full rounded-xl border-input bg-white px-4 text-[15px] placeholder:text-ink-400 focus-visible:border-primary focus-visible:ring-primary/15"
+  "h-12 w-full rounded-lg border-input bg-control px-4 text-[15px] text-foreground placeholder:text-muted-foreground focus-visible:border-accent focus-visible:ring-accent/20 aria-invalid:border-destructive dark:bg-control dark:aria-invalid:border-destructive"
 
 const selectTriggerClass =
-  "w-full justify-between rounded-xl border-input bg-white px-4 text-[15px] data-[size=default]:h-12 data-placeholder:text-ink-400 focus-visible:border-primary focus-visible:ring-primary/15"
+  "w-full justify-between rounded-lg border-input bg-control px-4 text-[15px] text-foreground data-[size=default]:h-12 data-placeholder:text-muted-foreground focus-visible:border-accent focus-visible:ring-accent/20 aria-invalid:border-destructive dark:bg-control dark:hover:bg-control dark:aria-invalid:border-destructive"
 
-const labelClass = "text-[13px] font-semibold text-ink-700"
+const labelClass = "text-[13px] font-semibold text-foreground"
 
 const ORGANIZATION_TYPE_OPTIONS = toOptions(ORGANIZATION_TYPES, ORGANIZATION_TYPE_LABELS)
 const ATTENDANCE_OPTIONS = toOptions(ATTENDANCE_RANGES, ATTENDANCE_RANGE_LABELS)
@@ -58,6 +58,7 @@ export function PilotForm() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [submitError, setSubmitError] = React.useState<string | null>(null)
+  const isSubmittingRef = React.useRef(false)
   const submissionRef = React.useRef<{ id: string; data: string } | null>(null)
 
   const form = useForm<PilotFormData>({
@@ -76,6 +77,8 @@ export function PilotForm() {
   })
 
   async function onSubmit(data: PilotFormData) {
+    if (isSubmittingRef.current) return
+    isSubmittingRef.current = true
     setIsSubmitting(true)
     setSubmitError(null)
     const serializedData = JSON.stringify(data)
@@ -105,6 +108,7 @@ export function PilotForm() {
         description: "Tente novamente em alguns minutos ou entre em contato diretamente.",
       })
     } finally {
+      isSubmittingRef.current = false
       setIsSubmitting(false)
     }
   }
@@ -121,11 +125,12 @@ export function PilotForm() {
   }
 
   return (
-    <div className="rounded-card border border-border bg-white p-6 shadow-card sm:p-8 lg:p-10">
-      <h2 className="text-xl font-extrabold tracking-tight text-ink-900 sm:text-2xl">
+    <div className="rounded-panel border border-primary/55 bg-surface p-6 sm:p-8 lg:p-10">
+      <p className="text-xs font-bold tracking-[0.16em] text-accent uppercase">Candidatura</p>
+      <h2 className="mt-3 font-display text-3xl tracking-tight text-foreground uppercase sm:text-4xl">
         Candidatar seu evento ao piloto
       </h2>
-      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-500 sm:text-base">
+      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
         Conte um pouco sobre a sua operação. A candidatura não garante vaga; retornamos em até 48
         horas úteis para conversar sobre data, público e formato.
       </p>
@@ -139,7 +144,7 @@ export function PilotForm() {
       {submitError ? (
         <div
           role="alert"
-          className="mt-5 rounded-xl border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive"
+          className="mt-5 rounded-lg border border-destructive bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive"
         >
           {submitError}
         </div>
@@ -326,18 +331,18 @@ export function PilotForm() {
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
-                    className="mt-0.5 size-5 rounded-md"
+                    className="mt-0.5 size-5 rounded-md bg-control aria-invalid:border-destructive dark:bg-control dark:aria-invalid:border-destructive"
                   />
                 </FormControl>
                 <div className="space-y-1">
-                  <FormLabel className="text-[13px] leading-relaxed font-normal text-ink-500">
+                  <FormLabel className="text-[13px] leading-relaxed font-normal text-muted-foreground">
                     Autorizo o uso dos meus dados para contato e envio de informações sobre o
                     Programa Piloto da WebIngressos, conforme a{" "}
                     <Link
                       href="/privacidade"
-                      className="font-semibold text-brand-700 underline underline-offset-2"
+                      className="font-semibold text-accent underline underline-offset-2"
                     >
-                      LGPD
+                      Política de Privacidade
                     </Link>
                     .
                   </FormLabel>
@@ -359,7 +364,7 @@ export function PilotForm() {
             type="submit"
             disabled={isSubmitting}
             aria-busy={isSubmitting}
-            className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-brand-700 px-6 text-base font-bold text-white shadow-cta transition-colors hover:bg-brand-800 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
+            className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-lg bg-primary px-6 text-base font-bold text-primary-foreground transition-[background-color,box-shadow] hover:bg-brand-400 hover:shadow-cta focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : null}
             {isSubmitting ? "Enviando…" : "Enviar candidatura"}

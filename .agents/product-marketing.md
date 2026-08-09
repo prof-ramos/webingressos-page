@@ -1,7 +1,7 @@
 # WebIngressos — Product Marketing Context
 
-**Document version:** 1.1.0
-**Last updated:** 2026-08-05
+**Document version:** 1.2.0
+**Last updated:** 2026-08-09
 **Status:** hipótese em validação; produto ainda não lançado
 
 ## 1. Product overview
@@ -235,7 +235,10 @@ Não inventar nem sugerir essas provas. Interfaces demonstrativas devem ser marc
 - português-BR;
 - profissional, direto e acessível;
 - jovem sem parecer infantil;
-- energético sem estética genérica de balada;
+- expressivo, com linguagem visual de flyer universitário sem recorrer a
+  urgência ou tração inventada;
+- títulos de marketing podem ser mais jovens e diretos; dinheiro, governança e
+  prestação de contas permanecem sóbrios e precisos;
 - confiável para assuntos financeiros;
 - benefícios concretos acima de adjetivos;
 - sem exclamações, hipérboles ou urgência artificial.
@@ -258,6 +261,15 @@ Lead qualificado de um organizador disposto a conversar, compartilhar o fluxo re
 - inscrição em newsletter genérica.
 
 ## 13. Changelog
+
+### 1.2.0 — 2026-08-09
+
+- Registrada a direção visual aprovada da landing: flyer universitário, Anton,
+  magenta e verde ácido no marketing, com Archivo e superfícies neutras em
+  produto, dados e finanças.
+- A linguagem do problema passou a nomear o substituto real — Pix no WhatsApp,
+  comprovantes e planilhas paralelas — sem alterar o status de produto em
+  validação nem transformar hipóteses em funcionalidades disponíveis.
 
 ### 1.1.0 — 2026-08-05
 
