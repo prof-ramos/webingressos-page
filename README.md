@@ -1,3 +1,8 @@
+> [!NOTE]
+> **Status do portfólio:** este é o repositório canônico ativo. Predecessor(es) arquivado(s): [webingressos-legacy](https://github.com/prof-ramos/webingressos-legacy); a aplicação operacional está em [webingressos-app](https://github.com/prof-ramos/webingressos-app). Os históricos permanecem disponíveis somente para leitura.
+
+<!-- PORTFOLIO_STATUS: canonical; predecessors=webingressos-legacy -->
+
 # WebIngressos Page
 
 Landing page de validação comercial da **WebIngressos**, destinada à captação de organizadores de eventos universitários para o programa piloto.
