@@ -8,8 +8,8 @@ export default function OpenGraphImage() {
   return new ImageResponse(
     <div
       style={{
-        background: "#f7fbf8",
-        color: "#123126",
+        background: "#0a0611",
+        color: "#f7f4ee",
         display: "flex",
         flexDirection: "column",
         height: "100%",
@@ -18,16 +18,16 @@ export default function OpenGraphImage() {
         width: "100%",
       }}
     >
-      <div style={{ color: "#0e6340", display: "flex", fontSize: 30, fontWeight: 700 }}>
-        WEBINGRESSOS
+      <div style={{ color: "#c6ff3d", display: "flex", fontSize: 30, fontWeight: 700 }}>
+        WEBINGRESSOS · PROGRAMA PILOTO
       </div>
       <div
         style={{ display: "flex", fontSize: 72, fontWeight: 800, lineHeight: 1.08, marginTop: 28 }}
       >
         Venda ingressos sem perder o controle do evento.
       </div>
-      <div style={{ color: "#557066", display: "flex", fontSize: 30, marginTop: 30 }}>
-        Gestão para eventos universitários.
+      <div style={{ color: "#ff2e7e", display: "flex", fontSize: 30, marginTop: 30 }}>
+        Infraestrutura em validação para eventos universitários.
       </div>
     </div>,
     size,
