@@ -16,8 +16,8 @@ function Tile({
   children: React.ReactNode
 }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-white p-3.5 sm:p-4", className)}>
-      <p className="text-[11px] font-semibold text-ink-700">{label}</p>
+    <div className={cn("rounded-lg border border-border bg-control p-3.5 sm:p-4", className)}>
+      <p className="text-[11px] font-semibold text-muted-foreground">{label}</p>
       {children}
     </div>
   )
@@ -25,7 +25,7 @@ function Tile({
 
 function IconChip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/12 text-accent">
       {children}
     </span>
   )
@@ -41,14 +41,19 @@ export function DashboardPreview({ className }: { className?: string }) {
   return (
     <div
       aria-hidden="true"
-      className={cn("rounded-card border border-border bg-card p-3 shadow-panel sm:p-4", className)}
+      className={cn(
+        "rounded-panel border border-primary/70 bg-surface p-3 shadow-panel sm:p-4",
+        className,
+      )}
     >
       <div className="mb-3 flex items-center justify-between gap-3">
         <span className="inline-flex items-center gap-1.5">
           <LogoMark className="size-5" />
-          <span className="text-sm font-bold tracking-tight text-brand-700">WebIngressos</span>
+          <span className="font-display text-sm tracking-tight text-foreground uppercase">
+            WebIngressos
+          </span>
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-white px-2.5 py-1.5 text-[11px] font-medium text-ink-500">
+        <span className="inline-flex items-center gap-1.5 rounded-lg border border-input bg-control px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground">
           {period}
           <ChevronDown className="size-3.5" />
         </span>
@@ -56,13 +61,11 @@ export function DashboardPreview({ className }: { className?: string }) {
 
       <div className="grid gap-2.5 sm:grid-cols-2">
         <Tile label={revenue.label}>
-          <p className="mt-1.5 text-lg font-extrabold tracking-tight text-ink-900">
-            {revenue.value}
-          </p>
+          <p className="mt-1.5 text-lg font-bold tracking-tight text-foreground">{revenue.value}</p>
           <div className="mt-1 flex items-end gap-2">
             <p className="shrink-0 text-[10px] whitespace-nowrap">
-              <span className="font-bold text-brand-600">{revenue.delta}</span>{" "}
-              <span className="text-ink-400">{revenue.deltaSuffix}</span>
+              <span className="font-bold text-success">{revenue.delta}</span>{" "}
+              <span className="text-muted-foreground">{revenue.deltaSuffix}</span>
             </p>
             <Sparkline values={revenue.series} idPrefix="revenue" className="h-8 min-w-0 flex-1" />
           </div>
@@ -71,9 +74,9 @@ export function DashboardPreview({ className }: { className?: string }) {
         <Tile label={events.label}>
           <div className="mt-1.5 flex items-center justify-between gap-3">
             <div>
-              <p className="text-lg font-extrabold tracking-tight text-ink-900">{events.value}</p>
-              <p className="mt-1 text-[10px] text-ink-400">
-                <span className="font-bold text-brand-600">8</span> ativos
+              <p className="text-lg font-bold tracking-tight text-foreground">{events.value}</p>
+              <p className="mt-1 text-[10px] text-muted-foreground">
+                <span className="font-bold text-success">8</span> ativos
               </p>
             </div>
             <IconChip>
@@ -85,16 +88,16 @@ export function DashboardPreview({ className }: { className?: string }) {
         <Tile label={checkins.label}>
           <div className="mt-1.5 flex items-start justify-between gap-3">
             <div>
-              <p className="text-lg font-extrabold tracking-tight text-ink-900">{checkins.value}</p>
-              <p className="mt-0.5 text-[10px] text-ink-400">{checkins.caption}</p>
+              <p className="text-lg font-bold tracking-tight text-foreground">{checkins.value}</p>
+              <p className="mt-0.5 text-[10px] text-muted-foreground">{checkins.caption}</p>
             </div>
             <IconChip>
               <ScanLine className="size-4" />
             </IconChip>
           </div>
           <p className="mt-2 text-[10px]">
-            <span className="font-bold text-brand-600">{checkins.highlight}</span>{" "}
-            <span className="text-ink-400">{checkins.highlightSuffix}</span>
+            <span className="font-bold text-success">{checkins.highlight}</span>{" "}
+            <span className="text-muted-foreground">{checkins.highlightSuffix}</span>
           </p>
           <ProgressBar percent={checkins.progress} className="mt-1.5" />
         </Tile>
@@ -102,18 +105,16 @@ export function DashboardPreview({ className }: { className?: string }) {
         <Tile label={settlement.label}>
           <div className="mt-1.5 flex items-start justify-between gap-3">
             <div>
-              <p className="text-lg font-extrabold tracking-tight text-ink-900">
-                {settlement.value}
-              </p>
-              <p className="mt-0.5 text-[10px] text-ink-400">{settlement.caption}</p>
+              <p className="text-lg font-bold tracking-tight text-foreground">{settlement.value}</p>
+              <p className="mt-0.5 text-[10px] text-muted-foreground">{settlement.caption}</p>
             </div>
             <IconChip>
               <Receipt className="size-4" />
             </IconChip>
           </div>
           <p className="mt-2 text-[10px]">
-            <span className="font-bold text-brand-600">{settlement.highlight}</span>{" "}
-            <span className="text-ink-400">{settlement.highlightSuffix}</span>
+            <span className="font-bold text-warning">{settlement.highlight}</span>{" "}
+            <span className="text-muted-foreground">{settlement.highlightSuffix}</span>
           </p>
         </Tile>
 

@@ -1,0 +1,68 @@
+/* Dark direction under evaluation, scoped to the /prototipo route.
+   Adapted from the Halo design system by Uiverse Design (design.uiverse.io) —
+   commercial licence permitting modification and production use; the pack's
+   LICENSE.md and DESIGN.md are not vendored here because redistributing the
+   pack's source is what that licence forbids. What is borrowed is Halo's
+   method: quiet surface tiers with 1px hairlines drawing every edge. The
+   palette is the WebIngressos brief, not Halo's indigo.
+
+   This file lives beside the route rather than in globals.css so the whole
+   prototype is one deletable directory. It is inert for the live light site:
+   nothing reads these tokens unless a wrapper opts in with data-theme="neon".
+
+   NOTE: the repo's own DESIGN.md documents the *current* light system
+   ("Campus Ledger"). This prototype deliberately explores a different system,
+   so Campus Ledger's type roles do not bind it — but the two must not be
+   confused, and only one can ship. */
+[data-theme="neon"] {
+  /* Halo's three tiers, re-anchored on the brief's #040920 canvas. */
+  --p-canvas: #040920;
+  --p-surface: #0c1226;
+  --p-elevated: #141c36;
+
+  /* Dividers. WCAG 1.4.11 covers interface components and graphics needed to
+     understand content, not decorative separators, so these sit below 3:1 on
+     purpose — they only separate, they never delimit a control. */
+  --p-line: #232c45;
+  --p-line-strong: #374151;
+  /* Anything that outlines an interactive control uses this instead: it clears
+     3:1 against both --p-canvas (3.5:1) and --p-surface (3.3:1). The brief's
+     #374151 reaches only 1.8:1 and cannot carry a button edge, especially here
+     where the tiers differ by ~1.06:1 and the border is the only boundary cue. */
+  --p-line-control: #5a6689;
+
+  --p-ice: #e7edf4;
+  --p-ice-dim: #94a1b5;
+  /* Halo's on-surface-faint equivalent, lightened until it clears 4.5:1 on
+     --p-surface: the spec's own tone landed at 4.32:1 under our canvas. */
+  --p-ice-faint: #7d8799;
+
+  /* Our brief has no indigo. The neon sits where Halo puts both `primary`
+     (action, focus) and `success`, so it carries actions, the brand mark, the
+     headline's key phrase and positive data; gold takes Halo's editorial slot
+     for institutional accents. */
+  --p-neon: #2bffa3;
+  --p-neon-hover: #5cffbb;
+  --p-neon-pressed: #16e08b;
+  --p-gold: #d9a94a;
+
+  --p-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+
+  /* globals.css draws the :focus-visible outline from --focus-ring; brand-600
+     is unreadable on --p-canvas, so the neon takes over inside the prototype. */
+  --focus-ring: var(--p-neon);
+  color-scheme: dark;
+}
+
+/* The split bar fills once, as a whole, from the left, at Halo's duration-slow.
+   Nothing is parked behind a delay: an earlier pass held the stub at opacity 0
+   for 1.2s and it read as a rendering bug. The global prefers-reduced-motion
+   guard in globals.css collapses this. */
+@keyframes split-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

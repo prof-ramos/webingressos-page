@@ -20,14 +20,14 @@ repositório.
 
 ## P0 — bloqueadores antes da produção
 
-- [ ] Substituir o armazenamento em `/tmp/webingressos-leads` por banco, KV ou
-      webhook com persistência durável.
+- [x] Substituir o armazenamento em `/tmp/webingressos-leads` por persistência
+      privada no Vercel Blob, com pathname determinístico por `submissionId`.
 - [ ] Definir o contrato de recuperação, duplicidade, falha e reprocessamento
       dos leads; não registrar PII nos logs.
 - [ ] Testar o `POST /api/subscribe` em produção: sucesso, payload inválido
       (`400`), JSON malformado, falha do armazenamento e repetição do envio.
-- [ ] Adicionar rate limiting, honeypot ou outra proteção antispam antes de
-      expor o formulário a tráfego público.
+- [ ] Adicionar rate limiting distribuído antes de expor o formulário a tráfego
+      elevado. O honeypot já está implementado e validado localmente.
 - [ ] Revisar juridicamente a Política de Privacidade, a base legal, o texto de
       consentimento, o prazo de retenção, a exclusão e os fornecedores que
       recebem dados.
@@ -36,16 +36,35 @@ repositório.
 - [ ] Executar `pnpm check` no commit de release e guardar o resultado da CI.
 - [ ] Fazer smoke test no Preview e em Production, incluindo formulário,
       página de confirmação, política de privacidade, links, sitemap e robots.
-- [ ] Revisar todas as claims da landing: mockups e métricas fictícias devem
-      estar identificados como prévia/conceito ou ser substituídos por conteúdo
-      genérico; remover promessas não comprovadas.
+- [x] Revisar as claims da landing: o status de validação está explícito,
+      fluxos futuros aparecem como previstos e números fictícios ficam apenas
+      no bloco demonstrativo rotulado.
+- [x] Decidir o mockup de dashboard do hero. `DASHBOARD_DATA` em
+      `src/lib/constants.ts` mostra faturamento e liquidação inventados
+      (`R$ 45.870,00`, `R$ 32.650,00`) e `dashboard-preview.tsx` os renderiza
+      apenas dentro do bloco rotulado visivelmente como **Demonstração do
+      produto — Dados fictícios**. Os valores continuam `aria-hidden` e não
+      aparecem como prova social ou resultado da WebIngressos.
+
+## Decisões de design
+
+O `AGENTS.md` registra as decisões vigentes; esta seção mantém a conclusão e a
+questão que ainda bloqueia copy.
+
+- [x] Tema escuro promovido para a landing principal com a direção aprovada na
+      issue #7: fundo violeta, magenta, verde ácido, Anton no marketing e
+      Archivo em produto/dados. A rota `/prototipo` permanece somente como
+      registro experimental fora do índice; a landing `/` é a implementação
+      canônica. Validação local concluída em 320 px e 1440 px sem overflow.
+- [ ] Definir o modelo de preço (mensalidade ou percentual do bruto). Enquanto
+      estiver aberto, nenhuma copy pode falar de custo ou previsibilidade.
 
 ## P1 — operação do piloto
 
 - [ ] Adicionar rate limiting distribuído ao endpoint.
-- [ ] Adicionar proteção antispam (honeypot/rate limit) compatível com a
-      política de privacidade — ainda não implementada no `route.ts`/schema do
-      formulário.
+- [x] Adicionar honeypot compatível com a política de privacidade, sem enviar ou
+      registrar PII em serviços externos. Rate limiting distribuído permanece
+      no item anterior.
 - [x] Restringir o Blob de candidaturas ao modo privado.
 - [ ] Definir quem recebe, acompanha e responde cada candidatura.
 - [ ] Criar o pipeline de leads com os estados: novo, qualificado, entrevista,

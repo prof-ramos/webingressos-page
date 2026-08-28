@@ -24,7 +24,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("scroll-mt-16 py-8 sm:scroll-mt-20 sm:py-10 lg:py-12", className)}
+      className={cn("scroll-mt-16 py-12 sm:scroll-mt-20 sm:py-16 lg:py-20", className)}
     >
       <Shell className={innerClassName}>{children}</Shell>
     </section>
@@ -35,7 +35,7 @@ export function SectionHeading({
   eyebrow,
   title,
   subtitle,
-  align = "center",
+  align = "start",
   className,
 }: {
   eyebrow?: string
@@ -47,20 +47,20 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-7 sm:mb-8 lg:mb-10",
+        "mb-8 sm:mb-10",
         align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl",
         className,
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-xs font-bold tracking-[0.16em] text-brand-700 uppercase">
-          {eyebrow}
-        </p>
+        <p className="mb-3 text-xs font-bold tracking-[0.16em] text-accent uppercase">{eyebrow}</p>
       ) : null}
-      <h2 className="text-2xl font-extrabold tracking-tight text-balance text-ink-800 sm:text-3xl">
+      <h2 className="font-display text-4xl leading-[0.94] tracking-[-0.02em] text-balance text-foreground uppercase sm:text-5xl">
         {title}
       </h2>
-      {subtitle ? <p className="mt-3 text-base leading-relaxed text-ink-500">{subtitle}</p> : null}
+      {subtitle ? (
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">{subtitle}</p>
+      ) : null}
     </div>
   )
 }

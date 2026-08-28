@@ -56,7 +56,11 @@ candidaturas).
   `typescript` ou `eslint`.
 - **As métricas do hero são fictícias.** `DASHBOARD_DATA` em `constants.ts` usa
   valores inventados (`R$ 45.870,00`), registrados como bloqueador P0 no
-  `TODO.md` e como tensão declarada no `AGENTS.md`.
+  `TODO.md`, com as saídas possíveis nomeadas.
+- **`DESIGN.md` na raiz documenta o design system vigente** (tema claro): roles
+  tipográficos, escala de raio e anatomia dos componentes. Ler antes de mexer em
+  UI — o `AGENTS.md` cobre os tokens, o `DESIGN.md` cobre os papéis. A rota
+  `/prototipo` explora um sistema diferente e não segue esses papéis.
 - **Não há `CONTRIBUTING.md` nem issue tracker.** Para `/code-review`, usar
   `AGENTS.md` como única fonte de padrões; o eixo Spec normalmente não terá
   PRD/issue, salvo indicação explícita do usuário.
