@@ -2,6 +2,11 @@
 
 Landing page de validação comercial da **WebIngressos**, destinada à captação de organizadores de eventos universitários para o programa piloto.
 
+A identidade pública usa fundo violeta-noturno, magenta e verde ácido com Anton
+em títulos de marketing. Prévia de produto, dados e finanças usa Archivo e
+superfícies mais neutras; números simulados aparecem apenas em blocos marcados
+como demonstração.
+
 ## Escopo
 
 Este repositório contém apenas o site público de marketing:

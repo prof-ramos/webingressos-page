@@ -36,8 +36,9 @@ tipográficos, escala de raio, anatomia de cada componente e as regras de uso.
 Esta seção cobre os tokens e o encanamento; `DESIGN.md` cobre os papéis. Os dois
 são obrigatórios antes de alterar UI.
 
-Uma regra de lá que se perde com facilidade: caps com tracking largo pertencem
-só ao papel _eyebrow_ e não devem vazar para outros papéis de texto.
+Uma regra de lá que se perde com facilidade: tracking largo pertence só ao
+papel _eyebrow_. Títulos de marketing podem usar Anton em caixa alta, mas com
+tracking compacto; texto de produto e finanças permanece em Archivo.
 
 ## Camada de tokens
 
@@ -62,7 +63,9 @@ só ao papel _eyebrow_ e não devem vazar para outros papéis de texto.
   prefixo: `data-[size=default]:h-12`.
 - Seções da landing são Server Components. Só `header`, `faq`, `pilot-form` e
   `pilot-form-lazy` são `"use client"`.
-- Toda a copy da landing vive em `src/lib/constants.ts`, não no JSX.
+- Listas de conteúdo e configuração compartilhada vivem em
+  `src/lib/constants.ts`; títulos estruturais podem permanecer junto ao
+  componente quando não são reutilizados.
 
 ## Formulário `POST /api/subscribe`
 
@@ -130,21 +133,26 @@ CTA principal:
 
 ## Tema visual
 
-- **Decisão atual: tema claro.** `:root` carrega a paleta clara e
-  `color-scheme: light`; o verde institucional é `brand-700 = #0e6340`.
-- Enquanto essa decisão vigorar, o `@custom-variant dark` precisa continuar
-  neutralizando as variantes `dark:` dos primitivos. Se o tema mudar, essa
-  linha muda com ele.
+- **Decisão atual: tema escuro.** `:root` carrega a paleta violeta-noturna e
+  `color-scheme: dark`; o `layout.tsx` aplica `.dark` explicitamente para que
+  as variantes dos primitivos não dependam da preferência do visitante.
+- Marketing usa Anton, magenta, verde ácido e composição inspirada em flyers.
+  Produto, dados e finanças usam Archivo, superfícies neutras e destaques mais
+  contidos. A mesma página pode mostrar os dois registros, mas não misturá-los
+  dentro de um componente financeiro.
 - **Não usar cores cruas do Tailwind** (`slate-*`, `emerald-*`) nos
-  componentes — sempre os tokens (`bg-brand-700`, `text-ink-500`,
+  componentes — sempre os tokens (`bg-primary`, `text-muted-foreground`,
   `border-border`).
-- Uma direção escura está em avaliação na rota `/prototipo`, isolada por
-  `[data-theme="neon"]` e fora do índice. Ver `TODO.md`.
+- A rota `/prototipo` permanece fora do índice como registro experimental; a
+  fonte canônica da identidade pública é a landing `/` e seus tokens em
+  `globals.css`.
 
 ## Estética
 
-Padrão-nega para gradiente decorativo, 3D e sombra pesada. A exceção é
-permitida quando o efeito **codifica informação** — justifique no PR.
+Padrão-nega para gradiente decorativo, 3D e sombra pesada. Textura de grão,
+grid, blocos planos e tipografia expressiva criam a linguagem de flyer sem
+substituir conteúdo por efeito. A exceção é permitida quando o efeito
+**codifica informação** — justifique no PR.
 
 O critério é esse, não a técnica: a perfuração de um ingresso codifica algo
 verdadeiro (o canhoto fica com quem organiza); um `rotateY` com brilho varrendo
@@ -154,8 +162,9 @@ Exceção declarada, para não ficar implícita: o briefing de 2026-08-05 pede
 explicitamente **glow neon sutil no hover do botão primário**. É sombra, o
 critério acima não a salva (hover já é codificado pela cor) e ela existe por
 pedido do cliente, não por mérito da regra. Fica registrada aqui como exceção
-nomeada — se o briefing mudar, ela cai junto. Nenhuma outra sombra é aceita
-sem passar pelo critério.
+nomeada — se o briefing mudar, ela cai junto. A segunda exceção é a sombra
+deslocada do painel demonstrativo, que o separa do hero como janela de produto.
+Nenhuma outra sombra é aceita sem passar pelo critério.
 
 ## Copy
 
@@ -239,8 +248,5 @@ comprovadas.
 # Parte 3 — Abertas
 
 Questões em aberto não moram aqui. Estão no `TODO.md`, com prioridade e critério
-de conclusão. As que afetam decisões deste documento hoje:
-
-- rótulo e valores do mockup de dashboard no hero (P0);
-- tema escuro: promover `/prototipo` ou descartar;
-- modelo de preço, que hoje bloqueia qualquer copy sobre custo.
+de conclusão. A que afeta decisões deste documento hoje é o modelo de preço,
+que bloqueia qualquer copy sobre custo.

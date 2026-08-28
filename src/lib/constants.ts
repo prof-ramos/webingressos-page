@@ -9,7 +9,6 @@ import {
   House,
   IdCard,
   ScanLine,
-  Share2,
   ShieldCheck,
   ShoppingCart,
   Ticket,
@@ -19,7 +18,7 @@ import {
 export const SITE_CONFIG = {
   name: "WebIngressos",
   description:
-    "Plataforma de gestão de vendas, promoters, check-in e prestação de contas para atléticas e produtores universitários.",
+    "Infraestrutura em validação para vendas, promoters, check-in e prestação de contas de eventos universitários.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://webingressos.com.br",
   pilotFormUrl: "#piloto",
   ctaLabel: "Quero participar do piloto",
@@ -31,41 +30,41 @@ export type FeatureItem = {
   icon: LucideIcon
 }
 
-/** Section "Organizar o evento não deveria depender de planilhas e mensagens soltas." */
+/** Operational pains currently treated as hypotheses to validate with organizers. */
 export const PROBLEMS: readonly FeatureItem[] = [
   {
+    icon: ShoppingCart,
+    title: "Pix e comprovante no WhatsApp",
+    description: "A venda começa rápida, mas a conferência vira outra operação.",
+  },
+  {
     icon: Calculator,
-    title: "Comissões calculadas manualmente",
-    description: "Erros, retrabalho e conflitos na hora de fechar contas.",
+    title: "Comissão calculada à mão",
+    description: "Cada responsável mantém uma conta diferente do mesmo evento.",
   },
   {
     icon: ChartPie,
-    title: "Divisão de receitas confusa",
-    description: "Falta de clareza na divisão entre equipe e núcleo.",
-  },
-  {
-    icon: Clock,
-    title: "Fechamento financeiro demorado",
-    description: "Horas reunindo dados para fechar contas.",
+    title: "Divisão sem uma fonte comum",
+    description: "Receitas, despesas e repasses chegam de lugares diferentes.",
   },
   {
     icon: FileText,
-    title: "Históricos se perdem a cada gestão",
-    description: "Informações dispersas e difíceis de recuperar.",
+    title: "Histórico perdido na troca de gestão",
+    description: "A próxima diretoria recomeça sem o contexto do evento anterior.",
   },
   {
     icon: ScanLine,
-    title: "Check-in com fila",
-    description: "Entradas lentas e sem validação clara de público.",
+    title: "Portaria com listas desencontradas",
+    description: "A equipe decide exceções sem enxergar o mesmo registro da venda.",
   },
   {
-    icon: Share2,
-    title: "Vendas espalhadas em vários lugares",
-    description: "Discord, Excel e links avulsos não se conversam.",
+    icon: Clock,
+    title: "Fechamento que ocupa dias",
+    description: "O trabalho continua depois da festa para descobrir o que fechou.",
   },
 ]
 
-/** Section "Uma plataforma feita para a realidade universitária." */
+/** Product flows proposed for validation in the pilot. */
 export const PILLARS: readonly FeatureItem[] = [
   {
     icon: ShoppingCart,
@@ -110,7 +109,7 @@ export const FAQS: readonly { question: string; answer: string }[] = [
   {
     question: "Em que fase está a WebIngressos?",
     answer:
-      "Estamos selecionando os primeiros eventos para o programa piloto. A candidatura ajuda a validar a operação com um grupo reduzido antes da abertura geral.",
+      "Ainda não apresentamos a WebIngressos como produto concluído. Estamos selecionando eventos para validar os fluxos do piloto antes de qualquer abertura geral.",
   },
   {
     question: "Quem pode participar do piloto?",
@@ -125,7 +124,7 @@ export const FAQS: readonly { question: string; answer: string }[] = [
   {
     question: "Vocês atendem fora de Brasília?",
     answer:
-      "Sim. O piloto começou em Brasília, mas a plataforma é 100% online e atendemos eventos de qualquer cidade. O acompanhamento é remoto, com suporte dedicado durante a operação.",
+      "Brasília é a região preferencial desta fase. Eventos de outras cidades podem se candidatar e serão avaliados caso a caso, conforme o formato e a capacidade de acompanhamento do piloto.",
   },
 ]
 
@@ -188,6 +187,7 @@ export const DASHBOARD_DATA = {
 export const NAV_LINKS = [
   { label: "O problema", href: "#problemas" },
   { label: "A proposta", href: "#pilares" },
+  { label: "Como funciona", href: "#operacao" },
   { label: "Programa piloto", href: "#programa-piloto" },
   { label: "Dúvidas", href: "#faq" },
 ] as const

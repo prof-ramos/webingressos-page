@@ -40,7 +40,7 @@ export function Sparkline({
   return (
     <svg
       viewBox={`0 0 ${SPARK_W} ${SPARK_H}`}
-      className={cn("h-10 w-full text-brand-500", className)}
+      className={cn("h-10 w-full text-accent", className)}
       aria-hidden="true"
     >
       <defs>
@@ -65,8 +65,8 @@ export function Sparkline({
 
 export function ProgressBar({ percent, className }: { percent: number; className?: string }) {
   return (
-    <div className={cn("h-1.5 w-full rounded-full bg-brand-100", className)} aria-hidden="true">
-      <div className="h-full rounded-full bg-brand-600" style={{ width: `${percent}%` }} />
+    <div className={cn("h-1.5 w-full rounded-full bg-muted", className)} aria-hidden="true">
+      <div className="h-full rounded-full bg-accent" style={{ width: `${percent}%` }} />
     </div>
   )
 }
@@ -88,7 +88,7 @@ export function DayBars({
         {ticks.map((tick, index) => (
           <span
             key={tick}
-            className="absolute right-0 -translate-y-1/2 text-[9px] text-ink-400"
+            className="absolute right-0 -translate-y-1/2 text-[9px] text-muted-foreground"
             style={{ bottom: `${(tick / max) * 100}%` }}
           >
             {tickLabels[index]}
@@ -109,7 +109,7 @@ export function DayBars({
             {days.map((day) => (
               <div
                 key={day.short}
-                className="flex-1 rounded-t-[3px] bg-brand-500"
+                className="flex-1 rounded-t-[3px] bg-accent"
                 style={{ height: `${(day.value / max) * 100}%` }}
               />
             ))}
@@ -118,7 +118,7 @@ export function DayBars({
 
         <div className="mt-2 flex gap-1.5">
           {days.map((day) => (
-            <span key={day.short} className="flex-1 text-center text-[9px] text-ink-400">
+            <span key={day.short} className="flex-1 text-center text-[9px] text-muted-foreground">
               <span className="sm:hidden">{day.initial}</span>
               <span className="hidden sm:inline">{day.short}</span>
             </span>
@@ -134,14 +134,16 @@ export function ChannelBars({ items }: { items: readonly { name: string; percent
     <ul className="space-y-2.5" aria-hidden="true">
       {items.map((item) => (
         <li key={item.name} className="flex items-center gap-2.5">
-          <span className="w-16 shrink-0 truncate text-[10px] text-ink-500">{item.name}</span>
-          <span className="h-1.5 min-w-0 flex-1 rounded-full bg-brand-100">
+          <span className="w-16 shrink-0 truncate text-[10px] text-muted-foreground">
+            {item.name}
+          </span>
+          <span className="h-1.5 min-w-0 flex-1 rounded-full bg-muted">
             <span
-              className="block h-full rounded-full bg-brand-500"
+              className="block h-full rounded-full bg-primary"
               style={{ width: `${item.percent}%` }}
             />
           </span>
-          <span className="w-8 shrink-0 text-right text-[10px] font-semibold text-ink-700">
+          <span className="w-8 shrink-0 text-right text-[10px] font-semibold text-foreground">
             {item.percent}%
           </span>
         </li>

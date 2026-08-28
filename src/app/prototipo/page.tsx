@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google"
+import { ArrowDown, ArrowUp } from "lucide-react"
 
 import "./prototipo.css"
 
@@ -43,6 +44,50 @@ const PILOT_PROFILE = [
   { value: "2+", label: "Entidades organizadoras" },
   { value: "5+", label: "Promoters" },
 ] as const
+
+/* Números de um evento fictício, para mostrar a ferramenta. Só existem dentro
+   da seção rotulada "exemplo" — §10 de .agents/product-marketing.md permite
+   interface demonstrativa marcada, e proíbe qualquer um destes fora dela. */
+const PANEL_PREVIEW = [
+  {
+    label: "Ingressos vendidos",
+    value: "1.248",
+    trend: "18%",
+    up: true,
+    tone: "var(--p-neon)",
+    series: [12, 18, 15, 26, 24, 35, 33, 48, 61],
+  },
+  {
+    label: "Repasse a liberar",
+    value: "R$ 32.650",
+    trend: "12%",
+    up: true,
+    tone: "var(--p-neon)",
+    series: [20, 22, 28, 27, 34, 40, 44, 52, 58],
+  },
+  {
+    /* Tom neutro de propósito: o briefing reserva o dourado a "vitórias e selos
+       de prestígio", e pendência não é nenhuma das duas. O Halo mapearia âmbar
+       a warning, mas aqui a definição do briefing prevalece. */
+    label: "Pendências de conciliação",
+    value: "2",
+    trend: "3",
+    up: false,
+    tone: "var(--p-ice-dim)",
+    series: [9, 8, 8, 6, 7, 5, 4, 3, 2],
+  },
+] as const
+
+/* Polyline num viewBox de 32px de altura, como o Stat Tile do Halo especifica.
+   preserveAspectRatio="none" estica na horizontal; vectorEffect mantém a
+   espessura do traço em 1,5px, na mesma linguagem das hairlines. */
+function sparkline(series: readonly number[]) {
+  const min = Math.min(...series)
+  const span = Math.max(...series) - min || 1
+  return series
+    .map((v, i) => `${(i / (series.length - 1)) * 100},${28 - ((v - min) / span) * 24}`)
+    .join(" ")
+}
 
 /* Halo's label-sm: 12px / 500 / 0.08em uppercase. Reserved for eyebrows and
    tile labels; data uses mono-sm, never this. */
@@ -202,26 +247,88 @@ export default function PrototipoPage() {
           </section>
         </section>
 
-        <section aria-labelledby="perfil-titulo" className="pb-16 lg:pb-20">
-          <h2 id="perfil-titulo" className={MUTED_LABEL}>
-            Perfil de evento buscado no piloto
-          </h2>
+        <section aria-labelledby="painel-titulo" className="pb-16 lg:pb-20">
+          <div className="flex items-center justify-between gap-3">
+            <h2 id="painel-titulo" className={MUTED_LABEL}>
+              Prévia do painel
+            </h2>
+            <span
+              className={`inline-flex h-6 items-center rounded-full bg-[color-mix(in_oklab,var(--p-gold)_14%,transparent)] px-2.5 text-[0.8125rem] font-medium text-[var(--p-gold)] ${MONO}`}
+            >
+              evento fictício
+            </span>
+          </div>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {PILOT_PROFILE.map((item) => (
-              <div key={item.label} className={PANEL}>
-                <div aria-hidden="true" className="h-0.5 bg-[var(--p-line-strong)]" />
+            {PANEL_PREVIEW.map((tile) => (
+              <div key={tile.label} className={PANEL}>
+                <div aria-hidden="true" className="h-0.5" style={{ background: tile.tone }} />
                 <div className="px-5 py-5">
-                  <p className={MUTED_LABEL}>{item.label}</p>
-                  <p
-                    className={`mt-3 text-[2.5rem] leading-none font-semibold tracking-[-0.02em] tabular-nums ${MONO}`}
+                  <p className={MUTED_LABEL}>{tile.label}</p>
+
+                  <div className="mt-3 flex items-end justify-between gap-3">
+                    <p
+                      className={`text-[2rem] leading-none font-semibold tracking-[-0.02em] tabular-nums ${MONO}`}
+                    >
+                      {tile.value}
+                    </p>
+                    <span
+                      className={`inline-flex h-6 shrink-0 items-center gap-1 rounded-full px-2 text-[0.8125rem] font-medium tabular-nums ${MONO}`}
+                      style={{
+                        color: tile.tone,
+                        background: `color-mix(in oklab, ${tile.tone} 14%, transparent)`,
+                      }}
+                    >
+                      {tile.up ? (
+                        <ArrowUp aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
+                      ) : (
+                        <ArrowDown aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
+                      )}
+                      {tile.up ? "+" : "−"}
+                      {tile.trend}
+                    </span>
+                  </div>
+
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 100 32"
+                    preserveAspectRatio="none"
+                    className="mt-4 h-8 w-full"
                   >
-                    {item.value}
-                  </p>
+                    <polyline
+                      points={sparkline(tile.series)}
+                      fill="none"
+                      stroke={tile.tone}
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  </svg>
                 </div>
               </div>
             ))}
           </div>
+        </section>
+
+        <section
+          aria-labelledby="perfil-titulo"
+          className="border-t border-[var(--p-line)] pt-8 pb-16 lg:pb-20"
+        >
+          <h2 id="perfil-titulo" className={MUTED_LABEL}>
+            Perfil de evento buscado no piloto
+          </h2>
+
+          <dl className="mt-4 flex flex-col gap-x-10 gap-y-3 sm:flex-row sm:flex-wrap">
+            {PILOT_PROFILE.map((item) => (
+              <div key={item.label} className="flex items-baseline gap-2.5">
+                <dt className="text-[0.8125rem] text-[var(--p-ice-faint)]">{item.label}</dt>
+                <dd className={`text-[0.9375rem] font-medium tabular-nums ${MONO}`}>
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <div className="border-t border-[var(--p-line)] py-8">
