@@ -78,8 +78,8 @@ questão que ainda bloqueia copy.
       escolhida para armazenar os leads.
 - [ ] Confirmar a base legal e a configuração dos eventos do Vercel Analytics
       e Speed Insights, sem coletar PII.
-- [ ] Definir roteiro de entrevista e critérios objetivos para selecionar os
-      primeiros eventos do piloto.
+- [x] Definir roteiro de entrevista e critérios objetivos para selecionar os
+      primeiros eventos do piloto (`docs/roteiro-entrevistas-piloto.md`).
 - [ ] Medir o funil: visita, clique no CTA, início, erro e conclusão do
       formulário.
 
