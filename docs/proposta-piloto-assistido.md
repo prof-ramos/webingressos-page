@@ -17,12 +17,15 @@ participantes:
 - kickoff de até 60 minutos;
 - workshop do fluxo atual de até 90 minutos;
 - mapeamento da operação de vendas, promoters, check-in e fechamento;
-- cenário de teste com dados agregados, pseudonimizados ou fictícios;
+- simulação pré-evento dos fluxos com dados agregados, pseudonimizados ou
+  fictícios;
 - revisão dos dados de teste de até 60 minutos;
 - avaliação do fechamento rastreável;
 - retrospectiva de até 60 minutos, com decisão de repetir, ajustar ou encerrar.
 
-Dúvidas assíncronas ficam limitadas a dois dias úteis após cada sessão.
+Dúvidas assíncronas ficam limitadas a dois dias úteis após cada sessão. Esse
+prazo é suporte entre sessões e não é SLA de operação ao vivo, entrega de
+funcionalidade ou resultado.
 
 ## 3. Fora do escopo
 
