@@ -17,8 +17,9 @@ participantes:
 - kickoff de até 60 minutos;
 - workshop do fluxo atual de até 90 minutos;
 - mapeamento da operação de vendas, promoters, check-in e fechamento;
-- simulação pré-evento dos fluxos com dados agregados, pseudonimizados ou
-  fictícios;
+- simulação pré-evento dos fluxos com totais agregados, dados fictícios ou
+  registros operacionais pseudonimizados, sem identificadores diretos de
+  compradores e sem a chave de reidentificação;
 - revisão dos dados de teste de até 60 minutos;
 - avaliação do fechamento rastreável;
 - retrospectiva de até 60 minutos, com decisão de repetir, ajustar ou encerrar.
@@ -30,7 +31,9 @@ funcionalidade ou resultado.
 ## 3. Fora do escopo
 
 - operação ao vivo do evento;
-- processamento de ingressos ou dados pessoais de compradores;
+- processamento de ingressos reais;
+- recebimento de identificadores diretos de compradores (nome, contato,
+  documento);
 - custódia ou processamento de pagamentos do evento;
 - integrações sob medida;
 - suporte 24/7 ou reuniões ilimitadas;
@@ -54,8 +57,9 @@ um preço de validação e não representa preço público definitivo.
 
 O organizador continua responsável por vendas, recebimento, validade dos
 ingressos, promoters, comissões, check-in, pagamentos, repasses e obrigações
-legais. Deve disponibilizar informações agregadas ou pseudonimizadas necessárias
-ao teste e indicar o decisor financeiro.
+legais. Deve disponibilizar totais agregados, dados fictícios ou registros
+operacionais pseudonimizados necessários ao teste, sem identificadores diretos
+de compradores e sem a chave de reidentificação, e indicar o decisor financeiro.
 
 ### Da WebIngressos
 
@@ -65,10 +69,17 @@ documento. Não assume a operação do evento nem garante resultado.
 
 ## 6. Dados
 
-Na primeira rodada, não serão usados dados pessoais de compradores, documentos,
-contatos reais ou informações que permitam identificar participantes. Não haverá
-custódia ou processamento de pagamentos do evento. O tratamento definitivo de
-dados depende de produto, contrato, segurança e base legal definidos.
+A simulação usa totais agregados, dados fictícios ou registros operacionais
+pseudonimizados fornecidos pelo organizador, sem a chave de reidentificação.
+A WebIngressos não recebe identificadores diretos de compradores, não copia
+planilhas ou documentos originais e não processa nem custodia pagamentos do
+evento.
+
+Registros pseudonimizados ainda podem ser dados pessoais, porque o
+organizador pode religá-los com informação que guarda em separado. Este
+rascunho não afirma ausência de dados pessoais nem define base legal,
+retenção ou tratamento definitivo. O tratamento depende de produto, contrato,
+segurança e revisão jurídica.
 
 ## 7. Adiamento, cancelamento e falha de entrega
 

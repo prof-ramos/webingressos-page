@@ -71,11 +71,12 @@ Nesta fase, essa pessoa é o proprietário da WebIngressos.
 **Escopo do piloto remunerado**:
 Pelo preço de teste de R$ 1.000, o piloto inclui um evento de até 2.000
 participantes, uma reunião de início, mapeamento da operação, simulação
-pré-evento dos fluxos de venda, promoters, check-in e fechamento com dados não
-identificáveis, e uma retrospectiva. Não inclui operação ao vivo, ingressos ou
-compradores reais, integrações sob medida, suporte ilimitado, mais de um evento,
-funcionalidades ainda não disponíveis ou garantia de resultado financeiro ou de
-público.
+pré-evento dos fluxos de venda, promoters, check-in e fechamento com totais
+agregados, dados fictícios ou registros operacionais pseudonimizados, e uma
+retrospectiva. Não inclui operação ao vivo, processamento de ingressos reais,
+identificadores diretos de compradores, integrações sob medida, suporte
+ilimitado, mais de um evento, funcionalidades ainda não disponíveis ou garantia
+de resultado financeiro ou de público.
 
 **Cobrança do piloto**:
 O valor é dividido em R$ 500 na confirmação do piloto e R$ 500 até sete dias
@@ -205,10 +206,10 @@ evento.
 **Apresentação da oferta**:
 “Estamos selecionando um evento universitário para uma simulação pré-evento
 assistida de fechamento rastreável. Por R$ 1.000, acompanhamos um único evento
-de até 2.000
-participantes, com kickoff, mapeamento da operação, teste com dados não
-identificáveis e retrospectiva. É uma validação experimental, não uma
-plataforma pronta nem uma garantia de resultado.”
+de até 2.000 participantes, com kickoff, mapeamento da operação, teste com
+totais, exemplos ou registros sem nome, contato ou documento do comprador, e
+retrospectiva. É uma validação experimental, não uma plataforma pronta nem uma
+garantia de resultado.”
 
 **Pergunta de compromisso**:
 Para o decisor financeiro: “Considerando o próximo evento e esse escopo, você
@@ -242,12 +243,32 @@ O candidato aceita por escrito, por e-mail ou WhatsApp, e assina um termo
 simples antes do pagamento da primeira parcela. Pagamento isolado não substitui
 o registro do aceite e do escopo.
 
+**Identificador direto de comprador**:
+Nome, e-mail, telefone, documento ou outro dado que, sozinho, aponta para a
+pessoa que comprou o ingresso.
+
+**Registro operacional pseudonimizado**:
+Linha de venda, lote, promoter ou check-in em que os identificadores diretos
+do comprador foram substituídos por códigos que só o organizador consegue
+religar. Continua podendo ser dado pessoal. Não é o mesmo que total agregado
+nem que dado anônimo.
+
 **Limite de dados da primeira rodada**:
-O piloto não processa dados pessoais de compradores, não guarda documentos ou
-contatos reais e não processa nem custodia pagamentos do evento. A cobrança do
-piloto é separada da operação do evento. Os testes usam dados agregados,
-pseudonimizados ou fictícios até que produto, contrato, segurança e base legal
-estejam definidos.
+O piloto é uma simulação pré-evento. Não opera o evento ao vivo, não processa
+ingressos reais, não recebe identificadores diretos de compradores e não
+processa nem custodia pagamentos do evento. A cobrança do piloto é separada da
+operação do evento.
+
+A simulação usa apenas totais agregados, dados fictícios ou registros
+operacionais pseudonimizados fornecidos pelo organizador, sem a chave de
+reidentificação. A WebIngressos não copia, baixa nem guarda planilhas,
+documentos ou contatos originais.
+
+Registros pseudonimizados ainda podem ser dados pessoais, porque o
+organizador pode religá-los com informação que guarda em separado. Esta
+rodada não afirma ausência de dados pessoais nem define base legal, retenção
+ou tratamento definitivo. Isso permanece pendente de produto, contrato,
+segurança e revisão jurídica.
 
 **Responsabilidade do evento**:
 O organizador responde por venda, recebimento, validade dos ingressos, promoters,
@@ -282,8 +303,8 @@ informada antes. Nesses casos, a segunda parcela não é cobrada.
 **Limite da primeira rodada**:
 O piloto é uma validação pré-evento. Não processa ingressos reais, não controla
 check-in ao vivo e não interfere em pagamentos ou repasses; o evento real serve
-como contexto para testar o fluxo com dados agregados, pseudonimizados ou
-fictícios.
+como contexto para testar o fluxo nos termos do limite de dados da primeira
+rodada.
 
 **Capacidade de acompanhamento**:
 O valor inclui kickoff de até 60 minutos, workshop do fluxo de até 90 minutos,
@@ -293,9 +314,10 @@ não há suporte 24/7, reuniões ilimitadas ou customizações.
 
 **Entregáveis do piloto**:
 Mapa do fluxo atual de fechamento, matriz de responsabilidades, cenário de teste
-com dados não identificáveis, lista priorizada de pendências e riscos,
-avaliação da rastreabilidade e retrospectiva com decisão de repetir, ajustar ou
-encerrar. Esses artefatos não representam um produto operacional pronto.
+com totais agregados, dados fictícios ou registros operacionais
+pseudonimizados, lista priorizada de pendências e riscos, avaliação da
+rastreabilidade e retrospectiva com decisão de repetir, ajustar ou encerrar.
+Esses artefatos não representam um produto operacional pronto.
 
 **Compartilhamento dos artefatos**:
 Cada organizador recebe os achados do próprio evento. Comparações entre

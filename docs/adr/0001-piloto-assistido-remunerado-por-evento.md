@@ -11,11 +11,14 @@ prometer funcionalidades inexistentes, a primeira oferta será um piloto
 assistido, pré-evento e vinculado a um único evento concreto.
 
 O piloto terá hipótese de preço de teste fixo de R$ 1.000 por evento, até 2.000
-participantes, cobrado em duas parcelas de R$ 500. A validação usará dados
-agregados, pseudonimizados ou fictícios, sem operação ao vivo, PII de
-compradores, custódia ou processamento de pagamentos do evento. O escopo inclui
-kickoff, mapeamento, simulação pré-evento assistida e retrospectiva; não inclui suporte
-ilimitado, integrações sob medida ou garantia de resultado.
+participantes, cobrado em duas parcelas de R$ 500. A validação usará totais
+agregados, dados fictícios ou registros operacionais pseudonimizados, sem
+operação ao vivo, sem identificadores diretos de compradores e sem custódia ou
+processamento de pagamentos do evento. Registros pseudonimizados ainda podem
+ser dados pessoais e não substituem base legal, contrato ou revisão jurídica.
+O escopo inclui kickoff, mapeamento, simulação pré-evento assistida e
+retrospectiva; não inclui suporte ilimitado, integrações sob medida ou garantia
+de resultado.
 
 Escolhemos testar cobrança por evento em vez de gratuidade, assinatura ou percentual
 sobre vendas porque a rodada precisa medir compromisso econômico sem criar uma

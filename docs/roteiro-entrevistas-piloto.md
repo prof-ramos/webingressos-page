@@ -79,7 +79,7 @@ Se houver tempo e o entrevistado se oferecer, pedir:
 
 Apresentar a hipótese exatamente assim:
 
-> “Estamos selecionando um evento universitário para uma simulação pré-evento assistida de fechamento rastreável. Por R$ 1.000, acompanhamos um único evento de até 2.000 participantes, com kickoff, mapeamento da operação, teste com dados não identificáveis e retrospectiva. É uma validação experimental, não uma plataforma pronta nem uma garantia de resultado.”
+> “Estamos selecionando um evento universitário para uma simulação pré-evento assistida de fechamento rastreável. Por R$ 1.000, acompanhamos um único evento de até 2.000 participantes, com kickoff, mapeamento da operação, teste com totais, exemplos ou registros sem nome, contato ou documento do comprador, e retrospectiva. É uma validação experimental, não uma plataforma pronta nem uma garantia de resultado.”
 
 Para o decisor financeiro, perguntar:
 
