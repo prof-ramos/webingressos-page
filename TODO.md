@@ -56,8 +56,10 @@ questão que ainda bloqueia copy.
       Archivo em produto/dados. A rota `/prototipo` permanece somente como
       registro experimental fora do índice; a landing `/` é a implementação
       canônica. Validação local concluída em 320 px e 1440 px sem overflow.
-- [ ] Definir o modelo de preço (mensalidade ou percentual do bruto). Enquanto
-      estiver aberto, nenhuma copy pode falar de custo ou previsibilidade.
+- [ ] Definir o modelo de preço público (mensalidade, percentual do bruto ou
+      cobrança por evento). A hipótese interna de R$ 1.000 por evento está
+      documentada para as entrevistas, mas não é preço público; nenhuma copy
+      pode falar de custo ou previsibilidade como condição definitiva.
 
 ## P1 — operação do piloto
 

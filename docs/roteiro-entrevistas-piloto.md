@@ -79,7 +79,7 @@ Se houver tempo e o entrevistado se oferecer, pedir:
 
 Apresentar a hipótese exatamente assim:
 
-> “Estamos selecionando um evento universitário para um piloto assistido de fechamento rastreável. Por R$ 1.000, acompanhamos um único evento de até 2.000 participantes, com kickoff, mapeamento da operação, teste assistido dos fluxos e retrospectiva. É uma validação experimental, não uma plataforma pronta nem uma garantia de resultado.”
+> “Estamos selecionando um evento universitário para uma simulação pré-evento assistida de fechamento rastreável. Por R$ 1.000, acompanhamos um único evento de até 2.000 participantes, com kickoff, mapeamento da operação, teste com totais, exemplos ou registros sem nome, contato ou documento do comprador, e retrospectiva. É uma validação experimental, não uma plataforma pronta nem uma garantia de resultado.”
 
 Para o decisor financeiro, perguntar:
 
@@ -166,7 +166,10 @@ Só avançar quando todos os itens forem verdadeiros:
 A rodada é informativa quando houver pelo menos três relatos independentes do
 mesmo problema, dois entrevistados dispostos a compartilhar o fluxo atual e um
 evento concreto indicado para teste. Uma declaração hipotética de interesse não
-é validação econômica.
+é validação econômica. Proposta aceita, kickoff acordado ou reserva autorizada
+sem pagamento são sinais de compromisso; validação econômica exige aceite
+escrito do decisor financeiro e confirmação do pagamento da primeira parcela de
+R$ 500.
 
 ### Síntese e gate
 

@@ -1,7 +1,7 @@
 # WebIngressos — Product Marketing Context
 
-**Document version:** 1.2.0
-**Last updated:** 2026-08-09
+**Document version:** 1.3.0
+**Last updated:** 2026-08-29
 **Status:** hipótese em validação; produto ainda não lançado
 
 ## 1. Product overview
@@ -26,7 +26,19 @@ SaaS B2B2C em validação. A landing atual é apenas um canal de descoberta come
 
 ### Business model and pricing
 
-Ainda não definidos. Não publicar preços, taxas ou condições como definitivos.
+O modelo público ainda não foi definido. Não publicar preços, taxas ou
+condições como definitivos.
+
+Para a rodada de descoberta, existe uma hipótese interna de preço de teste:
+R$ 1.000 por evento, para até 2.000 participantes, em duas parcelas de
+R$ 500. Ela será apresentada nas entrevistas e em uma eventual proposta
+interna, mas não é preço público nem contrato. A decisão só será tomada depois
+das cinco entrevistas e do gate do proprietário da WebIngressos.
+
+O prazo de até dois dias úteis para confirmar o recebimento e propor uma
+conversa é uma meta interna de primeiro contato de candidaturas completas, não
+um SLA de produto, entrega ou resultado. Só deve permanecer anunciado enquanto
+houver responsável, fila e procedimento capazes de sustentá-lo.
 
 ## 2. Target audience
 
@@ -209,7 +221,9 @@ Resposta a validar: plataformas existentes podem atender à venda, mas o organiz
 
 ### “Vai ser mais barato?”
 
-Resposta: preço não é o diferencial central e ainda não está definido.
+Resposta: não há preço público definido. Na rodada de descoberta, testaremos
+internamente uma hipótese de R$ 1.000 por evento, sem tratá-la como condição
+definitiva.
 
 ### “Já terá white label?”
 
@@ -224,11 +238,13 @@ Atualmente não há:
 - taxa de conversão;
 - depoimentos;
 - integrações contratadas;
-- SLA;
-- preço;
+- SLA de produto ou de entrega;
+- preço público;
 - funcionalidade em produção.
 
-Não inventar nem sugerir essas provas. Interfaces demonstrativas devem ser marcadas como conceito ou prévia do piloto.
+Não inventar nem sugerir essas provas. A meta interna de primeiro contato não é
+prova de desempenho nem substitui um processo operacional. Interfaces
+demonstrativas devem ser marcadas como conceito ou prévia do piloto.
 
 ## 11. Voice and tone
 
@@ -261,6 +277,14 @@ Lead qualificado de um organizador disposto a conversar, compartilhar o fluxo re
 - inscrição em newsletter genérica.
 
 ## 13. Changelog
+
+### 1.3.0 — 2026-08-29
+
+- Separada a hipótese interna de preço do modelo público ainda não definido.
+- Separada a meta de primeiro contato de candidaturas de um SLA de produto ou
+  entrega.
+- Registrado que a hipótese de R$ 1.000 por evento será testada nas cinco
+  entrevistas antes de qualquer oferta pública.
 
 ### 1.2.0 — 2026-08-09
 

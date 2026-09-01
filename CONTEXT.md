@@ -1,8 +1,8 @@
 # Descoberta do piloto WebIngressos
 
 Vocabulário para selecionar entrevistados e tomar decisões sobre a oferta e o
-SLA do piloto. O perfil abaixo é uma hipótese de seleção comercial, não uma
-afirmação pública sobre o mercado.
+prazo interno de primeiro contato do piloto. O perfil abaixo é uma hipótese de
+seleção comercial, não uma afirmação pública sobre o mercado.
 
 ## Participantes
 
@@ -34,45 +34,49 @@ entrevistado indicando um evento concreto para teste. Interesse verbal isolado
 não é validação.
 
 **Entrevista de descoberta**:
-Conversa que começa pelo comportamento observado no último evento e só depois
-apresenta a hipótese de piloto para testar objeções e compromisso. Não é uma
-apresentação comercial nem uma pesquisa de opinião.
+Conversa sobre o comportamento observado no último evento antes de apresentar a
+hipótese de piloto e testar objeções e compromisso. Não é uma apresentação
+comercial nem uma pesquisa de opinião.
 
 **Piloto assistido**:
-Validação experimental vinculada a um único evento concreto, com configuração,
-acompanhamento da operação e retrospectiva, sem representar a plataforma como
-produto pronto ou assinatura de escopo indefinido.
+Teste experimental pré-evento, vinculado a um único evento concreto, com
+configuração, simulação e retrospectiva. Não representa a plataforma como
+produto pronto nem cria uma assinatura de escopo indefinido.
 
 **Piloto remunerado**:
-Piloto assistido cobrado por evento, com eventual desconto de validação
+Piloto assistido cobrado por evento. Qualquer desconto de validação deve ser
 declarado como condição temporária e vinculada à colaboração do organizador.
 _Evitar_: gratuito por padrão, assinatura recorrente ou percentual sobre vendas
 antes de validar custos e operação
 
 **Preço de teste**:
-Cifra concreta apresentada nas entrevistas para medir compromisso econômico;
-não é preço público definitivo nem deve ser substituída por uma pergunta aberta
-sobre quanto o entrevistado pagaria.
+Valor concreto apresentado nas entrevistas para medir compromisso econômico. Não
+é preço público definitivo e não será substituído por uma pergunta aberta sobre
+quanto o entrevistado pagaria.
 
 Hipótese atual: R$ 1.000 por evento, para até 2.000 participantes. Esse valor
 será testado nas entrevistas e não deve ser publicado como preço definitivo.
 
-**SLA de primeiro contato**:
-Compromisso de confirmar o recebimento e propor uma conversa em até dois dias
-úteis após uma candidatura completa. Não inclui aceitação no piloto, entrega de
-funcionalidade ou resultado operacional.
+**Meta interna de primeiro contato**:
+Compromisso operacional de confirmar o recebimento e propor uma conversa em até
+dois dias úteis após uma candidatura completa. Não é SLA de produto, entrega ou
+resultado operacional; não inclui aceitação no piloto. Só deve ser anunciado
+enquanto houver responsável, fila e procedimento capazes de sustentá-lo.
 
 **Responsável pelo primeiro contato**:
 Pessoa nominal que revisa novas candidaturas, faz a triagem e inicia a conversa
-no prazo do SLA, usando WhatsApp como canal primário e e-mail como fallback.
-Nesta fase, é o proprietário da WebIngressos.
+no prazo definido, usando WhatsApp como canal primário e e-mail como fallback.
+Nesta fase, essa pessoa é o proprietário da WebIngressos.
 
 **Escopo do piloto remunerado**:
-Para R$ 1.000, inclui um evento de até 2.000 participantes, uma reunião de
-início, mapeamento da operação, teste assistido dos fluxos de venda,
-promoters, check-in e fechamento, e uma retrospectiva. Não inclui integrações
-sob medida, suporte ilimitado, mais de um evento, funcionalidades ainda não
-disponíveis ou garantia de resultado financeiro ou de público.
+Pelo preço de teste de R$ 1.000, o piloto inclui um evento de até 2.000
+participantes, uma reunião de início, mapeamento da operação, simulação
+pré-evento dos fluxos de venda, promoters, check-in e fechamento com totais
+agregados, dados fictícios ou registros operacionais pseudonimizados, e uma
+retrospectiva. Não inclui operação ao vivo, processamento de ingressos reais,
+identificadores diretos de compradores, integrações sob medida, suporte
+ilimitado, mais de um evento, funcionalidades ainda não disponíveis ou garantia
+de resultado financeiro ou de público.
 
 **Cobrança do piloto**:
 O valor é dividido em R$ 500 na confirmação do piloto e R$ 500 até sete dias
@@ -95,33 +99,35 @@ A participação não será paga. A contrapartida é prioridade para conhecer o
 piloto e receber uma devolutiva breve, sem promessa de aceitação ou desconto.
 
 **Registro da entrevista**:
-As conversas não são gravadas por padrão. A evidência é registrada em notas
+Não gravamos as conversas por padrão. Registramos a evidência em notas
 estruturadas sobre comportamento, fluxo, problema, consequência, compromisso,
 reação ao preço e escopo.
 
 **Problema central da descoberta**:
-O foco primário é o fechamento financeiro e a prestação de contas entre
-múltiplos responsáveis. Vendas, promoters e check-in são investigados como
-causas e contexto desse fechamento, não como propostas independentes.
+A descoberta foca o fechamento financeiro e a prestação de contas entre
+múltiplos responsáveis. Investigamos vendas, promoters e check-in como causas e
+contexto desse fechamento, não como propostas independentes.
 
 **Fechamento rastreável**:
-Capacidade de reconstruir a receita bruta por lote ou canal, o responsável por
-cada venda, comissões, divisões por entidade, despesas, estornos, ajustes,
-aprovações e status dos repasses.
+Reconstruir a receita bruta por lote ou canal, o responsável por cada venda,
+comissões, divisões por entidade, despesas, estornos, ajustes, aprovações e
+status dos repasses.
 _Evitar_: fechamento auditável — até que exista um padrão formal de auditoria
 definido
 
 **Dor comprovada**:
-Relato de um evento recente e específico em que houve trabalho manual de
-conciliação e uma consequência concreta em tempo, dinheiro, conflito, atraso ou
-confiança, envolvendo a pessoa entrevistada na solução.
+Problema relatado a partir de um evento recente e específico, com trabalho
+manual de conciliação e consequência concreta em tempo, dinheiro, conflito,
+atraso ou confiança. A pessoa entrevistada precisa ter participado da solução.
 _Evitar_: interesse genérico, desejo abstrato de centralização
 
 **Validação econômica**:
-O preço de R$ 1.000 só é considerado validado quando houver um próximo passo
-verificável: evento e data indicados, proposta formal aceita para avaliação,
-kickoff acordado ou reserva autorizada mediante a primeira parcela de R$ 500.
-Uma declaração hipotética de que pagaria não basta.
+Consideramos o preço de R$ 1.000 validado somente quando o decisor financeiro
+aceitar o escopo por escrito e a primeira parcela de R$ 500 estiver paga ou
+confirmada pelo meio de pagamento acordado. Evento e data indicados, proposta
+aceita para avaliação, kickoff acordado ou reserva autorizada sem pagamento são
+sinais de compromisso e avanço comercial, mas não validam o preço. A declaração
+hipotética de que pagaria também não basta.
 
 **Decisor financeiro**:
 Pessoa com autoridade para aprovar a contratação e o pagamento do piloto,
@@ -139,10 +145,10 @@ Conversa remota de 30 minutos, por vídeo ou telefone. WhatsApp é usado para
 convite e confirmação, não como substituto da conversa estruturada.
 
 **Evidência bruta da entrevista**:
-Notas identificadas por E1–E5 ficam em espaço privado, fora do repositório,
-sem nomes, contatos ou arquivos reais dos entrevistados. O repositório recebe
-apenas síntese anonimizada; as notas brutas são eliminadas após a síntese e a
-decisão do piloto.
+Mantemos as notas identificadas por E1–E5 em espaço privado, fora do
+repositório, sem nomes, contatos ou arquivos reais dos entrevistados. O
+repositório recebe apenas a síntese anonimizada. Eliminamos as notas brutas
+após a síntese e a decisão do piloto.
 
 **Pergunta de abertura**:
 “Conte sobre o último evento que você organizou, desde a primeira venda até o
@@ -151,13 +157,13 @@ comportamento passado antes de apresentar qualquer hipótese da WebIngressos.
 
 **Pergunta de fechamento**:
 “Como vocês sabem quanto venderam, quanto cada promoter ou entidade deve receber
-e o que ainda está pendente?” A resposta deve revelar fontes de verdade,
-responsáveis, cálculos, aprovações e pendências.
+e o que ainda está pendente?” Usamos a resposta para identificar fontes de
+verdade, responsáveis, cálculos, aprovações e pendências.
 
 **Pergunta do substituto atual**:
 “O que vocês usam hoje para resolver isso e onde esse processo costuma quebrar?”
-O objetivo é identificar ferramentas, planilhas, mensagens, pessoas e
-improvisos que compõem a alternativa real ao piloto.
+Identificamos ferramentas, planilhas, mensagens, pessoas e improvisos que
+compõem a alternativa real ao piloto.
 
 **Gatilho temporal da descoberta**:
 O problema precisa ser relacionado a um evento concreto e a uma data de decisão;
@@ -166,13 +172,13 @@ organizador, não de escassez criada pela comunicação.
 
 **Pergunta do gatilho temporal**:
 “Qual é o próximo evento que exigiria mudar esse processo e até quando vocês
-precisariam decidir?” A resposta deve revelar data, janela de preparação e
-urgência operacional real.
+precisariam decidir?” Buscamos data, janela de preparação e urgência
+operacional real.
 
 **Pergunta do processo de decisão**:
 “Quem precisa concordar para essa decisão avançar e quem participa do
-pagamento?” A resposta deve revelar aprovadores, operadores e responsáveis
-financeiros de todas as entidades envolvidas.
+pagamento?” Identificamos aprovadores, operadores e responsáveis financeiros de
+todas as entidades envolvidas.
 
 **Walkthrough do fluxo atual**:
 Demonstração opcional e ao vivo de uma planilha ou processo com dados ocultados,
@@ -198,9 +204,10 @@ organizadores e pelo menos cinco promoters ou responsáveis comerciais no mesmo
 evento.
 
 **Apresentação da oferta**:
-“Estamos selecionando um evento universitário para um piloto assistido de
-fechamento rastreável. Por R$ 1.000, acompanhamos um único evento de até 2.000
-participantes, com kickoff, mapeamento da operação, teste assistido dos fluxos e
+“Estamos selecionando um evento universitário para uma simulação pré-evento
+assistida de fechamento rastreável. Por R$ 1.000, acompanhamos um único evento
+de até 2.000 participantes, com kickoff, mapeamento da operação, teste com
+totais, exemplos ou registros sem nome, contato ou documento do comprador, e
 retrospectiva. É uma validação experimental, não uma plataforma pronta nem uma
 garantia de resultado.”
 
@@ -211,9 +218,9 @@ operador: “Você consegue envolver o decisor financeiro para avaliar essa
 reserva?”
 
 **Pergunta de risco**:
-“Qual seria o maior risco de testar esse piloto no próximo evento?” A objeção é
-classificada como preço, confiança, esforço de adoção, risco operacional,
-autoridade interna ou falta de urgência antes de qualquer resposta.
+“Qual seria o maior risco de testar esse piloto no próximo evento?” Classificamos
+a objeção como preço, confiança, esforço de adoção, risco operacional, autoridade
+interna ou falta de urgência antes de responder.
 
 **Pergunta de requisito**:
 “O que precisaria ser verdade para esse risco ficar aceitável e vocês
@@ -236,18 +243,38 @@ O candidato aceita por escrito, por e-mail ou WhatsApp, e assina um termo
 simples antes do pagamento da primeira parcela. Pagamento isolado não substitui
 o registro do aceite e do escopo.
 
+**Identificador direto de comprador**:
+Nome, e-mail, telefone, documento ou outro dado que, sozinho, aponta para a
+pessoa que comprou o ingresso.
+
+**Registro operacional pseudonimizado**:
+Linha de venda, lote, promoter ou check-in em que os identificadores diretos
+do comprador foram substituídos por códigos que só o organizador consegue
+religar. Continua podendo ser dado pessoal. Não é o mesmo que total agregado
+nem que dado anônimo.
+
 **Limite de dados da primeira rodada**:
-O piloto não processa dados pessoais de compradores, não guarda documentos ou
-contatos reais e não processa nem custodia pagamentos do evento. A taxa do
-piloto é uma cobrança separada pela validação assistida. Os testes usam dados
-agregados, pseudonimizados ou fictícios até que produto, contrato, segurança e base legal
-estejam definidos.
+O piloto é uma simulação pré-evento. Não opera o evento ao vivo, não processa
+ingressos reais, não recebe identificadores diretos de compradores e não
+processa nem custodia pagamentos do evento. A cobrança do piloto é separada da
+operação do evento.
+
+A simulação usa apenas totais agregados, dados fictícios ou registros
+operacionais pseudonimizados fornecidos pelo organizador, sem a chave de
+reidentificação. A WebIngressos não copia, baixa nem guarda planilhas,
+documentos ou contatos originais.
+
+Registros pseudonimizados ainda podem ser dados pessoais, porque o
+organizador pode religá-los com informação que guarda em separado. Esta
+rodada não afirma ausência de dados pessoais nem define base legal, retenção
+ou tratamento definitivo. Isso permanece pendente de produto, contrato,
+segurança e revisão jurídica.
 
 **Responsabilidade do evento**:
-O organizador permanece responsável por venda, recebimento, validade dos
-ingressos, promoters, comissões, check-in, pagamentos, repasses e obrigações
-legais. A WebIngressos acompanha o teste, documenta o fluxo e identifica
-melhorias, sem assumir a operação ou garantir resultados.
+O organizador responde por venda, recebimento, validade dos ingressos, promoters,
+comissões, check-in, pagamentos, repasses e obrigações legais. A WebIngressos
+acompanha o teste, documenta o fluxo e identifica melhorias, sem assumir a
+operação ou garantir resultados.
 
 **Sucesso operacional do piloto**:
 O piloto é avaliado por tempo de fechamento, pendências ou divergências,
@@ -276,8 +303,8 @@ informada antes. Nesses casos, a segunda parcela não é cobrada.
 **Limite da primeira rodada**:
 O piloto é uma validação pré-evento. Não processa ingressos reais, não controla
 check-in ao vivo e não interfere em pagamentos ou repasses; o evento real serve
-como contexto para testar o fluxo com dados agregados, pseudonimizados ou
-fictícios.
+como contexto para testar o fluxo nos termos do limite de dados da primeira
+rodada.
 
 **Capacidade de acompanhamento**:
 O valor inclui kickoff de até 60 minutos, workshop do fluxo de até 90 minutos,
@@ -287,9 +314,10 @@ não há suporte 24/7, reuniões ilimitadas ou customizações.
 
 **Entregáveis do piloto**:
 Mapa do fluxo atual de fechamento, matriz de responsabilidades, cenário de teste
-com dados não identificáveis, lista priorizada de pendências e riscos,
-avaliação da rastreabilidade e retrospectiva com decisão de repetir, ajustar ou
-encerrar. Esses artefatos não representam um produto operacional pronto.
+com totais agregados, dados fictícios ou registros operacionais
+pseudonimizados, lista priorizada de pendências e riscos, avaliação da
+rastreabilidade e retrospectiva com decisão de repetir, ajustar ou encerrar.
+Esses artefatos não representam um produto operacional pronto.
 
 **Compartilhamento dos artefatos**:
 Cada organizador recebe os achados do próprio evento. Comparações entre

@@ -6,11 +6,15 @@ Não abra issue pública com credenciais, dados pessoais ou detalhes explorávei
 
 ## Dados e segredos
 
-- Nunca versione `.env.local`, tokens, segredos de webhook ou dados de leads.
+- Nunca versione `.env.local`, tokens, segredos de integração ou dados de leads.
 - Use variáveis criptografadas na Vercel e GitHub Actions.
 - Revogue imediatamente qualquer segredo exposto.
 - Não copie dados pessoais reais para fixtures, screenshots ou logs.
 
 ## Escopo atual
 
-O formulário encaminha dados a um webhook configurável. Honeypot, validação e limite de corpo reduzem abuso básico, mas não substituem rate limiting, antispam, monitoramento e controles no destino dos dados.
+O formulário valida a candidatura no servidor e persiste os dados em um Blob
+privado da Vercel, usando `BLOB_READ_WRITE_TOKEN`. A implementação atual não
+encaminha candidaturas para um webhook configurável. Honeypot, validação e
+limite de corpo reduzem abuso básico, mas não substituem rate limiting,
+antispam, monitoramento, controle de acesso, retenção e resposta a incidentes.

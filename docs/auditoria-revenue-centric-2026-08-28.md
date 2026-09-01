@@ -7,6 +7,22 @@
 **Método:** leitura do código e dos documentos do repositório, análise pelos princípios de Revenue-Centric Design e validação local das superfícies públicas e do endpoint.
 **Alterações realizadas:** nenhuma.
 
+## Atualização de estado — 29 de agosto de 2026
+
+Após esta auditoria, a decisão interna foi registrada no ADR 0001:
+a rodada testará um piloto pré-evento remunerado por evento, com hipótese de
+R$ 1.000 e duas parcelas de R$ 500. Isso resolve a ausência de uma hipótese
+para testar, mas não define o modelo público nem autoriza publicar preço antes
+das cinco entrevistas e do gate de decisão.
+
+Também foi esclarecido que os dois dias úteis são uma meta interna de primeiro
+contato de candidaturas completas, não um SLA de produto. A meta continua
+dependente de responsável, fila e procedimento operacional, que permanecem
+pendentes no TODO.md.
+
+O texto de segurança foi alinhado à implementação atual: as candidaturas são
+persistidas em Blob privado e não são encaminhadas a um webhook configurável.
+
 ## Veredito executivo
 
 A implementação está tecnicamente saudável e é disciplinada quanto à honestidade: a página deixa claro que o produto está em validação, não usa depoimentos ou métricas reais inventadas e marca o dashboard como fictício.
@@ -36,19 +52,19 @@ Esses pontos aplicam bem os princípios de [passar no teste de cinco segundos](h
 
 ### P0 — O preço como filtro ainda não existe
 
-O modelo de preço continua indefinido ([`TODO.md:59`](../TODO.md#L59)). Isso não é um erro de copy: é uma decisão deliberadamente aberta e a página está correta em não publicar um valor inventado. O problema é que o formulário atual valida interesse, não disposição a pagar.
+O modelo público continua indefinido ([`TODO.md:59`](../TODO.md#L59)). A atualização de 29/08 registrou uma hipótese interna de R$ 1.000 por evento para ser testada nas entrevistas. Isso não é preço público nem validação econômica: o formulário atual continua validando interesse, não disposição a pagar.
 
 **Risco:** uma lista de candidaturas pode crescer sem demonstrar que existe uma operação economicamente sustentável.
 
-**Ação recomendada:** definir a oferta do piloto — mensalidade, percentual, cobrança por evento ou outra hipótese — e inserir a validação econômica na conversa ou em uma pergunta posterior, sem sobrecarregar o primeiro contato. O princípio aplicável é [preço como filtro](https://x.com/richardrx/status/2051672248348479691).
+**Ação recomendada:** testar a hipótese da oferta nas entrevistas e registrar a validação econômica somente com aceite escrito e confirmação do pagamento da primeira parcela, sem sobrecarregar o primeiro contato. O modelo público só deve ser decidido após esse gate. O princípio aplicável é [preço como filtro](https://x.com/richardrx/status/2051672248348479691).
 
 ### P0 — A promessa de 48 horas cria expectativa sem processo operacional
 
-O prazo aparece no hero, no FAQ, no formulário e na página de confirmação ([`hero.tsx:53`](../src/components/landing/hero.tsx#L53), [`constants.ts:122`](../src/lib/constants.ts#L122), [`obrigado/page.tsx:28`](../src/app/obrigado/page.tsx#L28)). Porém, o endpoint somente grava a candidatura no Blob; não há notificação, fila, responsável ou pipeline documentado ([`route.ts:115`](../src/app/api/subscribe/route.ts#L115), [`TODO.md:73`](../TODO.md#L73)).
+O prazo aparece no hero, no FAQ, no formulário e na página de confirmação ([`hero.tsx:53`](../src/components/landing/hero.tsx#L53), [`constants.ts:122`](../src/lib/constants.ts#L122), [`obrigado/page.tsx:28`](../src/app/obrigado/page.tsx#L28)). A atualização de 29/08 o classificou como meta interna de primeiro contato, não SLA de produto. Porém, o endpoint somente grava a candidatura no Blob; ainda não há notificação, fila, responsável operacional ou pipeline documentado ([`route.ts:115`](../src/app/api/subscribe/route.ts#L115), [`TODO.md:73`](../TODO.md#L73)).
 
 **Risco:** o primeiro contato pode confiar em uma resposta que a operação ainda não consegue garantir. Isso converte uma promessa persuasiva em dívida de confiança.
 
-**Ação recomendada:** atribuir proprietário, canal de alerta, estado do lead e procedimento de resposta antes de manter o prazo de 48 horas. Se isso não puder ser garantido, remover o prazo e manter apenas uma expectativa honesta de retorno.
+**Ação recomendada:** atribuir proprietário, canal de alerta, estado do lead e procedimento de resposta antes de tratar a meta como compromisso sustentado. Se isso não puder ser garantido, remover o prazo e manter apenas uma expectativa honesta de retorno.
 
 ### P0 — O funil não produz sinal de decisão
 
@@ -92,9 +108,9 @@ Em falha de rede ou API, o toast recomenda “entrar em contato diretamente” (
 
 ### P1 — Privacidade e documentação operacional ainda reduzem confiança
 
-A política é inicial e não define claramente base legal, retenção e fornecedores ([`privacidade/page.tsx:42`](../src/app/privacidade/page.tsx#L42)). O `SECURITY.md` ainda descreve um webhook configurável, enquanto a implementação atual usa Vercel Blob ([`SECURITY.md:14`](../SECURITY.md#L14), [`route.ts:115`](../src/app/api/subscribe/route.ts#L115)).
+A política é inicial e não define claramente base legal, retenção e fornecedores ([`privacidade/page.tsx:42`](../src/app/privacidade/page.tsx#L42)). Na data desta auditoria, o `SECURITY.md` descrevia um webhook configurável, enquanto a implementação usava Vercel Blob. O documento foi alinhado em 29/08; a pendência jurídica permanece.
 
-**Risco:** inconsistência documental antes da candidatura pode reduzir confiança e criar risco de operação ou conformidade.
+**Risco:** a política ainda incompleta pode reduzir confiança e criar risco de operação ou conformidade.
 
 **Ação recomendada:** concluir revisão jurídica, atualizar o documento de segurança e publicar somente compromissos que a operação realmente sustenta.
 
